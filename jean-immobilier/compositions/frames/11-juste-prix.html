@@ -227,7 +227,7 @@ function jiCursorSVG(id) {
         var T = 20 + ((TO[r] - FROM[r] + 10) % 10), col = "";
         for (var j = 0; j <= T; j++) col += '<div class="p11-dg">' + ((FROM[r] + j) % 10) + "</div>";
         travels.push([9, 7, T - 16]);
-        rowHTML += '<span class="ji-num"><div id="p11-stk' + r + '" class="p11-stack">' + col + "</div></span>";
+        rowHTML += '<span class="ji-num"><div id="p11-sp' + r + '-0" class="p11-stack"><div id="p11-sp' + r + '-1" class="p11-stack"><div id="p11-stk' + r + '" class="p11-stack">' + col + "</div></div></div></span>";
       }
       $("row").innerHTML = rowHTML + '<span id="p11-eur">€</span>';
 
@@ -246,15 +246,19 @@ function jiCursorSVG(id) {
       var cam = { x: 4100, y: 2550, s: 0.8, r: 0, b: 10 };
       function applyCam() { jiCam(world, cam); jiBlur(lens, cam.b); }
       applyCam();
-      var REST_X = 3683, REST_Y = 2600, DRIFT = 15;
+      var REST_X = 3683, REST_Y = 2600, DRIFT = 15, DRIFT_END = REST_X + DRIFT * (2.48 - 0.13);
+      /* les modifiers écrivent l'état caméra pendant le rendu même (pas un callback) : sûr en seek, événements coupés ou non */
+      function camSet(k) { return function (v) { cam[k] = +v; applyCam(); return v; }; }
+      var MOD = { modifiers: { x: camSet("x"), y: camSet("y"), s: camSet("s"), b: camSet("b") } };
+      function camTo(from, to, t) { tl.fromTo(cam, from, Object.assign({}, to, MOD, { immediateRender: false }), t); }
       /* cran d'arrivée sur PRIX (fin du cran commencé en P20) */
-      tl.to(cam, { x: REST_X, y: REST_Y, s: 1, duration: 0.13, ease: "expo.out", onUpdate: applyCam }, 0);
-      tl.to(cam, { b: 0, duration: 0.13, ease: "power2.out", onUpdate: applyCam }, 0);
+      camTo({ x: 4100, y: 2550, s: 0.8 }, { x: REST_X, y: REST_Y, s: 1, duration: 0.13, ease: "expo.out" }, 0);
+      camTo({ b: 10 }, { b: 0, duration: 0.13, ease: "power2.out" }, 0);
       /* dérive x +15 u/s */
-      tl.to(cam, { x: REST_X + DRIFT * (2.48 - 0.13), duration: 2.48 - 0.13, ease: "none", onUpdate: applyCam }, 0.13);
+      camTo({ x: REST_X }, { x: DRIFT_END, duration: 2.48 - 0.13, ease: "none" }, 0.13);
       /* cran → LOYER : à 2.59 la caméra est en plein cran, cam(5300, 2550, 0.80) flou 10 */
-      tl.to(cam, { x: 5300, y: 2550, s: 0.8, duration: 0.11, ease: "power3.in", onUpdate: applyCam }, 2.48);
-      tl.to(cam, { b: 10, duration: 0.11, ease: "power2.in", onUpdate: applyCam }, 2.48);
+      camTo({ x: DRIFT_END, y: REST_Y, s: 1 }, { x: 5300, y: 2550, s: 0.8, duration: 0.11, ease: "power3.in" }, 2.48);
+      camTo({ b: 0 }, { b: 10, duration: 0.11, ease: "power2.in" }, 2.48);
 
       /* ---------- 0.13 la carte se pose ---------- */
       tl.fromTo($("prix"), { scale: 0.96, y: 14 }, { scale: 1, y: 0, duration: 0.42, ease: "power3.out" }, 0);
@@ -266,14 +270,10 @@ function jiCursorSVG(id) {
       var STEP_T = [0.43, 0.55, 0.67], STEP_D = 0.18;
       for (var q = 0; q < 6; q++) {
         (function (r) {
-          var stk = $("stk" + r), springs = [{ p: 0 }, { p: 0 }, { p: 0 }], tr = travels[r];
-          function applyStack() {
-            var sum = springs[0].p * tr[0] + springs[1].p * tr[1] + springs[2].p * tr[2];
-            stk.style.transform = "translateY(" + (-sum * H).toFixed(2) + "px)";
-          }
-          applyStack();
-          springs.forEach(function (sp, i) {
-            tl.to(sp, { p: 1, duration: STEP_D, ease: "expo.out", onUpdate: applyStack }, STEP_T[i]);
+          /* ressorts additifs : chaque ressort est une enveloppe imbriquée, les translations s'additionnent */
+          var stk = $("stk" + r), layers = [$("sp" + r + "-0"), $("sp" + r + "-1"), stk], tr = travels[r];
+          layers.forEach(function (el, i) {
+            tl.fromTo(el, { y: 0 }, { y: -tr[i] * H, duration: STEP_D, ease: "expo.out", immediateRender: false }, STEP_T[i]);
           });
           tl.fromTo(stk, { filter: "blur(0px)" }, { filter: "blur(4px)", duration: 0.1, ease: "power2.in", immediateRender: false }, 0.43);
           tl.fromTo(stk, { filter: "blur(4px)" }, { filter: "blur(0px)", duration: 0.2, ease: "power2.out", immediateRender: false }, 0.65);

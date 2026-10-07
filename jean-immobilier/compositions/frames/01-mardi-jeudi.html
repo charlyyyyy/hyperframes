@@ -71,6 +71,8 @@
       #root { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; }
       #p01-ground, #p01-scene, #p01-grainclip { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; }
       #p01-lens { will-change: filter; }
+      /* caméra : le cadre .p01-cam porte le centrage + l'échelle, le .ji-world dedans porte la translation (-x, -y) */
+      .p01-cam { position: absolute; left: 0; top: 0; width: 0; height: 0; transform-origin: 0 0; will-change: transform; }
       /* tuiles vides du fond, couche lointaine */
       .p01-back { opacity: 0; filter: blur(10px); }
       /* bord flou de tuile au premier plan */
@@ -112,9 +114,9 @@
     <!-- scène : lentille (flou caméra) > couches fond / monde / premier plan ; sous-titres par-dessus -->
     <div id="p01-scene" class="clip" data-start="0" data-duration="4.46" data-track-index="1">
       <div id="p01-lens" class="ji-layer">
-        <div id="p01-backworld" class="ji-world" data-layout-allow-overflow></div>
-        <div id="p01-world" class="ji-world" data-layout-allow-overflow></div>
-        <div id="p01-fgworld" class="ji-world" data-layout-allow-overflow></div>
+        <div id="p01-cam-b" class="p01-cam" data-layout-allow-overflow><div id="p01-backworld" class="ji-world" data-layout-allow-overflow></div></div>
+        <div id="p01-cam-w" class="p01-cam" data-layout-allow-overflow><div id="p01-world" class="ji-world" data-layout-allow-overflow></div></div>
+        <div id="p01-cam-f" class="p01-cam" data-layout-allow-overflow><div id="p01-fgworld" class="ji-world" data-layout-allow-overflow></div></div>
       </div>
       <div id="p01-sub1" class="ji-sub p01-sub"></div>
       <div id="p01-sub2" class="ji-sub p01-sub"></div>
@@ -281,43 +283,50 @@ function jiCursorSVG(id) {
         sub2.innerHTML = jiSubHTML("p01", ["vous", "attendez", "le", "rappel", "de", "l’agence."], { box: [2, 3] });
         sub3.innerHTML = jiSubHTML("p01", ["Jeudi,", "vous", "attendez", "le", "loyer"], { box: [3, 4] }) + '<span class="ji-w p01-w">.</span>';
 
-        /* ---------- caméra : une seule source, camAt(t), appliquée par jiCam ---------- */
-        var EIO = gsap.parseEase("expo.inOut");
-        function lerp(a, b, e) { return a + (b - a) * e; }
-        var A = { x: 20 * 0.66, y: 0, s: 1 + 0.02 * 0.66 };   // fin de la dérive de P1
-        var B = { x: 96, y: 60, s: 1.25 };                    // cran sur le téléphone
-        var C = { x: 96, y: 60 - 10 * (2.42 - 0.78), s: 1.25 }; // fin de la dérive de P2
-        var D = { x: 2400, y: 0, s: 1.0 };                    // JEUDI
+        /* ---------- caméra : un seul état {x, y, s} tweené sur le timeline (seek-safe, sans rappel) ----------
+           Chaque couche : cadre .p01-cam = translate(960,540) scale(s·k) ; monde = translate(-x·m, -y·m)
+           (même composition que jiCam). Fond : m 0,6 / k 0,72 ; premier plan : m 1,6 / k 1,35. */
+        var LAYERS = [
+          { cam: $("p01-cam-b"), w: back, m: 0.6, k: 0.72 },
+          { cam: $("p01-cam-w"), w: world, m: 1, k: 1 },
+          { cam: $("p01-cam-f"), w: fg, m: 1.6, k: 1.35 }
+        ];
         var X0 = 2400 + 20 * (4.25 - 2.62), V0 = 20, X1 = 3600, V1 = 5000, TW = DUR - 4.25;
-        function camAt(t) {
-          if (t < 0.66) return { x: 20 * t, y: 0, s: 1 + 0.02 * t };
-          if (t < 0.78) { var e = EIO((t - 0.66) / 0.12); return { x: lerp(A.x, B.x, e), y: lerp(A.y, B.y, e), s: lerp(A.s, B.s, e) }; }
-          if (t < 2.42) return { x: 96, y: 60 - 10 * (t - 0.78), s: 1.25 };
-          if (t < 2.62) { var f = EIO((t - 2.42) / 0.2); return { x: lerp(C.x, D.x, f), y: lerp(C.y, D.y, f), s: lerp(C.s, D.s, f) }; }
-          if (t < 4.25) return { x: 2400 + 20 * (t - 2.62), y: 0, s: 1 };
-          // whip vers LUNDI : Hermite (x0, v0) -> (3600, +5000 u/s) à 4.46
-          var u = Math.min(1, (t - 4.25) / TW), u2 = u * u, u3 = u2 * u;
+        // whip vers LUNDI : Hermite (X0, +20 u/s) -> (3600, +5000 u/s) à 4.46, normalisé en ease
+        function whipEase(u) {
+          var u2 = u * u, u3 = u2 * u;
           var x = (2 * u3 - 3 * u2 + 1) * X0 + (u3 - 2 * u2 + u) * TW * V0 + (-2 * u3 + 3 * u2) * X1 + (u3 - u2) * TW * V1;
-          return { x: x, y: 0, s: 1 };
+          return (x - X0) / (X1 - X0);
         }
-        var lens = $("p01-lens");
-        var blurP = { v: 0 };
-        function apply() {
-          var t = tl.time(), c = camAt(t);
-          jiCam(world, { x: c.x, y: c.y, s: c.s, r: 0 });
-          jiCam(back, { x: c.x * 0.6, y: c.y * 0.6, s: c.s * 0.72, r: 0 });
-          jiCam(fg, { x: c.x * 1.6, y: c.y * 1.6, s: c.s * 1.35, r: 0 });
-          jiBlur(lens, blurP.v);
+        var tl = gsap.timeline({ paused: true });
+        function camTo(at, dur, ease, c) {
+          for (var i = 0; i < LAYERS.length; i++) {
+            var L = LAYERS[i];
+            if (c.s != null) tl.to(L.cam, { scale: c.s * L.k, duration: dur, ease: ease }, at);
+            var v = { duration: dur, ease: ease };
+            if (c.x != null) v.x = -c.x * L.m;
+            if (c.y != null) v.y = -c.y * L.m;
+            if (c.x != null || c.y != null) tl.to(L.w, v, at);
+          }
         }
-
-        var tl = gsap.timeline({ paused: true, onUpdate: apply });
+        for (var li = 0; li < LAYERS.length; li++) {
+          tl.fromTo(LAYERS[li].cam, { x: 960, y: 540, scale: LAYERS[li].k, transformOrigin: "0 0" }, { x: 960, y: 540, scale: LAYERS[li].k, duration: 0.01 }, 0);
+          tl.fromTo(LAYERS[li].w, { x: 0, y: 0 }, { x: 0, y: 0, duration: 0.01 }, 0);
+        }
+        camTo(0.01, 0.65, "none", { x: 20 * 0.66, s: 1 + 0.02 * 0.66 });       // P1 : dérive x +20 u/s, échelle +2 %/s
+        camTo(0.66, 0.12, "expo.inOut", { x: 96, y: 60, s: 1.25 });             // cran ×1,25 sur le téléphone
+        camTo(0.78, 1.64, "none", { y: 60 - 10 * (2.42 - 0.78) });              // P2 : dérive y -10 u/s
+        camTo(2.42, 0.2, "expo.inOut", { x: 2400, y: 0, s: 1.0 });              // whip MARDI -> JEUDI
+        camTo(2.62, 4.25 - 2.62, "none", { x: X0 });                            // P3 : dérive x +20 u/s
+        camTo(4.25, TW, whipEase, { x: X1 });                                   // whip suivant, plein élan à 4.46
 
         /* flou de lentille : cran (6 px), whip MARDI -> JEUDI (12 px), whip suivant (10 px à 4.46) */
-        tl.fromTo(blurP, { v: 0 }, { v: 6, duration: 0.06, ease: "power2.in", immediateRender: false }, 0.66)
-          .to(blurP, { v: 0, duration: 0.06, ease: "power2.out" }, 0.72)
-          .to(blurP, { v: 12, duration: 0.1, ease: "power2.in" }, 2.42)
-          .to(blurP, { v: 0, duration: 0.1, ease: "power2.out" }, 2.52)
-          .to(blurP, { v: 10, duration: TW, ease: "power2.in" }, 4.25);
+        var lens = $("p01-lens");
+        tl.fromTo(lens, { filter: "blur(0px)" }, { filter: "blur(6px)", duration: 0.06, ease: "power2.in", immediateRender: false }, 0.66)
+          .to(lens, { filter: "blur(0px)", duration: 0.06, ease: "power2.out" }, 0.72)
+          .to(lens, { filter: "blur(12px)", duration: 0.1, ease: "power2.in" }, 2.42)
+          .to(lens, { filter: "blur(0px)", duration: 0.1, ease: "power2.out" }, 2.52)
+          .to(lens, { filter: "blur(10px)", duration: TW, ease: "power2.in" }, 4.25);
 
         /* ===== Scene 1 (0.00 à 0.62) : MARDI fonce de la caméra ===== */
         var mardi = $("p01-mardi");
@@ -359,7 +368,6 @@ function jiCursorSVG(id) {
         jiSubAnim(tl, sub3, [2.59, 3.15, 3.31, 3.79, 3.91, 3.91], { boxAt: 3.76, outAt: 4.22 });
 
         tl.set({}, {}, DUR);
-        apply();
         window.__timelines = window.__timelines || {};
         window.__timelines[FID] = tl;
       })();

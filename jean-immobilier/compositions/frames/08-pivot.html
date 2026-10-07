@@ -75,7 +75,7 @@
 .p08-c { position: absolute; left: -400px; top: -60px; width: 800px; height: 120px; display: flex; align-items: center; justify-content: center; }
 .p08-c > .ji-pill { position: relative; }
 #p08-stage { transform-origin: 960px 540px; }
-#p08-merge { opacity: 0; }
+#p08-am { opacity: 0; }
 #p08-type { top: 604px; opacity: 1; transform-origin: 960px 47px; }
 .p08-tw { display: inline-block; opacity: 0; }
 #p08-pt { position: absolute; left: 954px; top: 534px; width: 12px; height: 12px; border-radius: 50%; background: #F2A93B;
@@ -292,8 +292,8 @@ function jiCursorSVG(id) {
   /* Scene 17 : les trois pastilles en vol (mi-chemin) sont aspirées au centre (0,16 s power3.in) */
   var starts = [[-218.4, -51.1], [276.6, -51.1], [29.1, 173.9]]; /* fin de 07 : mi-chemin, échelle 0,45, flou 4 px */
   ["#p08-a1", "#p08-a2", "#p08-a3"].forEach(function (s, i) {
-    gsap.set(s, { x: starts[i][0], y: starts[i][1], scale: 0.45, filter: "blur(4px)" });
-    tl.to(s, { x: 0, y: 0, scale: 0.55, filter: "blur(2px)", duration: 0.17, ease: "none" }, 0);
+    gsap.set(s, { x: starts[i][0], y: starts[i][1], scale: 0.45, filter: "blur(9px)" }); /* 9 px local × 0,45 = 4 px à l’écran */
+    tl.to(s, { x: 0, y: 0, scale: 0.55, filter: "blur(4px)", duration: 0.17, ease: "none" }, 0);
     tl.to(s, { opacity: 0, duration: 0.04, ease: "power2.in" }, 0.17);
   });
   /* une seule pastille : scale-swap (la nouvelle au-dessus, sans rebond) */
