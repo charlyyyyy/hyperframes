@@ -1,0 +1,350 @@
+<template>
+  <style>
+/* ===================== JI KIT CSS : début du bloc à copier ===================== */
+@font-face { font-family: "JI Inter"; src: url("assets/fonts/Inter-Regular.otf"); font-weight: 400; }
+@font-face { font-family: "JI Inter"; src: url("assets/fonts/Inter-Medium.otf"); font-weight: 500; }
+@font-face { font-family: "JI Inter"; src: url("assets/fonts/Inter-SemiBold.otf"); font-weight: 600; }
+@font-face { font-family: "JI Inter"; src: url("assets/fonts/Inter-Bold.otf"); font-weight: 700; }
+@font-face { font-family: "JI Inter"; src: url("assets/fonts/Inter-ExtraBold.otf"); font-weight: 800; }
+.ji-layer { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; }
+.ji-world { position: absolute; left: 0; top: 0; width: 0; height: 0; transform-origin: 0 0; }
+.ji-a { position: absolute; }
+/* sols : nuit ardoise (acte 1, pivot), papier gris très clair (acte 2, fin) */
+.ji-ground-dark { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px;
+  background: radial-gradient(ellipse 1400px 900px at 50% 42%, #1E282C 0%, #141B1E 70%, #0F1517 100%); }
+.ji-ground-black { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; background: #0A0E10; }
+.ji-ground-light { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px;
+  background: radial-gradient(ellipse 1400px 900px at 50% 42%, #FFFFFF 0%, #F4F4F2 60%, #E9E9E6 100%); }
+/* trame de points posée DANS le monde (elle bouge avec la caméra et rend la dérive lisible) : 12000 × 8000 u */
+.ji-dots { position: absolute; left: -4000px; top: -3000px; width: 12000px; height: 8000px; pointer-events: none;
+  background: radial-gradient(circle, rgba(238,241,242,.075) 2px, transparent 2.4px) 0 0 / 48px 48px; }
+.ji-dots.light { background: radial-gradient(circle, rgba(46,58,63,.075) 2px, transparent 2.4px) 0 0 / 48px 48px; }
+.ji-grain { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; pointer-events: none; opacity: .05; mix-blend-mode: screen;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23g)'/></svg>");
+  background-size: 240px 240px; }
+.ji-grain.light { opacity: .03; mix-blend-mode: multiply; }
+/* sous-titre : bas centre, bande y 890 à 980 */
+.ji-sub { position: absolute; left: 0; top: 896px; width: 1920px; text-align: center; font: 600 62px/74px "JI Inter", sans-serif;
+  letter-spacing: -0.015em; white-space: nowrap; color: #EEF1F2; text-shadow: 0 2px 16px rgba(0,0,0,.55); }
+.ji-sub.light { color: #26313A; text-shadow: 0 2px 14px rgba(244,244,242,.95); }
+.ji-w { display: inline-block; opacity: 0; }
+.ji-kw { position: relative; display: inline-block; }
+.ji-box { position: absolute; left: -0.14em; right: -0.14em; top: 0.06em; bottom: 0.02em; background: #D33543; border-radius: 3px;
+  transform-origin: 0 50%; transform: scaleX(0); }
+.ji-kw > .ji-w { position: relative; }
+.ji-stroke { position: absolute; left: -2%; width: 104%; bottom: -8px; height: 7px; border-radius: 7px; background: #D33543;
+  transform-origin: 0 50%; transform: scaleX(0); }
+.ji-type { position: absolute; left: 0; width: 1920px; text-align: center; font: 700 84px/1.12 "JI Inter", sans-serif; letter-spacing: -0.025em; color: #EEF1F2; }
+/* tuile-jour du calendrier (acte 1) : 560 × 700 */
+.ji-tile { position: absolute; width: 560px; height: 700px; border-radius: 36px; color: #EEF1F2; font-family: "JI Inter", sans-serif;
+  background: linear-gradient(180deg, #2A363C, #212B30); box-shadow: 0 40px 80px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.07); }
+.ji-tile-hd { position: absolute; left: 44px; top: 36px; font-size: 44px; font-weight: 800; letter-spacing: .04em; }
+.ji-tile-hd small { font-weight: 500; color: #8E9A9E; margin-left: 10px; letter-spacing: 0; }
+.ji-tile-hr { position: absolute; right: 44px; top: 46px; font: 600 30px "JI Inter", sans-serif; color: #8E9A9E; }
+.ji-ribbon { position: absolute; height: 6px; border-radius: 3px; background: rgba(238,241,242,.14); }
+/* téléphone : 360 × 740 */
+.ji-phone { position: absolute; width: 360px; height: 740px; border-radius: 58px; background: #0A0D0F; padding: 14px;
+  box-shadow: 0 40px 90px rgba(0,0,0,.55), 0 0 0 2px #2C363B; font-family: "JI Inter", sans-serif; }
+.ji-scr { position: relative; width: 332px; height: 712px; border-radius: 46px; background: #F4F5F7; overflow: hidden; color: #111; }
+.ji-scr.dk { background: linear-gradient(180deg, #33424A, #161E22); color: #fff; }
+.ji-isl { position: absolute; left: 111px; top: 14px; width: 110px; height: 32px; border-radius: 20px; background: #000; z-index: 3; }
+/* pastilles : attente (ambre) et réparé (ardoise) — la même pastille bascule de l'une à l'autre */
+.ji-pill { position: absolute; display: inline-flex; align-items: center; gap: 12px; padding: 12px 22px; border-radius: 40px;
+  font: 700 26px "JI Inter", sans-serif; white-space: nowrap; box-shadow: 0 10px 26px rgba(0,0,0,.25); transform-style: preserve-3d; }
+.ji-pill-face { display: inline-flex; align-items: center; gap: 12px; backface-visibility: hidden; }
+.ji-pill.wait { background: #F2A93B; color: #2B1A00; }
+.ji-pill.ok { background: #526166; color: #FFFFFF; }
+.ji-dots3 { display: inline-flex; gap: 6px; } .ji-dots3 i { width: 9px; height: 9px; border-radius: 50%; background: #2B1A00; }
+/* cartes */
+.ji-card { position: absolute; border-radius: 28px; padding: 34px; font-family: "JI Inter", sans-serif; }
+.ji-card.dark { background: linear-gradient(180deg, #2C393F, #222D32); color: #EEF1F2; box-shadow: 0 40px 80px rgba(0,0,0,.5); }
+.ji-card.light { background: #FFFFFF; color: #26313A; box-shadow: 0 30px 70px rgba(38,49,58,.14), 0 2px 6px rgba(38,49,58,.06); }
+.ji-lb { font: 700 22px "JI Inter", sans-serif; letter-spacing: .12em; text-transform: uppercase; opacity: .6; }
+.ji-big { font: 800 64px "JI Inter", sans-serif; letter-spacing: -.02em; margin-top: 10px; }
+.ji-ln { font: 500 28px "JI Inter", sans-serif; opacity: .85; margin-top: 10px; }
+.ji-num { display: inline-block; width: 96px; height: 130px; border-radius: 16px; font: 800 92px/130px "JI Inter", sans-serif; text-align: center; overflow: hidden; }
+.ji-card.dark .ji-num { background: #182024; } .ji-card.light .ji-num { background: #F1F1EE; }
+.ji-cursor { position: absolute; width: 70px; height: 100px; filter: drop-shadow(0 8px 14px rgba(0,0,0,.35)); }
+.ji-ripple { position: absolute; width: 120px; height: 120px; margin: -60px 0 0 -60px; border-radius: 50%; border: 6px solid #D33543; opacity: 0; }
+/* ===================== JI KIT CSS : fin du bloc ===================== */
+/* ===== 07-travaux : styles propres à la séquence ===== */
+#root { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; }
+#p07-world { will-change: transform; }
+.p07-cardwrap { position: absolute; width: 1020px; height: 640px; transform-origin: 0 0; }
+.p07-card { left: 0; top: 0; width: 1020px; height: 640px; box-sizing: border-box; }
+.p07-card.p07-off { opacity: 0.55; }
+.p07-lbl { position: absolute; left: 34px; top: 34px; }
+#p07-res { position: absolute; left: 34px; top: 82px; font: 600 36px/44px "JI Inter", sans-serif; letter-spacing: -0.01em;
+  color: #EEF1F2; white-space: nowrap; opacity: 0; }
+#p07-mini { position: absolute; left: 56px; top: 172px; width: 190px; height: 200px; }
+#p07-scaf { position: absolute; left: 0; top: 0; overflow: visible; }
+.p07-sc { fill: none; stroke: #C9D0D3; stroke-width: 6; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
+#p07-sheet { position: absolute; left: 266px; top: 150px; width: 64px; height: 74px; border-radius: 8px; background: #C9D0D3;
+  overflow: hidden; box-shadow: 0 8px 18px rgba(0,0,0,.35); opacity: 0; }
+#p07-sheet i { position: absolute; left: 0; top: 0; width: 64px; height: 18px; background: #8E9A9E; }
+#p07-sheet b { position: absolute; left: 12px; height: 6px; border-radius: 3px; background: #8E9A9E; }
+#p07-stamp { position: absolute; left: 700px; top: 222px; padding: 4px 34px 8px; border: 10px solid #F2A93B; border-radius: 16px;
+  font: 800 116px/1.05 "JI Inter", sans-serif; letter-spacing: 0.03em; color: #F2A93B; white-space: nowrap; opacity: 0; }
+#p07-hr { position: absolute; left: 34px; top: 420px; width: 952px; height: 2px; background: rgba(238,241,242,.12);
+  transform-origin: 0 50%; opacity: 0; }
+#p07-ava { position: absolute; left: 34px; top: 454px; width: 92px; height: 92px; box-sizing: border-box; border-radius: 50%;
+  border: 4px dashed #8E9A9E; opacity: 0; }
+#p07-suivi { position: absolute; left: 152px; top: 462px; opacity: 0; }
+#p07-resp { position: absolute; left: 152px; top: 496px; font: 600 38px/46px "JI Inter", sans-serif; color: #EEF1F2; white-space: nowrap; opacity: 0; }
+.p07-pf { position: absolute; width: 0; height: 0; }
+.p07-pf > .ji-pill { left: 0; top: 0; }
+#p07-pw3 { opacity: 0; }
+#p07-sub1, #p07-sub2 { z-index: 2; }
+  </style>
+  <div id="root" data-composition-id="07-travaux" data-start="0" data-duration="3.02" data-width="1920" data-height="1080">
+    <div id="p07-ground" class="ji-ground-dark clip" data-start="0" data-duration="3.02" data-track-index="0"></div>
+    <div id="p07-lens" class="ji-layer clip" data-start="0" data-duration="3.02" data-track-index="1">
+      <div id="p07-world" class="ji-world" data-layout-allow-overflow>
+        <div class="ji-dots"></div>
+        <div id="p07-bien" class="ji-a" style="left:4600px;top:2390px"></div>
+        <!-- ANNONCE (3700, 2500), éteinte -->
+        <div class="p07-cardwrap" style="left:3500px;top:2374.51px;transform:scale(0.392157)">
+          <div class="ji-card dark p07-card p07-off"><div class="ji-lb p07-lbl">Annonce</div></div>
+        </div>
+        <!-- LOYER (5900, 2500) -->
+        <div class="p07-cardwrap" style="left:5700px;top:2374.51px;transform:scale(0.392157)">
+          <div class="ji-card dark p07-card"><div class="ji-lb p07-lbl">Loyer</div></div>
+        </div>
+        <!-- TRAVAUX (4800, 3500) : 1020 × 640 en mise en page, 400 u de large dans le monde -->
+        <div id="p07-tw" class="p07-cardwrap" style="left:4600px;top:3374.51px;transform:scale(0.392157)">
+          <div id="p07-card" class="ji-card dark p07-card">
+            <div class="ji-lb p07-lbl">Travaux</div>
+            <div id="p07-res">PV d’AG · Résolution 7&nbsp;: ravalement de façade</div>
+            <div id="p07-sheet"><i></i><b style="top:30px;width:40px"></b><b style="top:44px;width:30px"></b><b style="top:58px;width:36px"></b></div>
+            <div id="p07-mini">
+              <svg id="p07-scaf" width="190" height="200" viewBox="0 0 400 420">
+                <path class="p07-sc" pathLength="1" d="M40 400V120"/>
+                <path class="p07-sc" pathLength="1" d="M360 400V120"/>
+                <path class="p07-sc" pathLength="1" d="M28 170H372"/>
+                <path class="p07-sc" pathLength="1" d="M28 260H372"/>
+                <path class="p07-sc" pathLength="1" d="M28 350H372"/>
+                <path class="p07-sc" pathLength="1" d="M40 260L360 170"/>
+                <path class="p07-sc" pathLength="1" d="M40 350L360 260"/>
+              </svg>
+            </div>
+            <div id="p07-stamp">VOTÉ</div>
+            <div id="p07-hr"></div>
+            <div id="p07-ava"></div>
+            <div id="p07-suivi" class="ji-lb">Suivi des travaux</div>
+            <div id="p07-resp">Responsable&nbsp;: —</div>
+          </div>
+        </div>
+        <!-- pastilles (au niveau du monde : elles quittent leurs cartes à 2.74) -->
+        <div id="p07-pf1" class="p07-pf" style="left:3829.41px;top:2572.94px"></div>
+        <div id="p07-pf2" class="p07-pf" style="left:6029.41px;top:2572.94px"></div>
+        <div id="p07-pf3" class="p07-pf" style="left:4929.41px;top:3572.94px"></div>
+      </div>
+    </div>
+    <div id="p07-subs" class="ji-layer clip" data-start="0" data-duration="3.02" data-track-index="2">
+      <div id="p07-sub1" class="ji-sub"></div>
+      <div id="p07-sub2" class="ji-sub"></div>
+    </div>
+    <div id="p07-grain" class="ji-grain clip" data-start="0" data-duration="3.02" data-track-index="3"></div>
+  </div>
+  <script src="assets/vendor/gsap.min.js"></script>
+  <script>
+/* ===================== JI KIT JS : début du bloc à copier ===================== */
+var JI = {
+  red: "#D33543", redLight: "#E25C68", redDeep: "#A82632", slate: "#526166", amber: "#F2A93B",
+  ink: "#EEF1F2", inkMute: "#8E9A9E", inkDark: "#26313A", night: "#141B1E", paper: "#F4F4F2",
+  greys: ["#E8E8E8", "#D6D6D6", "#BDBBBC", "#949494", "#526166"]
+};
+/* caméra : amène le point (x, y) du monde au centre du cadre, à l'échelle s, rotation r (degrés) */
+function jiCam(worldEl, c) {
+  var s = c.s, r = c.r || 0;
+  worldEl.style.transform = "translate(960px,540px) rotate(" + r.toFixed(3) + "deg) scale(" + s.toFixed(4) + ") translate(" + (-c.x).toFixed(2) + "px," + (-c.y).toFixed(2) + "px)";
+}
+function jiBlur(el, px) { el.style.filter = px > 0.25 ? "blur(" + px.toFixed(1) + "px)" : "none"; }
+/* sous-titre : words = ["Mardi,"] ; box = [i, j] indices (inclus) des mots dans la boîte ; stroke = [i, j] sous le trait */
+function jiSubHTML(p, words, opt) {
+  opt = opt || {}; var h = "", i = 0;
+  function span(k) { return '<span class="ji-w ' + p + '-w">' + words[k] + "</span>"; }
+  while (i < words.length) {
+    var g = opt.box && i === opt.box[0] ? ["box", opt.box[1]] : opt.stroke && i === opt.stroke[0] ? ["stroke", opt.stroke[1]] : null;
+    if (g) {
+      var inner = []; for (var k = i; k <= g[1]; k++) inner.push(span(k));
+      h += '<span class="ji-kw">' + (g[0] === "box" ? '<i class="ji-box ' + p + '-box"></i>' : "") + inner.join(" ") +
+        (g[0] === "stroke" ? '<i class="ji-stroke ' + p + '-stroke"></i>' : "") + "</span>";
+      i = g[1] + 1;
+    } else { h += span(i); i++; }
+    if (i < words.length) h += " ";
+  }
+  return h;
+}
+/* anime le sous-titre : cues (temps locaux) par mot ; boxAt / strokeAt optionnels ; outAt = sortie (0,14 s) */
+function jiSubAnim(tl, subEl, cues, o) {
+  o = o || {};
+  var ws = subEl.querySelectorAll(".ji-w");
+  for (var i = 0; i < ws.length; i++) {
+    tl.fromTo(ws[i], { opacity: 0, y: 8, filter: "blur(6px)" },
+      { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.14, ease: "power2.out", immediateRender: false }, Math.max(0, cues[i] - 0.03));
+  }
+  var box = subEl.querySelector(".ji-box"), st = subEl.querySelector(".ji-stroke");
+  if (box && o.boxAt != null) {
+    tl.fromTo(box, { scaleX: 0 }, { scaleX: 1, duration: 0.16, ease: "power3.out", immediateRender: false }, o.boxAt);
+    var inBox = box.parentNode.querySelectorAll(".ji-w");
+    for (var k = 0; k < inBox.length; k++) tl.to(inBox[k], { color: "#FFFFFF", textShadow: "none", duration: 0.1 }, o.boxAt + 0.04);
+  }
+  if (st && o.strokeAt != null) tl.fromTo(st, { scaleX: 0 }, { scaleX: 1, duration: 0.35, ease: "power2.out", immediateRender: false }, o.strokeAt);
+  if (o.outAt != null) tl.to(subEl, { opacity: 0, filter: "blur(6px)", duration: 0.14, ease: "power1.in" }, o.outAt);
+}
+function jiTileHTML(id, day, num, hour) {
+  return '<div id="' + id + '" class="ji-tile"><div class="ji-tile-hd">' + day + "<small>" + num + '</small></div><div class="ji-tile-hr">' + (hour || "") + "</div></div>";
+}
+function jiPhoneHTML(id, screenHTML, dark) {
+  return '<div id="' + id + '" class="ji-phone"><div class="ji-scr' + (dark ? " dk" : "") + '"><div class="ji-isl"></div>' + screenHTML + "</div></div>";
+}
+/* pastille : la face « attente » ; okText fournit la face « réparé » (rotationX 180 pour basculer : jiPillFlip) */
+function jiPillHTML(id, waitText, okText) {
+  return '<div id="' + id + '" class="ji-pill wait"><span class="ji-pill-face"><span class="ji-dots3"><i></i><i></i><i></i></span>' + waitText + "</span></div>" +
+    (okText ? '<div id="' + id + '-ok" class="ji-pill ok" style="opacity:0">✓ ' + okText + "</div>" : "");
+}
+/* les trois points de la pastille pulsent (boucle finie : n cycles de 0,9 s) */
+function jiPillPulse(tl, pillEl, t, n) {
+  var d = pillEl.querySelectorAll(".ji-dots3 i");
+  for (var i = 0; i < d.length; i++) tl.fromTo(d[i], { opacity: 0.25 }, { opacity: 1, duration: 0.3, ease: "sine.inOut", yoyo: true, repeat: n * 2 - 1, immediateRender: false }, t + i * 0.15);
+}
+/* naissance d'une pastille depuis un point (signature 1) */
+function jiPillBorn(tl, pillEl, t) { tl.fromTo(pillEl, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.14, ease: "expo.out", immediateRender: false }, t); }
+/* le tic qui répare (signature 2) : la pastille ambre bascule et laisse la pastille ardoise ✓ (posée au même endroit) */
+function jiPillFlip(tl, pillEl, okEl, t) {
+  tl.to(pillEl, { rotationX: 90, duration: 0.08, ease: "power2.in" }, t)
+    .set(pillEl, { opacity: 0 }, t + 0.08)
+    .fromTo(okEl, { rotationX: -90, opacity: 1 }, { rotationX: 0, opacity: 1, duration: 0.1, ease: "expo.out", immediateRender: false }, t + 0.08)
+    .fromTo(okEl, { scale: 1.15 }, { scale: 1, duration: 0.2, ease: "power2.out", immediateRender: false }, t + 0.08);
+}
+/* le bien : immeuble au trait, 400 × 420 u à l'échelle 1 */
+function jiBuildingSVG(id, w, color, lit) {
+  var win = "";
+  for (var r = 0; r < 4; r++) for (var k = 0; k < 3; k++) {
+    var on = lit && (r + k) % 3 !== 1;
+    win += '<rect class="' + id + "-win" + (on ? " on" : "") + '" x="' + (105 + k * 70) + '" y="' + (140 + r * 60) + '" width="44" height="38" rx="5" fill="#F2C46B" fill-opacity="' + (on ? 0.85 : 0) + '" stroke="' + color + '" stroke-width="4"/>';
+  }
+  return '<svg id="' + id + '" class="ji-a" width="' + w + '" height="' + (w * 1.05).toFixed(0) + '" viewBox="0 0 400 420" style="overflow:visible">' +
+    '<ellipse id="' + id + '-glow" cx="200" cy="250" rx="230" ry="190" fill="#F2C46B" opacity="' + (lit ? 0.1 : 0) + '"/>' +
+    '<path id="' + id + '-body" d="M70 400V110L200 40L330 110V400" fill="none" stroke="' + color + '" stroke-width="6" stroke-linejoin="round"/>' +
+    '<line x1="20" y1="400" x2="380" y2="400" stroke="' + color + '" stroke-width="6" stroke-linecap="round"/>' + win +
+    '<rect x="178" y="350" width="44" height="50" rx="5" fill="none" stroke="' + color + '" stroke-width="4"/>' +
+    '<circle cx="360" cy="370" r="22" fill="none" stroke="' + color + '" stroke-width="4"/><line x1="360" y1="392" x2="360" y2="400" stroke="' + color + '" stroke-width="4"/></svg>';
+}
+/* logo Jean Immobilier (redessiné d'après le logo de l'agence) : 1320 × 1040 u ; onDark = lettrage blanc.
+   Les 5 bandes du toit ont la classe <id>-band (dans l'ordre, du haut vers le bas) : on peut les faire arriver une à une. */
+function jiLogoSVG(id, w, onDark) {
+  var bands = "", ink = onDark ? "#FFFFFF" : JI.inkDark;
+  for (var i = 0; i < 5; i++) {
+    var py = 40 + i * 150, k = 1 - i / 5.2, l = py + 330 * k, rr = py + 300 * k, th = 78;
+    bands += '<path class="' + id + '-band" d="M0 ' + l + " L405 " + py + " L1320 " + rr + " L1320 " + (rr + th) + " L405 " + (py + th) + " L0 " + (l + th) + ' Z" fill="' + JI.greys[i] + '"/>';
+  }
+  return '<svg id="' + id + '" class="ji-a" width="' + w + '" height="' + (w * 1040 / 1320).toFixed(0) + '" viewBox="0 0 1320 1040">' + bands +
+    '<rect id="' + id + '-red" x="0" y="770" width="1320" height="76" fill="' + JI.red + '"/>' +
+    '<text x="1300" y="830" text-anchor="end" font-family="JI Inter, sans-serif" font-size="54" fill="#fff"><tspan font-weight="400" letter-spacing="2">GROUPE </tspan><tspan font-weight="700" letter-spacing="2">DELPHINE JEAN</tspan></text>' +
+    '<text id="' + id + '-word" x="660" y="1005" text-anchor="middle" font-family="JI Inter, sans-serif" font-size="132" fill="' + ink + '" textLength="1310" lengthAdjust="spacing"><tspan font-weight="800">JEAN </tspan><tspan font-weight="300">IMMOBILIER</tspan></text></svg>';
+}
+function jiCursorSVG(id) {
+  return '<svg id="' + id + '" class="ji-cursor" viewBox="0 0 70 100"><path d="M6 4 L6 78 L24 62 L36 92 L50 86 L38 57 L62 57 Z" fill="#111" stroke="#fff" stroke-width="5" stroke-linejoin="round"/></svg>';
+}
+/* ===================== JI KIT JS : fin du bloc ===================== */
+/* ===== 07-travaux : séquence ===== */
+(function () {
+  var D = 3.02, K = 400 / 1020;
+  var $ = function (id) { return document.getElementById(id); };
+  var world = $("p07-world"), lens = $("p07-lens");
+
+  /* décor construit avec le kit */
+  $("p07-bien").innerHTML = jiBuildingSVG("p07-bd", 400, JI.ink, true);
+  $("p07-mini").insertAdjacentHTML("afterbegin", jiBuildingSVG("p07-mb", 190, JI.ink, false));
+  $("p07-pf1").innerHTML = jiPillHTML("p07-pw1", "En attente");
+  $("p07-pf2").innerHTML = jiPillHTML("p07-pw2", "En attente");
+  $("p07-pf3").innerHTML = jiPillHTML("p07-pw3", "En attente");
+  var sub1 = $("p07-sub1"), sub2 = $("p07-sub2");
+  sub1.innerHTML = jiSubHTML("p07-a", ["Des", "travaux", "votés", "…"], { box: [2, 2] }).replace(/ (<span class="ji-w p07-a-w">…<\/span>)$/, "$1");
+  sub2.innerHTML = jiSubHTML("p07-b", ["et", "personne", "pour", "les", "suivre."], { stroke: [1, 1] });
+
+  /* caméra : un seul état ; chaque écriture passe par jiCam / jiBlur (sûr au seek, sans onUpdate) */
+  var st = { x: 4800, y: 3200, s: 0.8, r: 0 }, blurV = 10, cam = {};
+  ["x", "y", "s", "r"].forEach(function (k) {
+    Object.defineProperty(cam, k, { enumerable: true,
+      get: function () { return st[k]; },
+      set: function (v) { st[k] = v; jiCam(world, st); } });
+  });
+  Object.defineProperty(cam, "b", { enumerable: true,
+    get: function () { return blurV; },
+    set: function (v) { blurV = v; jiBlur(lens, v); } });
+  jiCam(world, st); jiBlur(lens, blurV);
+
+  /* états de départ portés par GSAP */
+  gsap.set([".p07-pf > .ji-pill"], { xPercent: -50, yPercent: -50 });
+  gsap.set(["#p07-pf1", "#p07-pf2", "#p07-pf3"], { scale: K, transformOrigin: "0 0" });
+  gsap.set("#p07-stamp", { xPercent: -50, yPercent: -50, rotation: -10 });
+
+  var tl = gsap.timeline({ paused: true });
+  var CY = 3500 + 100 / 2.55; /* carte centrée en y 440 à l'écran */
+
+  /* PISTE CAMÉRA — cran (fin du cran amorcé en 06) 0.00 → 0.15 */
+  tl.fromTo(cam, { x: 4800, y: 3200, s: 0.8 }, { x: 4800, y: CY, s: 2.55, duration: 0.15, ease: "expo.out" }, 0);
+  tl.fromTo(cam, { b: 10 }, { b: 0, duration: 0.15, ease: "power2.out" }, 0);
+  /* dérive lente (poussée linéaire) */
+  tl.fromTo(cam, { s: 2.55 }, { s: 2.62, duration: 2.59, ease: "none", immediateRender: false }, 0.15);
+  /* recul ×0,45 2.74 → 3.02 (power3.out), flou au milieu, 4 px en fin de course */
+  tl.fromTo(cam, { x: 4800, y: CY, s: 2.62 }, { x: 4800, y: 2800, s: 0.45, duration: 0.28, ease: "power3.out", immediateRender: false }, 2.74);
+  tl.fromTo(cam, { b: 0 }, { b: 12, duration: 0.08, ease: "power2.in", immediateRender: false }, 2.74);
+  tl.fromTo(cam, { b: 12 }, { b: 4, duration: 0.2, ease: "power2.out", immediateRender: false }, 2.82);
+
+  /* Scene 15 — 0.10 la résolution du PV d'AG */
+  tl.fromTo("#p07-res", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out", immediateRender: false }, 0.10);
+
+  /* 0.65 le tampon arrive de la caméra (×4, flou) ; 0.82 contact sur « votés » */
+  tl.fromTo("#p07-stamp", { scale: 4, opacity: 0, filter: "blur(16px)" },
+    { scale: 1, opacity: 1, filter: "blur(5px)", duration: 0.17, ease: "power3.in", immediateRender: false }, 0.65);
+  tl.fromTo("#p07-stamp", { scale: 1, filter: "blur(5px)" },
+    { scale: 0.96, filter: "blur(0px)", duration: 0.05, ease: "power2.out", immediateRender: false }, 0.82);
+  tl.fromTo("#p07-stamp", { scale: 0.96 }, { scale: 1, duration: 0.16, ease: "power2.out", immediateRender: false }, 0.87);
+  tl.fromTo("#p07-stamp", { opacity: 1 }, { opacity: 0.9, duration: 0.2, ease: "power1.out", immediateRender: false }, 0.87);
+  /* coup de caméra y +10 px à 0.82 */
+  tl.fromTo(lens, { y: 0 }, { y: 10, duration: 0.04, ease: "power2.out", immediateRender: false }, 0.82);
+  tl.fromTo(lens, { y: 10 }, { y: 0, duration: 0.22, ease: "power2.out", immediateRender: false }, 0.86);
+
+  /* 1.10 mini-échafaudage au trait */
+  tl.fromTo(".p07-sc", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.24, ease: "power2.out", stagger: 0.05, immediateRender: false }, 1.10);
+
+  /* Scene 16 — 1.60 « Suivi des travaux · Responsable : — » */
+  tl.fromTo("#p07-hr", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.3, ease: "power3.out", immediateRender: false }, 1.58);
+  tl.fromTo("#p07-suivi", { opacity: 0, x: -24 }, { opacity: 0.6, x: 0, duration: 0.25, ease: "expo.out", immediateRender: false }, 1.60);
+  tl.fromTo("#p07-resp", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.25, ease: "expo.out", immediateRender: false }, 1.66);
+  tl.fromTo("#p07-ava", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.2, ease: "power3.out", immediateRender: false }, 1.62);
+  /* 1.80 l'avatar vide clignote (boucle finie) */
+  tl.fromTo("#p07-ava", { opacity: 1 }, { opacity: 0.25, duration: 0.14, ease: "sine.inOut", yoyo: true, repeat: 3, immediateRender: false }, 1.80);
+
+  /* 1.90 pastille d'attente (naît d'un point) + ses points pulsent */
+  jiPillBorn(tl, $("p07-pw3"), 1.90);
+  jiPillPulse(tl, $("p07-pw3"), 2.06, 1);
+  jiPillPulse(tl, $("p07-pw1"), 2.10, 1);
+  jiPillPulse(tl, $("p07-pw2"), 2.10, 1);
+
+  /* 2.50 l'échafaudage reste figé ; une feuille de calendrier tombe derrière */
+  tl.fromTo("#p07-sheet", { opacity: 0, y: -30, rotation: 0 }, { opacity: 1, y: 0, duration: 0.08, ease: "power1.out", immediateRender: false }, 2.50);
+  tl.fromTo("#p07-sheet", { y: 0, x: 0, rotation: 0 }, { y: 150, x: 18, rotation: -24, duration: 0.42, ease: "power2.in", immediateRender: false }, 2.58);
+
+  /* 2.74 les trois pastilles quittent leurs cartes vers le centre (à mi-chemin à 3.02) */
+  var C = { x: 4800, y: 2800 };
+  [["#p07-pf1", 3829.41, 2572.94], ["#p07-pf2", 6029.41, 2572.94], ["#p07-pf3", 4929.41, 3572.94]].forEach(function (p) {
+    tl.fromTo(p[0], { x: 0, y: 0, scale: K },
+      { x: (C.x - p[1]) / 2, y: (C.y - p[2]) / 2, scale: 1, duration: 0.28, ease: "power2.in", immediateRender: false }, 2.74);
+  });
+
+  /* sous-titres mot par mot */
+  jiSubAnim(tl, sub1, [0.22, 0.34, 0.82, 0.82], { boxAt: 0.78, outAt: 1.39 });
+  jiSubAnim(tl, sub2, [1.56, 1.80, 2.16, 2.36, 2.52], { strokeAt: 1.80, outAt: 2.76 });
+
+  /* la timeline couvre exactement la durée */
+  tl.set({}, {}, D);
+  window.__timelines = window.__timelines || {};
+  window.__timelines["07-travaux"] = tl;
+})();
+  </script>
+</template>

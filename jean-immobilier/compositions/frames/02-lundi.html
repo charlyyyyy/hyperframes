@@ -1,0 +1,345 @@
+<template id="p02-template">
+<div id="root" data-composition-id="02-lundi" data-start="0" data-width="1920" data-height="1080" data-duration="3.38">
+<style>
+/* ===================== JI KIT CSS : début du bloc à copier ===================== */
+@font-face { font-family: "JI Inter"; src: url("assets/fonts/Inter-Regular.otf"); font-weight: 400; }
+@font-face { font-family: "JI Inter"; src: url("assets/fonts/Inter-Medium.otf"); font-weight: 500; }
+@font-face { font-family: "JI Inter"; src: url("assets/fonts/Inter-SemiBold.otf"); font-weight: 600; }
+@font-face { font-family: "JI Inter"; src: url("assets/fonts/Inter-Bold.otf"); font-weight: 700; }
+@font-face { font-family: "JI Inter"; src: url("assets/fonts/Inter-ExtraBold.otf"); font-weight: 800; }
+.ji-layer { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; }
+.ji-world { position: absolute; left: 0; top: 0; width: 0; height: 0; transform-origin: 0 0; }
+.ji-a { position: absolute; }
+/* sols : nuit ardoise (acte 1, pivot), papier gris très clair (acte 2, fin) */
+.ji-ground-dark { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px;
+  background: radial-gradient(ellipse 1400px 900px at 50% 42%, #1E282C 0%, #141B1E 70%, #0F1517 100%); }
+.ji-ground-black { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; background: #0A0E10; }
+.ji-ground-light { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px;
+  background: radial-gradient(ellipse 1400px 900px at 50% 42%, #FFFFFF 0%, #F4F4F2 60%, #E9E9E6 100%); }
+/* trame de points posée DANS le monde (elle bouge avec la caméra et rend la dérive lisible) : 12000 × 8000 u */
+.ji-dots { position: absolute; left: -4000px; top: -3000px; width: 12000px; height: 8000px; pointer-events: none;
+  background: radial-gradient(circle, rgba(238,241,242,.075) 2px, transparent 2.4px) 0 0 / 48px 48px; }
+.ji-dots.light { background: radial-gradient(circle, rgba(46,58,63,.075) 2px, transparent 2.4px) 0 0 / 48px 48px; }
+.ji-grain { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; pointer-events: none; opacity: .05; mix-blend-mode: screen;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23g)'/></svg>");
+  background-size: 240px 240px; }
+.ji-grain.light { opacity: .03; mix-blend-mode: multiply; }
+/* sous-titre : bas centre, bande y 890 à 980 */
+.ji-sub { position: absolute; left: 0; top: 896px; width: 1920px; text-align: center; font: 600 62px/74px "JI Inter", sans-serif;
+  letter-spacing: -0.015em; white-space: nowrap; color: #EEF1F2; text-shadow: 0 2px 16px rgba(0,0,0,.55); }
+.ji-sub.light { color: #26313A; text-shadow: 0 2px 14px rgba(244,244,242,.95); }
+.ji-w { display: inline-block; opacity: 0; }
+.ji-kw { position: relative; display: inline-block; }
+.ji-box { position: absolute; left: -0.14em; right: -0.14em; top: 0.06em; bottom: 0.02em; background: #D33543; border-radius: 3px;
+  transform-origin: 0 50%; transform: scaleX(0); }
+.ji-kw > .ji-w { position: relative; }
+.ji-stroke { position: absolute; left: -2%; width: 104%; bottom: -8px; height: 7px; border-radius: 7px; background: #D33543;
+  transform-origin: 0 50%; transform: scaleX(0); }
+.ji-type { position: absolute; left: 0; width: 1920px; text-align: center; font: 700 84px/1.12 "JI Inter", sans-serif; letter-spacing: -0.025em; color: #EEF1F2; }
+/* tuile-jour du calendrier (acte 1) : 560 × 700 */
+.ji-tile { position: absolute; width: 560px; height: 700px; border-radius: 36px; color: #EEF1F2; font-family: "JI Inter", sans-serif;
+  background: linear-gradient(180deg, #2A363C, #212B30); box-shadow: 0 40px 80px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.07); }
+.ji-tile-hd { position: absolute; left: 44px; top: 36px; font-size: 44px; font-weight: 800; letter-spacing: .04em; }
+.ji-tile-hd small { font-weight: 500; color: #8E9A9E; margin-left: 10px; letter-spacing: 0; }
+.ji-tile-hr { position: absolute; right: 44px; top: 46px; font: 600 30px "JI Inter", sans-serif; color: #8E9A9E; }
+.ji-ribbon { position: absolute; height: 6px; border-radius: 3px; background: rgba(238,241,242,.14); }
+/* téléphone : 360 × 740 */
+.ji-phone { position: absolute; width: 360px; height: 740px; border-radius: 58px; background: #0A0D0F; padding: 14px;
+  box-shadow: 0 40px 90px rgba(0,0,0,.55), 0 0 0 2px #2C363B; font-family: "JI Inter", sans-serif; }
+.ji-scr { position: relative; width: 332px; height: 712px; border-radius: 46px; background: #F4F5F7; overflow: hidden; color: #111; }
+.ji-scr.dk { background: linear-gradient(180deg, #33424A, #161E22); color: #fff; }
+.ji-isl { position: absolute; left: 111px; top: 14px; width: 110px; height: 32px; border-radius: 20px; background: #000; z-index: 3; }
+/* pastilles : attente (ambre) et réparé (ardoise) — la même pastille bascule de l'une à l'autre */
+.ji-pill { position: absolute; display: inline-flex; align-items: center; gap: 12px; padding: 12px 22px; border-radius: 40px;
+  font: 700 26px "JI Inter", sans-serif; white-space: nowrap; box-shadow: 0 10px 26px rgba(0,0,0,.25); transform-style: preserve-3d; }
+.ji-pill-face { display: inline-flex; align-items: center; gap: 12px; backface-visibility: hidden; }
+.ji-pill.wait { background: #F2A93B; color: #2B1A00; }
+.ji-pill.ok { background: #526166; color: #FFFFFF; }
+.ji-dots3 { display: inline-flex; gap: 6px; } .ji-dots3 i { width: 9px; height: 9px; border-radius: 50%; background: #2B1A00; }
+/* cartes */
+.ji-card { position: absolute; border-radius: 28px; padding: 34px; font-family: "JI Inter", sans-serif; }
+.ji-card.dark { background: linear-gradient(180deg, #2C393F, #222D32); color: #EEF1F2; box-shadow: 0 40px 80px rgba(0,0,0,.5); }
+.ji-card.light { background: #FFFFFF; color: #26313A; box-shadow: 0 30px 70px rgba(38,49,58,.14), 0 2px 6px rgba(38,49,58,.06); }
+.ji-lb { font: 700 22px "JI Inter", sans-serif; letter-spacing: .12em; text-transform: uppercase; opacity: .6; }
+.ji-big { font: 800 64px "JI Inter", sans-serif; letter-spacing: -.02em; margin-top: 10px; }
+.ji-ln { font: 500 28px "JI Inter", sans-serif; opacity: .85; margin-top: 10px; }
+.ji-num { display: inline-block; width: 96px; height: 130px; border-radius: 16px; font: 800 92px/130px "JI Inter", sans-serif; text-align: center; overflow: hidden; }
+.ji-card.dark .ji-num { background: #182024; } .ji-card.light .ji-num { background: #F1F1EE; }
+.ji-cursor { position: absolute; width: 70px; height: 100px; filter: drop-shadow(0 8px 14px rgba(0,0,0,.35)); }
+.ji-ripple { position: absolute; width: 120px; height: 120px; margin: -60px 0 0 -60px; border-radius: 50%; border: 6px solid #D33543; opacity: 0; }
+/* ===================== JI KIT CSS : fin du bloc ===================== */
+
+/* ---- 02-lundi ---- */
+#root { position: relative; width: 1920px; height: 1080px; overflow: hidden; }
+#p02-lens { overflow: visible; }
+#p02-scene { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+/* plan lointain : les tuiles MARDI / JEUDI et leurs pastilles, floues au loin à gauche */
+#p02-far { opacity: 0; transform-origin: 960px 540px; }
+#p02-far-in { position: absolute; left: -150px; top: 250px; width: 620px; height: 560px; --dof: 9px; filter: blur(var(--dof)); will-change: filter; }
+/* tuile LUNDI : se défocalise légèrement quand le téléphone devient le sujet */
+#p02-tl { --dof: 0px; filter: blur(var(--dof)); will-change: filter; }
+#p02-week { left: 4520px; top: -455px; width: 560px; text-align: center; opacity: 0; color: #EEF1F2; }
+#p02-week .ji-lb { font-size: 26px; }
+#p02-ph { left: 4620px; top: -340px; width: 360px; height: 740px; opacity: 0; }
+#p02-pl-at { left: 4888px; top: 128px; }
+#p02-pl { opacity: 0; }
+/* appli Mail (écran 332 × 712) */
+.p02-mail { position: absolute; left: 0; top: 0; width: 332px; height: 712px; font-family: "JI Inter", sans-serif; }
+.p02-m-title { position: absolute; left: 24px; top: 66px; font: 800 38px/1 "JI Inter", sans-serif; color: #111; letter-spacing: -0.02em; }
+.p02-m-search { position: absolute; left: 16px; top: 124px; width: 300px; height: 48px; border-radius: 14px; background: #E3E6E9; }
+.p02-m-search svg { position: absolute; left: 14px; top: 14px; }
+.p02-m-q { position: absolute; left: 44px; top: 0; height: 48px; font: 500 20px/48px "JI Inter", sans-serif; color: #1A1F22; white-space: nowrap; }
+.p02-ch { display: none; }
+#p02-caret { display: inline-block; width: 2px; height: 24px; margin-left: 1px; vertical-align: -5px; background: #26313A; opacity: 0; }
+#p02-none { position: absolute; left: 0; top: 204px; width: 332px; text-align: center; font: 600 20px "JI Inter", sans-serif; color: #8E9A9E; opacity: 0; }
+#p02-hr { position: absolute; left: 16px; top: 250px; width: 300px; height: 1px; background: #DADAD6; opacity: 0; }
+#p02-row { position: absolute; left: 8px; top: 262px; width: 316px; height: 76px; opacity: 0; }
+#p02-row-bg { position: absolute; left: 0; top: 0; width: 316px; height: 76px; border-radius: 14px; background: #E2E7EA; opacity: 0; }
+.p02-row-a { position: absolute; left: 14px; top: 12px; font: 700 19px "JI Inter", sans-serif; color: #26313A; }
+.p02-row-b { position: absolute; left: 14px; top: 40px; font: 500 16px "JI Inter", sans-serif; color: #5A666C; white-space: nowrap; }
+</style>
+
+<div class="ji-ground-dark clip" id="p02-ground" data-start="0" data-duration="3.38" data-track-index="0"></div>
+
+<div id="p02-scene" class="clip" data-start="0" data-duration="3.38" data-track-index="1">
+  <div id="p02-lens" class="ji-layer">
+    <div id="p02-clip" class="ji-layer">
+      <div id="p02-far" class="ji-layer"><div id="p02-far-in"></div></div>
+      <div id="p02-world" class="ji-world"></div>
+    </div>
+  </div>
+  <div id="p02-sub1" class="ji-sub"></div>
+  <div id="p02-sub2" class="ji-sub"></div>
+  <div class="ji-grain"></div>
+</div>
+
+<script src="assets/vendor/gsap.min.js"></script>
+<script>
+(function () {
+/* ===================== JI KIT JS : début du bloc à copier ===================== */
+var JI = {
+  red: "#D33543", redLight: "#E25C68", redDeep: "#A82632", slate: "#526166", amber: "#F2A93B",
+  ink: "#EEF1F2", inkMute: "#8E9A9E", inkDark: "#26313A", night: "#141B1E", paper: "#F4F4F2",
+  greys: ["#E8E8E8", "#D6D6D6", "#BDBBBC", "#949494", "#526166"]
+};
+/* caméra : amène le point (x, y) du monde au centre du cadre, à l'échelle s, rotation r (degrés) */
+function jiCam(worldEl, c) {
+  var s = c.s, r = c.r || 0;
+  worldEl.style.transform = "translate(960px,540px) rotate(" + r.toFixed(3) + "deg) scale(" + s.toFixed(4) + ") translate(" + (-c.x).toFixed(2) + "px," + (-c.y).toFixed(2) + "px)";
+}
+function jiBlur(el, px) { el.style.filter = px > 0.25 ? "blur(" + px.toFixed(1) + "px)" : "none"; }
+/* sous-titre : words = ["Mardi,"] ; box = [i, j] indices (inclus) des mots dans la boîte ; stroke = [i, j] sous le trait */
+function jiSubHTML(p, words, opt) {
+  opt = opt || {}; var h = "", i = 0;
+  function span(k) { return '<span class="ji-w ' + p + '-w">' + words[k] + "</span>"; }
+  while (i < words.length) {
+    var g = opt.box && i === opt.box[0] ? ["box", opt.box[1]] : opt.stroke && i === opt.stroke[0] ? ["stroke", opt.stroke[1]] : null;
+    if (g) {
+      var inner = []; for (var k = i; k <= g[1]; k++) inner.push(span(k));
+      h += '<span class="ji-kw">' + (g[0] === "box" ? '<i class="ji-box ' + p + '-box"></i>' : "") + inner.join(" ") +
+        (g[0] === "stroke" ? '<i class="ji-stroke ' + p + '-stroke"></i>' : "") + "</span>";
+      i = g[1] + 1;
+    } else { h += span(i); i++; }
+    if (i < words.length) h += " ";
+  }
+  return h;
+}
+/* anime le sous-titre : cues (temps locaux) par mot ; boxAt / strokeAt optionnels ; outAt = sortie (0,14 s) */
+function jiSubAnim(tl, subEl, cues, o) {
+  o = o || {};
+  var ws = subEl.querySelectorAll(".ji-w");
+  for (var i = 0; i < ws.length; i++) {
+    tl.fromTo(ws[i], { opacity: 0, y: 8, filter: "blur(6px)" },
+      { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.14, ease: "power2.out", immediateRender: false }, Math.max(0, cues[i] - 0.03));
+  }
+  var box = subEl.querySelector(".ji-box"), st = subEl.querySelector(".ji-stroke");
+  if (box && o.boxAt != null) {
+    tl.fromTo(box, { scaleX: 0 }, { scaleX: 1, duration: 0.16, ease: "power3.out", immediateRender: false }, o.boxAt);
+    var inBox = box.parentNode.querySelectorAll(".ji-w");
+    for (var k = 0; k < inBox.length; k++) tl.to(inBox[k], { color: "#FFFFFF", textShadow: "none", duration: 0.1 }, o.boxAt + 0.04);
+  }
+  if (st && o.strokeAt != null) tl.fromTo(st, { scaleX: 0 }, { scaleX: 1, duration: 0.35, ease: "power2.out", immediateRender: false }, o.strokeAt);
+  if (o.outAt != null) tl.to(subEl, { opacity: 0, filter: "blur(6px)", duration: 0.14, ease: "power1.in" }, o.outAt);
+}
+function jiTileHTML(id, day, num, hour) {
+  return '<div id="' + id + '" class="ji-tile"><div class="ji-tile-hd">' + day + "<small>" + num + '</small></div><div class="ji-tile-hr">' + (hour || "") + "</div></div>";
+}
+function jiPhoneHTML(id, screenHTML, dark) {
+  return '<div id="' + id + '" class="ji-phone"><div class="ji-scr' + (dark ? " dk" : "") + '"><div class="ji-isl"></div>' + screenHTML + "</div></div>";
+}
+/* pastille : la face « attente » ; okText fournit la face « réparé » (rotationX 180 pour basculer : jiPillFlip) */
+function jiPillHTML(id, waitText, okText) {
+  return '<div id="' + id + '" class="ji-pill wait"><span class="ji-pill-face"><span class="ji-dots3"><i></i><i></i><i></i></span>' + waitText + "</span></div>" +
+    (okText ? '<div id="' + id + '-ok" class="ji-pill ok" style="opacity:0">✓ ' + okText + "</div>" : "");
+}
+/* les trois points de la pastille pulsent (boucle finie : n cycles de 0,9 s) */
+function jiPillPulse(tl, pillEl, t, n) {
+  var d = pillEl.querySelectorAll(".ji-dots3 i");
+  for (var i = 0; i < d.length; i++) tl.fromTo(d[i], { opacity: 0.25 }, { opacity: 1, duration: 0.3, ease: "sine.inOut", yoyo: true, repeat: n * 2 - 1, immediateRender: false }, t + i * 0.15);
+}
+/* naissance d'une pastille depuis un point (signature 1) */
+function jiPillBorn(tl, pillEl, t) { tl.fromTo(pillEl, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.14, ease: "expo.out", immediateRender: false }, t); }
+/* le tic qui répare (signature 2) : la pastille ambre bascule et laisse la pastille ardoise ✓ (posée au même endroit) */
+function jiPillFlip(tl, pillEl, okEl, t) {
+  tl.to(pillEl, { rotationX: 90, duration: 0.08, ease: "power2.in" }, t)
+    .set(pillEl, { opacity: 0 }, t + 0.08)
+    .fromTo(okEl, { rotationX: -90, opacity: 1 }, { rotationX: 0, opacity: 1, duration: 0.1, ease: "expo.out", immediateRender: false }, t + 0.08)
+    .fromTo(okEl, { scale: 1.15 }, { scale: 1, duration: 0.2, ease: "power2.out", immediateRender: false }, t + 0.08);
+}
+/* le bien : immeuble au trait, 400 × 420 u à l'échelle 1 */
+function jiBuildingSVG(id, w, color, lit) {
+  var win = "";
+  for (var r = 0; r < 4; r++) for (var k = 0; k < 3; k++) {
+    var on = lit && (r + k) % 3 !== 1;
+    win += '<rect class="' + id + "-win" + (on ? " on" : "") + '" x="' + (105 + k * 70) + '" y="' + (140 + r * 60) + '" width="44" height="38" rx="5" fill="#F2C46B" fill-opacity="' + (on ? 0.85 : 0) + '" stroke="' + color + '" stroke-width="4"/>';
+  }
+  return '<svg id="' + id + '" class="ji-a" width="' + w + '" height="' + (w * 1.05).toFixed(0) + '" viewBox="0 0 400 420" style="overflow:visible">' +
+    '<ellipse id="' + id + '-glow" cx="200" cy="250" rx="230" ry="190" fill="#F2C46B" opacity="' + (lit ? 0.1 : 0) + '"/>' +
+    '<path id="' + id + '-body" d="M70 400V110L200 40L330 110V400" fill="none" stroke="' + color + '" stroke-width="6" stroke-linejoin="round"/>' +
+    '<line x1="20" y1="400" x2="380" y2="400" stroke="' + color + '" stroke-width="6" stroke-linecap="round"/>' + win +
+    '<rect x="178" y="350" width="44" height="50" rx="5" fill="none" stroke="' + color + '" stroke-width="4"/>' +
+    '<circle cx="360" cy="370" r="22" fill="none" stroke="' + color + '" stroke-width="4"/><line x1="360" y1="392" x2="360" y2="400" stroke="' + color + '" stroke-width="4"/></svg>';
+}
+/* logo Jean Immobilier (redessiné d'après le logo de l'agence) : 1320 × 1040 u ; onDark = lettrage blanc.
+   Les 5 bandes du toit ont la classe <id>-band (dans l'ordre, du haut vers le bas) : on peut les faire arriver une à une. */
+function jiLogoSVG(id, w, onDark) {
+  var bands = "", ink = onDark ? "#FFFFFF" : JI.inkDark;
+  for (var i = 0; i < 5; i++) {
+    var py = 40 + i * 150, k = 1 - i / 5.2, l = py + 330 * k, rr = py + 300 * k, th = 78;
+    bands += '<path class="' + id + '-band" d="M0 ' + l + " L405 " + py + " L1320 " + rr + " L1320 " + (rr + th) + " L405 " + (py + th) + " L0 " + (l + th) + ' Z" fill="' + JI.greys[i] + '"/>';
+  }
+  return '<svg id="' + id + '" class="ji-a" width="' + w + '" height="' + (w * 1040 / 1320).toFixed(0) + '" viewBox="0 0 1320 1040">' + bands +
+    '<rect id="' + id + '-red" x="0" y="770" width="1320" height="76" fill="' + JI.red + '"/>' +
+    '<text x="1300" y="830" text-anchor="end" font-family="JI Inter, sans-serif" font-size="54" fill="#fff"><tspan font-weight="400" letter-spacing="2">GROUPE </tspan><tspan font-weight="700" letter-spacing="2">DELPHINE JEAN</tspan></text>' +
+    '<text id="' + id + '-word" x="660" y="1005" text-anchor="middle" font-family="JI Inter, sans-serif" font-size="132" fill="' + ink + '" textLength="1310" lengthAdjust="spacing"><tspan font-weight="800">JEAN </tspan><tspan font-weight="300">IMMOBILIER</tspan></text></svg>';
+}
+function jiCursorSVG(id) {
+  return '<svg id="' + id + '" class="ji-cursor" viewBox="0 0 70 100"><path d="M6 4 L6 78 L24 62 L36 92 L50 86 L38 57 L62 57 Z" fill="#111" stroke="#fff" stroke-width="5" stroke-linejoin="round"/></svg>';
+}
+/* ===================== JI KIT JS : fin du bloc ===================== */
+
+/* ---------------- 02-lundi : « Lundi… vous attendez encore le compte rendu du syndic. » ---------------- */
+var $ = function (id) { return document.getElementById(id); };
+var D = 3.38;
+
+/* ---- monde (coordonnées de frame.md : JEUDI (2400,0), LUNDI (4800,0) ; ruban = haut de tuile + 280) ---- */
+var query = "compte rendu AG", qh = "";
+for (var c = 0; c < query.length; c++) qh += '<span class="p02-ch">' + (query[c] === " " ? "&nbsp;" : query[c]) + "</span>";
+var mailHTML =
+  '<div class="p02-mail">' +
+    '<div class="p02-m-title">Mail</div>' +
+    '<div class="p02-m-search"><svg width="20" height="20" viewBox="0 0 20 20"><circle cx="8.5" cy="8.5" r="6" fill="none" stroke="#5A666C" stroke-width="2.4"/><line x1="13" y1="13" x2="18" y2="18" stroke="#5A666C" stroke-width="2.4" stroke-linecap="round"/></svg>' +
+      '<div class="p02-m-q">' + qh + '<span id="p02-caret"></span></div></div>' +
+    '<div id="p02-none">Aucun résultat</div>' +
+    '<div id="p02-hr"></div>' +
+    '<div id="p02-row"><div id="p02-row-bg"></div><div class="p02-row-a">Syndic</div><div class="p02-row-b">Convocation AG · il y a 3&nbsp;mois</div></div>' +
+  "</div>";
+
+$("p02-world").innerHTML =
+  '<div class="ji-dots"></div>' +
+  '<div class="ji-ribbon" style="left:1600px;top:-73px;width:5800px"></div>' +
+  jiTileHTML("p02-tj", "JEUDI", "16", "").replace('class="ji-tile"', 'class="ji-tile" style="left:2120px;top:-350px"') +
+  '<div class="ji-a" style="left:2570px;top:120px">' + jiPillHTML("p02-pj", "En attente") + "</div>" +
+  jiTileHTML("p02-tl", "LUNDI", "20", "").replace('class="ji-tile"', 'class="ji-tile" style="left:4520px;top:-350px"') +
+  '<div id="p02-week" class="ji-a"><span class="ji-lb">Semaine suivante&nbsp;→</span></div>' +
+  '<div id="p02-ph" class="ji-a"><div id="p02-vib" class="ji-a" style="left:0;top:0;width:360px;height:740px">' + jiPhoneHTML("p02-phone", mailHTML) + "</div></div>" +
+  '<div id="p02-pl-at" class="ji-a">' + jiPillHTML("p02-pl", "En attente") + "</div>";
+
+/* plan lointain : MARDI et JEUDI, petites, floues, pastilles ambre qui pulsent encore */
+$("p02-far-in").innerHTML =
+  '<div class="ji-a" id="p02-fgt" style="left:0;top:0;width:560px;height:700px">' + jiTileHTML("p02-ftj", "JEUDI", "16", "") + "</div>" +
+  '<div class="ji-a" style="left:150px;top:370px">' + jiPillHTML("p02-fp1", "En attente") + "</div>" +
+  '<div class="ji-a" style="left:330px;top:450px">' + jiPillHTML("p02-fp2", "En attente") + "</div>";
+
+/* sous-titres (mot par mot) */
+var s1 = $("p02-sub1"), s2 = $("p02-sub2");
+s1.innerHTML = jiSubHTML("p02-a", ["Lundi", "…"], { box: [0, 0] }).replace("</span> <span", "</span><span");
+s2.innerHTML = jiSubHTML("p02-b", ["vous", "attendez", "encore", "le", "compte", "rendu", "du", "syndic."], { stroke: [2, 2] });
+
+/* ---- caméra : objet {x, y, s, r} appliqué par jiCam ; setters fonction => seek-safe même sans onUpdate ---- */
+var world = $("p02-world"), lens = $("p02-lens"), far = $("p02-far");
+var cam = { x: 3600, y: 0, s: 1, r: 0 }, lensBlur = 10;
+function apply() {
+  jiCam(world, cam);
+  /* parallaxe du plan lointain : il suit la caméra à 12 % et grossit à 25 % du cran */
+  var fx = -(cam.x - 4797) * 0.12, fs = 1 + (cam.s - 1) * 0.25;
+  far.style.transform = "translate(" + fx.toFixed(2) + "px,0px) scale(" + fs.toFixed(4) + ")";
+}
+var rig = {
+  x: function (v) { if (arguments.length) { cam.x = v; apply(); } return cam.x; },
+  y: function (v) { if (arguments.length) { cam.y = v; apply(); } return cam.y; },
+  s: function (v) { if (arguments.length) { cam.s = v; apply(); } return cam.s; },
+  blur: function (v) { if (arguments.length) { lensBlur = v; jiBlur(lens, v); } return lensBlur; }
+};
+apply(); jiBlur(lens, lensBlur);
+
+gsap.set("#p02-ph", { scale: 0.72, transformOrigin: "50% 50%" });
+gsap.set("#p02-fgt", { scale: 0.55, transformOrigin: "0 0" });
+
+var tl = gsap.timeline({ paused: true });
+
+/* fin du whip : départ à +5000 u/s (v0 = 1.8 × 1190 / 0.43), décélère jusqu'à LUNDI */
+var whipOut = function (p) { return 1 - Math.pow(1 - p, 1.8); };
+tl.fromTo(rig, { x: 3600 }, { x: 4790, duration: 0.43, ease: whipOut }, 0);
+tl.fromTo(rig, { blur: 10 }, { blur: 0, duration: 0.36, ease: function (p) { return 1 - Math.pow(1 - p, 1.6); } }, 0);
+/* dérive x +20 u/s */
+tl.to(rig, { x: 4797.2, duration: 0.36, ease: "none" }, 0.43);
+/* cran ×1,3 sur l'écran du téléphone (expo.inOut 0,13 s, flou au milieu) */
+tl.to(rig, { x: 4800, y: 30, s: 1.3, duration: 0.13, ease: "expo.inOut" }, 0.79);
+tl.to(rig, { blur: 8, duration: 0.065, ease: "power2.in" }, 0.79);
+tl.to(rig, { blur: 0, duration: 0.065, ease: "power2.out" }, 0.855);
+/* dérive échelle +2 %/s */
+tl.to(rig, { s: 1.3444, duration: 2.22, ease: "none" }, 0.92);
+/* plongée vers l'écran : finit à cam(4800, 0, 1.60) en pleine vitesse (+2,0/s), flou 8 px */
+var diveIn = function (p) { return Math.pow(p, 1.875); };
+tl.to(rig, { s: 1.6, y: 0, duration: 0.24, ease: diveIn }, 3.14);
+tl.to(rig, { blur: 8, duration: 0.24, ease: "power2.in" }, 3.14);
+
+/* Scene 4 : 0.09 la tuile LUNDI se pose */
+tl.fromTo("#p02-tl", { scale: 1 }, { scale: 1.03, duration: 0.09, ease: "power1.in" }, 0);
+tl.to("#p02-tl", { scale: 1, duration: 0.32, ease: "expo.out" }, 0.09);
+/* 0.24 « semaine suivante » glisse au-dessus du ruban */
+tl.fromTo("#p02-week", { x: -70, opacity: 0 }, { x: 0, opacity: 1, duration: 0.34, ease: "power3.out", immediateRender: false }, 0.24);
+/* plan lointain : apparaît sous la fin du flou, puis 0.44 les pastilles pulsent encore */
+tl.fromTo(far, { opacity: 0 }, { opacity: 0.6, duration: 0.24, ease: "power2.out", immediateRender: false }, 0.2);
+jiPillPulse(tl, $("p02-fp1"), 0.44, 4);
+jiPillPulse(tl, $("p02-fp2"), 0.5, 4);
+/* sous-titre 1 : « Lundi… » (boîte sur Lundi) */
+jiSubAnim(tl, s1, [0.22, 0.22], { boxAt: 0.17, outAt: 0.62 });
+
+/* Scene 5 : profondeur de champ : tuile et lointain se défocalisent, le téléphone reste net */
+tl.to("#p02-tl", { "--dof": "2px", opacity: 0.82, duration: 0.5, ease: "power2.inOut" }, 0.79);
+tl.to("#p02-far-in", { "--dof": "14px", duration: 0.5, ease: "power2.inOut" }, 0.79);
+tl.to(far, { opacity: 0.42, duration: 0.5, ease: "power2.inOut" }, 0.79);
+/* 0.84 le téléphone se pose (glisse avec le ruban, ×1,15 flou → net), appli Mail */
+tl.fromTo("#p02-ph", { x: -60, scale: 0.72 * 1.15, opacity: 0, filter: "blur(6px)" },
+  { x: 0, scale: 0.72, opacity: 1, filter: "blur(0px)", duration: 0.16, ease: "expo.out", immediateRender: false }, 0.82);
+/* curseur de recherche puis frappe « compte rendu AG » (1.24 → 1.64) */
+var caret = $("p02-caret");
+[[1.0, 1], [1.16, 0], [1.24, 1], [1.84, 0], [2.02, 1], [2.2, 0], [2.38, 1], [2.56, 0], [2.74, 1], [2.92, 0], [3.1, 1]].forEach(function (k) {
+  tl.set(caret, { opacity: k[1] }, k[0]);
+});
+var chs = world.querySelectorAll(".p02-ch");
+for (var i = 0; i < chs.length; i++) tl.set(chs[i], { display: "inline" }, 1.24 + i * (0.4 / chs.length));
+/* 1.59 pastille d'attente (signature 1), puis ses points pulsent */
+jiPillBorn(tl, $("p02-pl"), 1.59);
+jiPillPulse(tl, $("p02-pl"), 1.76, 2);
+/* 2.14 « Aucun résultat » tombe dans la liste */
+tl.fromTo("#p02-none", { y: -16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.22, ease: "power3.out", immediateRender: false }, 2.12);
+tl.fromTo(["#p02-hr", "#p02-row"], { y: 10, opacity: 0 }, { y: 0, opacity: 0.32, duration: 0.24, ease: "power3.out", immediateRender: false }, 2.3);
+/* 2.84 la dernière ligne « Syndic · Convocation AG · il y a 3 mois » s'allume */
+tl.to("#p02-row", { opacity: 1, duration: 0.16, ease: "power2.out" }, 2.83);
+tl.fromTo("#p02-row-bg", { opacity: 0 }, { opacity: 1, duration: 0.16, ease: "power2.out", immediateRender: false }, 2.83);
+tl.to("#p02-hr", { opacity: 1, duration: 0.16, ease: "power2.out" }, 2.83);
+/* 3.14 le téléphone sonne : vibration 2 px (finie), départ de la plongée */
+tl.fromTo("#p02-vib", { x: 0 }, { x: 2.2, duration: 0.2, ease: function (p) { return Math.sin(p * Math.PI * 14) * (1 - p); }, immediateRender: false }, 3.14);
+/* sous-titre 2 : trait sous « encore » ; sortie avant la couture (aucune phrase à 3.38) */
+jiSubAnim(tl, s2, [0.83, 1.07, 1.75, 2.03, 2.15, 2.35, 2.71, 2.83], { strokeAt: 1.75, outAt: 3.12 });
+
+tl.set({}, {}, D);
+window.__timelines = window.__timelines || {};
+window.__timelines["02-lundi"] = tl;
+})();
+</script>
+</div>
+</template>
