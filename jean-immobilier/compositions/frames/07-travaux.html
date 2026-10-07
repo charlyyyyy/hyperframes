@@ -97,9 +97,11 @@
   </style>
   <div id="root" data-composition-id="07-travaux" data-start="0" data-duration="3.02" data-width="1920" data-height="1080">
     <div id="p07-ground" class="ji-ground-dark clip" data-start="0" data-duration="3.02" data-track-index="0"></div>
-    <div id="p07-lens" class="ji-layer clip" data-start="0" data-duration="3.02" data-track-index="1">
+    <div id="p07-dlayer" class="ji-layer clip" data-start="0" data-duration="3.02" data-track-index="1">
+      <div id="p07-dworld" class="ji-world" data-layout-allow-overflow><div class="ji-dots"></div></div>
+    </div>
+    <div id="p07-lens" class="ji-layer clip" data-start="0" data-duration="3.02" data-track-index="2">
       <div id="p07-world" class="ji-world" data-layout-allow-overflow>
-        <div class="ji-dots"></div>
         <div id="p07-bien" class="ji-a" style="left:4600px;top:2390px"></div>
         <!-- ANNONCE (3700, 2500), éteinte -->
         <div class="p07-cardwrap" style="left:3500px;top:2374.51px;transform:scale(0.392157)">
@@ -139,11 +141,11 @@
         <div id="p07-pf3" class="p07-pf" style="left:4929.41px;top:3572.94px"></div>
       </div>
     </div>
-    <div id="p07-subs" class="ji-layer clip" data-start="0" data-duration="3.02" data-track-index="2">
+    <div id="p07-subs" class="ji-layer clip" data-start="0" data-duration="3.02" data-track-index="3">
       <div id="p07-sub1" class="ji-sub"></div>
       <div id="p07-sub2" class="ji-sub"></div>
     </div>
-    <div id="p07-grain" class="ji-grain clip" data-start="0" data-duration="3.02" data-track-index="3"></div>
+    <div id="p07-grain" class="ji-grain clip" data-start="0" data-duration="3.02" data-track-index="4"></div>
   </div>
   <script src="assets/vendor/gsap.min.js"></script>
   <script>
@@ -252,7 +254,7 @@ function jiCursorSVG(id) {
 (function () {
   var D = 3.02, K = 400 / 1020;
   var $ = function (id) { return document.getElementById(id); };
-  var world = $("p07-world"), lens = $("p07-lens");
+  var world = $("p07-world"), dworld = $("p07-dworld"), lens = $("p07-lens");
 
   /* décor construit avec le kit */
   $("p07-bien").innerHTML = jiBuildingSVG("p07-bd", 400, JI.ink, true);
@@ -269,12 +271,12 @@ function jiCursorSVG(id) {
   ["x", "y", "s", "r"].forEach(function (k) {
     Object.defineProperty(cam, k, { enumerable: true,
       get: function () { return st[k]; },
-      set: function (v) { st[k] = v; jiCam(world, st); } });
+      set: function (v) { st[k] = v; jiCam(world, st); jiCam(dworld, st); } });
   });
   Object.defineProperty(cam, "b", { enumerable: true,
     get: function () { return blurV; },
     set: function (v) { blurV = v; jiBlur(lens, v); } });
-  jiCam(world, st); jiBlur(lens, blurV);
+  jiCam(world, st); jiCam(dworld, st); jiBlur(lens, blurV);
 
   /* états de départ portés par GSAP */
   gsap.set([".p07-pf > .ji-pill"], { xPercent: -50, yPercent: -50 });
@@ -305,8 +307,8 @@ function jiCursorSVG(id) {
   tl.fromTo("#p07-stamp", { scale: 0.96 }, { scale: 1, duration: 0.16, ease: "power2.out", immediateRender: false }, 0.87);
   tl.fromTo("#p07-stamp", { opacity: 1 }, { opacity: 0.9, duration: 0.2, ease: "power1.out", immediateRender: false }, 0.87);
   /* coup de caméra y +10 px à 0.82 */
-  tl.fromTo(lens, { y: 0 }, { y: 10, duration: 0.04, ease: "power2.out", immediateRender: false }, 0.82);
-  tl.fromTo(lens, { y: 10 }, { y: 0, duration: 0.22, ease: "power2.out", immediateRender: false }, 0.86);
+  tl.fromTo([lens, "#p07-dlayer"], { y: 0 }, { y: 10, duration: 0.04, ease: "power2.out", immediateRender: false }, 0.82);
+  tl.fromTo([lens, "#p07-dlayer"], { y: 10 }, { y: 0, duration: 0.22, ease: "power2.out", immediateRender: false }, 0.86);
 
   /* 1.10 mini-échafaudage au trait */
   tl.fromTo(".p07-sc", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.24, ease: "power2.out", stagger: 0.05, immediateRender: false }, 1.10);
