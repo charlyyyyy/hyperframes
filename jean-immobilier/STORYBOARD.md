@@ -56,7 +56,7 @@ patterns: ../patterns/STORYBOARD-CRAFT.md, ../patterns/PATTERNS.md
 - scene: La tuile « MARDI » d'un calendrier arrive de la caméra sur le sol nuit ardoise ; un téléphone y attend le rappel de l'agence ; whip le long du ruban jusqu'à « JEUDI », où une ligne bancaire attend le loyer
 - duration: 4.46s
 - transition_in: cut
-- status: outline
+- status: animated
 - src: compositions/frames/01-mardi-jeudi.html
 - voiceover: "Mardi, vous attendez le rappel de l'agence. Jeudi, vous attendez le loyer."
 - type: hook
@@ -104,7 +104,7 @@ IMAGE CLÉ : 3.60 : la tuile JEUDI, la ligne « Loyer octobre · 0,00 € », la
 - scene: Le whip arrive sur « LUNDI », une semaine plus tard ; une boîte mail cherche le compte rendu du syndic, aucun résultat
 - duration: 3.38s
 - transition_in: cut
-- status: outline
+- status: animated
 - src: compositions/frames/02-lundi.html
 - voiceover: "Lundi... vous attendez encore le compte rendu du syndic."
 - type: pain_point
@@ -139,7 +139,7 @@ IMAGE CLÉ : 2.34 : l'appli Mail, « compte rendu AG » dans la recherche, « Au
 - scene: La caméra plonge dans le téléphone ; un pouce appelle l'agence ; ça sonne deux fois dans le vide ; la bannière « Messagerie pleine » tombe ; on raccroche, l'écran s'éteint
 - duration: 5.05s
 - transition_in: cut
-- status: outline
+- status: animated
 - src: compositions/frames/03-appel.html
 - voiceover: "Vous appelez... Messagerie pleine."
 - type: hook
@@ -182,7 +182,7 @@ IMAGE CLÉ : 3.86 : la bannière « Messagerie pleine » qui vient de tomber sur
 - scene: Recul hors du téléphone éteint : au centre, votre bien (un immeuble au trait, calme) ; recul encore, trois cartes en attente entrent autour de lui
 - duration: 4.02s
 - transition_in: cut
-- status: outline
+- status: animated
 - src: compositions/frames/04-autour.html
 - voiceover: "Le problème, ce n'est pas votre bien. C'est tout ce qu'il y a autour."
 - type: pain_point
@@ -217,7 +217,7 @@ IMAGE CLÉ : 3.56 : le bien au centre, trois cartes ambre autour (Annonce, Loyer
 - scene: Cran sur la carte ANNONCE : le prix roule comme une machine à sous et tombe au hasard ; puis l'annonce s'éteint, en ligne depuis des semaines
 - duration: 3.05s
 - transition_in: cut
-- status: outline
+- status: animated
 - src: compositions/frames/05-annonce.html
 - voiceover: "Un prix fixé au hasard... et une annonce qui dort."
 - type: pain_point
@@ -251,7 +251,7 @@ IMAGE CLÉ : 2.84 : la carte annonce assombrie, « En ligne depuis 94 jours », 
 - scene: Cran sur la carte LOYER : le loyer n'est pas arrivé, les jours de retard s'accumulent ; un SMS de relance est tapé à la main
 - duration: 2.94s
 - transition_in: cut
-- status: outline
+- status: animated
 - src: compositions/frames/06-loyer.html
 - voiceover: "Un loyer en retard... et c'est à vous de relancer."
 - type: pain_point
@@ -283,7 +283,7 @@ IMAGE CLÉ : 2.34 : la bulle SMS envoyée qui file, « Distribué », la carte l
 - scene: Cran sur la carte TRAVAUX : un tampon « VOTÉ » s'abat sur la résolution du PV d'AG ; puis la ligne « Suivi : — » reste vide ; recul, les trois pastilles ambre se regroupent
 - duration: 3.02s
 - transition_in: cut
-- status: outline
+- status: animated
 - src: compositions/frames/07-travaux.html
 - voiceover: "Des travaux votés... et personne pour les suivre."
 - type: pain_point
@@ -316,7 +316,7 @@ IMAGE CLÉ : 2.00 : « Responsable : — », l'avatar vide, la pastille ambre.
 - scene: Les pastilles fusionnent en une seule au centre ; le monde s'éteint ; « Assez attendu. » ; la pastille se referme en un point
 - duration: 2.28s
 - transition_in: cut
-- status: outline
+- status: animated
 - src: compositions/frames/08-pivot.html
 - voiceover: "Assez attendu."
 - type: pivot
@@ -346,7 +346,7 @@ IMAGE CLÉ : 0.78 : « Assez attendu. » centré sur le noir, la pastille ambre 
 - scene: Coupe franche : le point s'ouvre en lumière sur le papier ; le logo Jean Immobilier se construit bande par bande ; il se range en haut à gauche et l'équipe (quatre avatars) se pose au centre, une épingle tombe sur un plan de quartier « près de chez vous »
 - duration: 2.55s
 - transition_in: cut
-- status: outline
+- status: animated
 - src: compositions/frames/09-marque.html
 - voiceover: "Jean Immobilier, c'est une équipe près de chez vous,"
 - type: payoff
@@ -374,7 +374,7 @@ IMAGE CLÉ : 1.90 : le logo en haut à gauche, les quatre avatars de l'équipe a
 - scene: Recul : sous le logo, quatre tuiles des métiers (Vente, Location, Gestion locative, Syndic) ; chacune se soulève sur son mot ; cran final sur la carte du prix
 - duration: 3.92s
 - transition_in: cut
-- status: outline
+- status: animated
 - src: compositions/frames/10-metiers.html
 - voiceover: "pour vendre, louer, gérer votre bien, et administrer votre immeuble."
 - type: demo
@@ -401,7 +401,7 @@ IMAGE CLÉ : 1.55 : le logo en haut à gauche, les 4 tuiles (Vente, Location, Ge
 - scene: La carte PRIX, réparée : la valeur roule et se pose juste, d'un seul geste ; la pastille bascule en ✓
 - duration: 2.59s
 - transition_in: cut
-- status: outline
+- status: animated
 - src: compositions/frames/11-juste-prix.html
 - voiceover: "Le juste prix, dès la première estimation."
 - type: payoff
@@ -426,7 +426,7 @@ IMAGE CLÉ : 2.08 : la carte prix, rouleaux alignés, la pastille verte « ✓ E
 - scene: La carte LOYER, réparée : le virement arrive ; la relance part toute seule, signée Jean Immobilier
 - duration: 2.66s
 - transition_in: cut
-- status: outline
+- status: animated
 - src: compositions/frames/12-loyers-suivis.html
 - voiceover: "Les loyers suivis, les relances faites pour vous."
 - type: payoff
@@ -476,7 +476,7 @@ IMAGE CLÉ : 2.18 : la barre de chantier presque pleine, la façade neuve, avata
 - scene: Recul : le bien et ses trois cartes, comme en P10, mais toutes réparées (✓ ardoise) ; puis tout se rassemble dans la fenêtre du site
 - duration: 2.28s
 - transition_in: cut
-- status: outline
+- status: animated
 - src: compositions/frames/14-plus.html
 - voiceover: "Vous n'attendez plus. On s'en occupe."
 - type: payoff
@@ -508,7 +508,7 @@ IMAGE CLÉ : 1.48 : les trois cartes en vol vers le bien, traînées.
 - scene: Le point s'ouvre sur la carte de fin, sans voix : le logo Jean Immobilier se construit bande par bande, un seul bouton rouge « Parlons de votre bien » arrive ; un curseur arrive en courbe et clique ; tenue vivante, iris au noir
 - duration: 5.10s
 - transition_in: cut
-- status: outline
+- status: animated
 - src: compositions/frames/15-fin.html
 - voiceover: ""
 - type: cta

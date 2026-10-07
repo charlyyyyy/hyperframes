@@ -36,7 +36,7 @@ IRIS_FROM=""               # id of the frame under the iris (empty = the frame j
 # Default span: LEAK_AT+0.20 to IRIS_AT+0.80. Empty PAPER = no bed.
 PAPER="#F4F4F2"
 BED_START=""               # optional override
-BED_END=""                 # optional override
+BED_END="49.80"            # no iris in this film: the bed lasts to the end
 
 # Colors of the flash and the iris ring: copy accent, accent-light and accent-glow from frame.md.
 ACCENT="#D33543"
@@ -177,6 +177,10 @@ if iris_at is not None:
         tl.fromTo("#fxiris-ring", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.08, immediateRender: false }}, {t(0.05)});
         tl.to("#fxiris-ring", {{ opacity: 0, duration: 0.15 }}, {t(0.70)});
 '''
+if not re.search(r"(?m)^[ \t]*tl\.to\(\{\}, \{ duration: [0-9.]+ \}, 0\);", s):
+    # this assembler version emits a bare main timeline: give it a variable and a full-span anchor
+    s = s.replace('window.__timelines["main"] = gsap.timeline({ paused: true });',
+                  'var tl = gsap.timeline({ paused: true });\n        tl.to({}, { duration: ' + f"{total}" + ' }, 0);\n        window.__timelines["main"] = tl;')
 anchor = re.search(r"(?m)^[ \t]*tl\.to\(\{\}, \{ duration: [0-9.]+ \}, 0\);", s)
 if not anchor:
     raise SystemExit("assemble: full-span anchor tl.to({}, { duration: N }, 0); not found in index.html")
@@ -185,6 +189,8 @@ open(p, "w", encoding="utf-8").write(s)
 print("orchestrator layer patched:", ", ".join(k for k, v in (("audio", env.get("AUDIO")), ("flash", leak_at is not None),
       ("iris", iris_at is not None), ("paper bed", "paperbed" in s)) if v) or "nothing")
 EOF
+
+sed -i -E 's#<script src="https://cdn.jsdelivr.net/npm/gsap@[^"]*"[^>]*></script>#<script src="assets/vendor/gsap.min.js"></script>#' index.html
 
 if [ "$RUN_LINT" = "1" ]; then
   npx hyperframes lint 2>&1 | grep -E "✗|error\(s\)|warning\(s\)" || echo "lint: no error reported"
