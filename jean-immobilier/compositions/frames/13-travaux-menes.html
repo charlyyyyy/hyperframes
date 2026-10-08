@@ -304,6 +304,9 @@ function jiCursorSVG(id) {
 
   /* 2.28 : tic « ✓ Terminé », l'échafaudage tombe, la façade est neuve */
   jiPillFlip(tl, document.getElementById("p13-pill"), document.getElementById("p13-pill-ok"), 2.27);
+  /* le rebond d'échelle du tic tient dans la séquence (fin à 2.50) */
+  var okEl = document.getElementById("p13-pill-ok"), kids = tl.getChildren(false, true, false);
+  for (var kk = 0; kk < kids.length; kk++) if (kids[kk].vars.scale === 1 && kids[kk].targets()[0] === okEl) kids[kk].duration(0.15);
   var pieces = document.querySelectorAll(".p13-sc");
   for (var q = 0; q < pieces.length; q++) {
     var rot = [10, -12, 7, -9, 14, -6][q % 6];
@@ -314,7 +317,8 @@ function jiCursorSVG(id) {
 
   /* 2.34 → 2.42 : la grande carte se replie en carte d'ensemble (gabarit P14), la pastille rejoint sa place */
   tl.fromTo("#p13-big", { scaleX: 1, scaleY: 1, opacity: 1 }, { scaleX: 0.392, scaleY: 0.234, opacity: 0, duration: 0.08, ease: "power2.in", immediateRender: false }, 2.34);
-  tl.fromTo("#p13-cpt", { scaleX: 2.55, scaleY: 4.27, opacity: 0 }, { scaleX: 1, scaleY: 1, opacity: 1, duration: 0.08, ease: "power2.in", immediateRender: false }, 2.34);
+  tl.fromTo("#p13-cpt", { scale: 2.55 }, { scale: 1, duration: 0.08, ease: "power2.in", immediateRender: false }, 2.34);
+  tl.fromTo("#p13-cpt", { opacity: 0 }, { opacity: 1, duration: 0.05, ease: "power1.in", immediateRender: false }, 2.37);
   tl.fromTo("#p13-pw", { x: 0, y: 0 }, { x: 316, y: -175, duration: 0.08, ease: "power2.in", immediateRender: false }, 2.34);
 
   /* sous-titre mot par mot, trait sous « jusqu'au bout » */

@@ -451,7 +451,7 @@ IMAGE CLÉ : 1.54 : la carte loyer « ✓ Payé », la bulle de relance signée 
 - scene: La carte TRAVAUX, réparée : le tampon VOTÉ, puis une barre de chantier qui court jusqu'au bout ; l'échafaudage tombe, la façade est neuve
 - duration: 2.50s
 - transition_in: cut
-- status: outline
+- status: animated
 - src: compositions/frames/13-travaux-menes.html
 - voiceover: "Les travaux votés, puis menés jusqu'au bout."
 - type: payoff

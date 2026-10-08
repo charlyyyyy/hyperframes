@@ -218,8 +218,7 @@ function jiCursorSVG(id) {
   return '<svg id="' + id + '" class="ji-cursor" viewBox="0 0 70 100"><path d="M6 4 L6 78 L24 62 L36 92 L50 86 L38 57 L62 57 Z" fill="#111" stroke="#fff" stroke-width="5" stroke-linejoin="round"/></svg>';
 }
 /* ===================== JI KIT JS : fin du bloc ===================== */
-</script>
-<script>
+
 (function () {
   var $ = function (id) { return document.getElementById(id); };
   var world = $("p15-world"), lens = $("p15-lens"), iris = $("p15-iris");
@@ -244,7 +243,7 @@ function jiCursorSVG(id) {
   tl.fromTo("#p15-dot", { scale: 1, opacity: 1 }, { scale: 2.6, opacity: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 0.05);
   tl.fromTo("#p15-bloom", { scale: 0.08, opacity: 0.95 }, { scale: 2.6, opacity: 0, duration: 0.6, ease: "power2.out", immediateRender: false }, 0.05);
   /* l'immeuble au trait en fond, ardoise 14 % */
-  tl.fromTo("#p15-bldw", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out", immediateRender: false }, 0.12);
+  tl.fromTo("#p15-bldw", { opacity: 0 }, { opacity: 0.4, duration: 0.5, ease: "power2.out", immediateRender: false }, 0.12);
 
   /* 0.30 : les 5 bandes du toit, une à une depuis la gauche ; 0.60 la bande rouge ; 0.70 JEAN IMMOBILIER */
   for (var i = 0; i < bands.length; i++) {

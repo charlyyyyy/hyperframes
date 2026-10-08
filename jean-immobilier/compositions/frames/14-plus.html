@@ -248,11 +248,13 @@ function jiCursorSVG(id) {
   tl.fromTo(grp, { scale: 1 }, { scale: 0.06, duration: 0.6, ease: "power3.in", immediateRender: false }, 1.53);
   tl.to(grp, { scale: 0.045, duration: 0.15, ease: "none" }, 2.13);
 
-  /* pastilles ambre vivantes, puis bascule ensemble en ✓ ardoise (0.28) */
+  /* les trois cartes sont déjà réparées (séquences 11 à 13) : ✓ ardoise dès 0, petit battement ensemble à 0.28 */
   for (var p = 0; p < CARDS.length; p++) {
-    var pill = document.getElementById("p14-" + CARDS[p].k + "-pill");
-    jiPillPulse(tl, pill, 0, 1);
-    jiPillFlip(tl, pill, document.getElementById("p14-" + CARDS[p].k + "-pill-ok"), 0.28);
+    var okPill = document.getElementById("p14-" + CARDS[p].k + "-pill-ok");
+    gsap.set(document.getElementById("p14-" + CARDS[p].k + "-pill"), { opacity: 0 });
+    gsap.set(okPill, { opacity: 1 });
+    tl.fromTo(okPill, { scale: 1 }, { scale: 1.15, duration: 0.1, ease: "power2.out", immediateRender: false }, 0.28);
+    tl.to(okPill, { scale: 1, duration: 0.2, ease: "power2.inOut" }, 0.38);
   }
 
   /* 0.58 : le cercle pointillé devient plein, ardoise */

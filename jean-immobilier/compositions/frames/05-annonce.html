@@ -355,7 +355,7 @@ function jiCursorSVG(id) {
   tl.fromTo("#p05-minus", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.2, ease: "power3.out", immediateRender: false }, 1.39);
   var sC = { p: 0 }; rollers[1].springs.push(sC);
   tl.to(sC, { p: 1, duration: 0.26, ease: "back.out(1.8)", onUpdate: applyAll }, 1.42);
-  tl.to("#p05-strike", { opacity: 0, duration: 0.12, ease: "power1.in" }, 1.6);
+  tl.to("#p05-strike", { opacity: 0, duration: 0.12, ease: "power1.in" }, 1.5);
 
   /* Scene 12 : « En ligne depuis » + 1 → 94 jours (1.89, 0,5 s) ; pastille 2.39 ; « dort » 2.77 */
   tl.fromTo("#p05-online", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.2, ease: "power3.out", immediateRender: false }, 1.86);
