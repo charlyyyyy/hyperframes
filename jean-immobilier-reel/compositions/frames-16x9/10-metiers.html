@@ -1,0 +1,340 @@
+<template>
+<div id="root" data-composition-id="10-metiers" data-width="1920" data-height="1080" data-start="0" data-duration="3.92">
+<style>
+/* ===================== JI KIT CSS : début du bloc à copier ===================== */
+@font-face { font-family: "JI Inter"; src: url("assets/fonts/Inter-Regular.otf"); font-weight: 400; }
+@font-face { font-family: "JI Inter"; src: url("assets/fonts/Inter-Medium.otf"); font-weight: 500; }
+@font-face { font-family: "JI Inter"; src: url("assets/fonts/Inter-SemiBold.otf"); font-weight: 600; }
+@font-face { font-family: "JI Inter"; src: url("assets/fonts/Inter-Bold.otf"); font-weight: 700; }
+@font-face { font-family: "JI Inter"; src: url("assets/fonts/Inter-ExtraBold.otf"); font-weight: 800; }
+.ji-layer { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; }
+.ji-world { position: absolute; left: 0; top: 0; width: 0; height: 0; transform-origin: 0 0; }
+.ji-a { position: absolute; }
+/* sols : nuit ardoise (acte 1, pivot), papier gris très clair (acte 2, fin) */
+.ji-ground-dark { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px;
+  background: radial-gradient(ellipse 1400px 900px at 50% 42%, #1E282C 0%, #141B1E 70%, #0F1517 100%); }
+.ji-ground-black { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; background: #0A0E10; }
+.ji-ground-light { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px;
+  background: radial-gradient(ellipse 1400px 900px at 50% 42%, #FFFFFF 0%, #F4F4F2 60%, #E9E9E6 100%); }
+/* trame de points posée DANS le monde (elle bouge avec la caméra et rend la dérive lisible) : 12000 × 8000 u */
+.ji-dots { position: absolute; left: -4000px; top: -3000px; width: 12000px; height: 8000px; pointer-events: none;
+  background: radial-gradient(circle, rgba(238,241,242,.075) 2px, transparent 2.4px) 0 0 / 48px 48px; }
+.ji-dots.light { background: radial-gradient(circle, rgba(46,58,63,.075) 2px, transparent 2.4px) 0 0 / 48px 48px; }
+.ji-grain { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; pointer-events: none; opacity: .05; mix-blend-mode: screen;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23g)'/></svg>");
+  background-size: 240px 240px; }
+.ji-grain.light { opacity: .03; mix-blend-mode: multiply; }
+/* sous-titre : bas centre, bande y 890 à 980 */
+.ji-sub { position: absolute; left: 0; top: 896px; width: 1920px; text-align: center; font: 600 62px/74px "JI Inter", sans-serif;
+  letter-spacing: -0.015em; white-space: nowrap; color: #EEF1F2; text-shadow: 0 2px 16px rgba(0,0,0,.55); }
+.ji-sub.light { color: #26313A; text-shadow: 0 2px 14px rgba(244,244,242,.95); }
+.ji-w { display: inline-block; opacity: 0; }
+.ji-kw { position: relative; display: inline-block; }
+.ji-box { position: absolute; left: -0.14em; right: -0.14em; top: 0.06em; bottom: 0.02em; background: #D33543; border-radius: 3px;
+  transform-origin: 0 50%; transform: scaleX(0); }
+.ji-kw > .ji-w { position: relative; }
+.ji-stroke { position: absolute; left: -2%; width: 104%; bottom: -8px; height: 7px; border-radius: 7px; background: #D33543;
+  transform-origin: 0 50%; transform: scaleX(0); }
+.ji-type { position: absolute; left: 0; width: 1920px; text-align: center; font: 700 84px/1.12 "JI Inter", sans-serif; letter-spacing: -0.025em; color: #EEF1F2; }
+/* tuile-jour du calendrier (acte 1) : 560 × 700 */
+.ji-tile { position: absolute; width: 560px; height: 700px; border-radius: 36px; color: #EEF1F2; font-family: "JI Inter", sans-serif;
+  background: linear-gradient(180deg, #2A363C, #212B30); box-shadow: 0 40px 80px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.07); }
+.ji-tile-hd { position: absolute; left: 44px; top: 36px; font-size: 44px; font-weight: 800; letter-spacing: .04em; }
+.ji-tile-hd small { font-weight: 500; color: #8E9A9E; margin-left: 10px; letter-spacing: 0; }
+.ji-tile-hr { position: absolute; right: 44px; top: 46px; font: 600 30px "JI Inter", sans-serif; color: #8E9A9E; }
+.ji-ribbon { position: absolute; height: 6px; border-radius: 3px; background: rgba(238,241,242,.14); }
+/* téléphone : 360 × 740 */
+.ji-phone { position: absolute; width: 360px; height: 740px; border-radius: 58px; background: #0A0D0F; padding: 14px;
+  box-shadow: 0 40px 90px rgba(0,0,0,.55), 0 0 0 2px #2C363B; font-family: "JI Inter", sans-serif; }
+.ji-scr { position: relative; width: 332px; height: 712px; border-radius: 46px; background: #F4F5F7; overflow: hidden; color: #111; }
+.ji-scr.dk { background: linear-gradient(180deg, #33424A, #161E22); color: #fff; }
+.ji-isl { position: absolute; left: 111px; top: 14px; width: 110px; height: 32px; border-radius: 20px; background: #000; z-index: 3; }
+/* pastilles : attente (ambre) et réparé (ardoise) — la même pastille bascule de l'une à l'autre */
+.ji-pill { position: absolute; display: inline-flex; align-items: center; gap: 12px; padding: 12px 22px; border-radius: 40px;
+  font: 700 26px "JI Inter", sans-serif; white-space: nowrap; box-shadow: 0 10px 26px rgba(0,0,0,.25); transform-style: preserve-3d; }
+.ji-pill-face { display: inline-flex; align-items: center; gap: 12px; backface-visibility: hidden; }
+.ji-pill.wait { background: #F2A93B; color: #2B1A00; }
+.ji-pill.ok { background: #526166; color: #FFFFFF; }
+.ji-dots3 { display: inline-flex; gap: 6px; } .ji-dots3 i { width: 9px; height: 9px; border-radius: 50%; background: #2B1A00; }
+/* cartes */
+.ji-card { position: absolute; border-radius: 28px; padding: 34px; font-family: "JI Inter", sans-serif; }
+.ji-card.dark { background: linear-gradient(180deg, #2C393F, #222D32); color: #EEF1F2; box-shadow: 0 40px 80px rgba(0,0,0,.5); }
+.ji-card.light { background: #FFFFFF; color: #26313A; box-shadow: 0 30px 70px rgba(38,49,58,.14), 0 2px 6px rgba(38,49,58,.06); }
+.ji-lb { font: 700 22px "JI Inter", sans-serif; letter-spacing: .12em; text-transform: uppercase; opacity: .6; }
+.ji-big { font: 800 64px "JI Inter", sans-serif; letter-spacing: -.02em; margin-top: 10px; }
+.ji-ln { font: 500 28px "JI Inter", sans-serif; opacity: .85; margin-top: 10px; }
+.ji-num { display: inline-block; width: 96px; height: 130px; border-radius: 16px; font: 800 92px/130px "JI Inter", sans-serif; text-align: center; overflow: hidden; }
+.ji-card.dark .ji-num { background: #182024; } .ji-card.light .ji-num { background: #F1F1EE; }
+.ji-cursor { position: absolute; width: 70px; height: 100px; filter: drop-shadow(0 8px 14px rgba(0,0,0,.35)); }
+.ji-ripple { position: absolute; width: 120px; height: 120px; margin: -60px 0 0 -60px; border-radius: 50%; border: 6px solid #D33543; opacity: 0; }
+/* ===================== JI KIT CSS : fin du bloc ===================== */
+#root { position: relative; width: 1920px; height: 1080px; overflow: hidden; }
+#p10-hello, #p10-team, #p10-map { opacity: 1; }
+.p10-av { position: absolute; width: 150px; height: 150px; border-radius: 50%; background: #E9E9E6; border: 6px solid #FFFFFF;
+  box-shadow: 0 18px 40px rgba(38,49,58,.16); overflow: hidden; box-sizing: border-box; }
+.p10-av svg { position: absolute; left: 0; top: 0; }
+#p10-map { width: 360px; height: 280px; padding: 0; overflow: hidden; box-sizing: border-box; }
+#p10-map svg { position: absolute; left: 0; top: 0; }
+#p10-grid { transform-origin: 0 0; }
+.p10-slot { position: absolute; width: 390px; height: 520px; opacity: 0; }
+.p10-tile { left: 0; top: 0; width: 390px; height: 520px; box-sizing: border-box; }
+.p10-well { position: absolute; left: 24px; top: 24px; width: 342px; height: 330px; border-radius: 20px; background: #F4F4F2; }
+.p10-pic { position: absolute; left: 61px; top: 65px; width: 220px; height: 200px; }
+.p10-pic > div { position: absolute; left: 0; top: 0; width: 220px; height: 200px; }
+.p10-red { opacity: 0; }
+.p10-name { position: absolute; left: 34px; top: 386px; font: 800 40px/48px "JI Inter", sans-serif; letter-spacing: -0.015em; color: #26313A; white-space: nowrap; }
+#p10-slot0 { z-index: 5; }
+</style>
+<div class="ji-ground-light clip" data-start="0" data-duration="3.92" data-track-index="0"></div>
+<div id="p10-lens" class="ji-layer clip" data-start="0" data-duration="3.92" data-track-index="1">
+  <div id="p10-world" class="ji-world"></div>
+</div>
+<div id="p10-sub1" class="ji-sub light clip" data-start="0" data-duration="3.92" data-track-index="2"></div>
+<div id="p10-sub2" class="ji-sub light clip" data-start="0" data-duration="3.92" data-track-index="3"></div>
+<div class="ji-grain light clip" data-start="0" data-duration="3.92" data-track-index="4"></div>
+<script src="assets/vendor/gsap.min.js"></script>
+<script>
+/* ===================== JI KIT JS : début du bloc à copier ===================== */
+var JI = {
+  red: "#D33543", redLight: "#E25C68", redDeep: "#A82632", slate: "#526166", amber: "#F2A93B",
+  ink: "#EEF1F2", inkMute: "#8E9A9E", inkDark: "#26313A", night: "#141B1E", paper: "#F4F4F2",
+  greys: ["#E8E8E8", "#D6D6D6", "#BDBBBC", "#949494", "#526166"]
+};
+/* caméra : amène le point (x, y) du monde au centre du cadre, à l'échelle s, rotation r (degrés) */
+function jiCam(worldEl, c) {
+  var s = c.s, r = c.r || 0;
+  worldEl.style.transform = "translate(960px,540px) rotate(" + r.toFixed(3) + "deg) scale(" + s.toFixed(4) + ") translate(" + (-c.x).toFixed(2) + "px," + (-c.y).toFixed(2) + "px)";
+}
+function jiBlur(el, px) { el.style.filter = px > 0.25 ? "blur(" + px.toFixed(1) + "px)" : "none"; }
+/* sous-titre : words = ["Mardi,"] ; box = [i, j] indices (inclus) des mots dans la boîte ; stroke = [i, j] sous le trait */
+function jiSubHTML(p, words, opt) {
+  opt = opt || {}; var h = "", i = 0;
+  function span(k) { return '<span class="ji-w ' + p + '-w">' + words[k] + "</span>"; }
+  while (i < words.length) {
+    var g = opt.box && i === opt.box[0] ? ["box", opt.box[1]] : opt.stroke && i === opt.stroke[0] ? ["stroke", opt.stroke[1]] : null;
+    if (g) {
+      var inner = []; for (var k = i; k <= g[1]; k++) inner.push(span(k));
+      h += '<span class="ji-kw">' + (g[0] === "box" ? '<i class="ji-box ' + p + '-box"></i>' : "") + inner.join(" ") +
+        (g[0] === "stroke" ? '<i class="ji-stroke ' + p + '-stroke"></i>' : "") + "</span>";
+      i = g[1] + 1;
+    } else { h += span(i); i++; }
+    if (i < words.length) h += " ";
+  }
+  return h;
+}
+/* anime le sous-titre : cues (temps locaux) par mot ; boxAt / strokeAt optionnels ; outAt = sortie (0,14 s) */
+function jiSubAnim(tl, subEl, cues, o) {
+  o = o || {};
+  var ws = subEl.querySelectorAll(".ji-w");
+  for (var i = 0; i < ws.length; i++) {
+    tl.fromTo(ws[i], { opacity: 0, y: 8, filter: "blur(6px)" },
+      { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.14, ease: "power2.out", immediateRender: false }, Math.max(0, cues[i] - 0.03));
+  }
+  var box = subEl.querySelector(".ji-box"), st = subEl.querySelector(".ji-stroke");
+  if (box && o.boxAt != null) {
+    tl.fromTo(box, { scaleX: 0 }, { scaleX: 1, duration: 0.16, ease: "power3.out", immediateRender: false }, o.boxAt);
+    var inBox = box.parentNode.querySelectorAll(".ji-w");
+    for (var k = 0; k < inBox.length; k++) tl.to(inBox[k], { color: "#FFFFFF", textShadow: "none", duration: 0.1 }, o.boxAt + 0.04);
+  }
+  if (st && o.strokeAt != null) tl.fromTo(st, { scaleX: 0 }, { scaleX: 1, duration: 0.35, ease: "power2.out", immediateRender: false }, o.strokeAt);
+  if (o.outAt != null) tl.to(subEl, { opacity: 0, filter: "blur(6px)", duration: 0.14, ease: "power1.in" }, o.outAt);
+}
+function jiTileHTML(id, day, num, hour) {
+  return '<div id="' + id + '" class="ji-tile"><div class="ji-tile-hd">' + day + "<small>" + num + '</small></div><div class="ji-tile-hr">' + (hour || "") + "</div></div>";
+}
+function jiPhoneHTML(id, screenHTML, dark) {
+  return '<div id="' + id + '" class="ji-phone"><div class="ji-scr' + (dark ? " dk" : "") + '"><div class="ji-isl"></div>' + screenHTML + "</div></div>";
+}
+/* pastille : la face « attente » ; okText fournit la face « réparé » (rotationX 180 pour basculer : jiPillFlip) */
+function jiPillHTML(id, waitText, okText) {
+  return '<div id="' + id + '" class="ji-pill wait"><span class="ji-pill-face"><span class="ji-dots3"><i></i><i></i><i></i></span>' + waitText + "</span></div>" +
+    (okText ? '<div id="' + id + '-ok" class="ji-pill ok" style="opacity:0">✓ ' + okText + "</div>" : "");
+}
+/* les trois points de la pastille pulsent (boucle finie : n cycles de 0,9 s) */
+function jiPillPulse(tl, pillEl, t, n) {
+  var d = pillEl.querySelectorAll(".ji-dots3 i");
+  for (var i = 0; i < d.length; i++) tl.fromTo(d[i], { opacity: 0.25 }, { opacity: 1, duration: 0.3, ease: "sine.inOut", yoyo: true, repeat: n * 2 - 1, immediateRender: false }, t + i * 0.15);
+}
+/* naissance d'une pastille depuis un point (signature 1) */
+function jiPillBorn(tl, pillEl, t) { tl.fromTo(pillEl, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.14, ease: "expo.out", immediateRender: false }, t); }
+/* le tic qui répare (signature 2) : la pastille ambre bascule et laisse la pastille ardoise ✓ (posée au même endroit) */
+function jiPillFlip(tl, pillEl, okEl, t) {
+  tl.to(pillEl, { rotationX: 90, duration: 0.08, ease: "power2.in" }, t)
+    .set(pillEl, { opacity: 0 }, t + 0.08)
+    .fromTo(okEl, { rotationX: -90, opacity: 1 }, { rotationX: 0, opacity: 1, duration: 0.1, ease: "expo.out", immediateRender: false }, t + 0.08)
+    .fromTo(okEl, { scale: 1.15 }, { scale: 1, duration: 0.2, ease: "power2.out", immediateRender: false }, t + 0.08);
+}
+/* le bien : immeuble au trait, 400 × 420 u à l'échelle 1 */
+function jiBuildingSVG(id, w, color, lit) {
+  var win = "";
+  for (var r = 0; r < 4; r++) for (var k = 0; k < 3; k++) {
+    var on = lit && (r + k) % 3 !== 1;
+    win += '<rect class="' + id + "-win" + (on ? " on" : "") + '" x="' + (105 + k * 70) + '" y="' + (140 + r * 60) + '" width="44" height="38" rx="5" fill="#F2C46B" fill-opacity="' + (on ? 0.85 : 0) + '" stroke="' + color + '" stroke-width="4"/>';
+  }
+  return '<svg id="' + id + '" class="ji-a" width="' + w + '" height="' + (w * 1.05).toFixed(0) + '" viewBox="0 0 400 420" style="overflow:visible">' +
+    '<ellipse id="' + id + '-glow" cx="200" cy="250" rx="230" ry="190" fill="#F2C46B" opacity="' + (lit ? 0.1 : 0) + '"/>' +
+    '<path id="' + id + '-body" d="M70 400V110L200 40L330 110V400" fill="none" stroke="' + color + '" stroke-width="6" stroke-linejoin="round"/>' +
+    '<line x1="20" y1="400" x2="380" y2="400" stroke="' + color + '" stroke-width="6" stroke-linecap="round"/>' + win +
+    '<rect x="178" y="350" width="44" height="50" rx="5" fill="none" stroke="' + color + '" stroke-width="4"/>' +
+    '<circle cx="360" cy="370" r="22" fill="none" stroke="' + color + '" stroke-width="4"/><line x1="360" y1="392" x2="360" y2="400" stroke="' + color + '" stroke-width="4"/></svg>';
+}
+/* logo Jean Immobilier (redessiné d'après le logo de l'agence) : 1320 × 1040 u ; onDark = lettrage blanc.
+   Les 5 bandes du toit ont la classe <id>-band (dans l'ordre, du haut vers le bas) : on peut les faire arriver une à une. */
+function jiLogoSVG(id, w, onDark) {
+  var bands = "", ink = onDark ? "#FFFFFF" : JI.inkDark;
+  for (var i = 0; i < 5; i++) {
+    var py = 40 + i * 150, k = 1 - i / 5.2, l = py + 330 * k, rr = py + 300 * k, th = 78;
+    bands += '<path class="' + id + '-band" d="M0 ' + l + " L405 " + py + " L1320 " + rr + " L1320 " + (rr + th) + " L405 " + (py + th) + " L0 " + (l + th) + ' Z" fill="' + JI.greys[i] + '"/>';
+  }
+  return '<svg id="' + id + '" class="ji-a" width="' + w + '" height="' + (w * 1040 / 1320).toFixed(0) + '" viewBox="0 0 1320 1040">' + bands +
+    '<rect id="' + id + '-red" x="0" y="770" width="1320" height="76" fill="' + JI.red + '"/>' +
+    '<text x="1300" y="830" text-anchor="end" font-family="JI Inter, sans-serif" font-size="54" fill="#fff"><tspan font-weight="400" letter-spacing="2">GROUPE </tspan><tspan font-weight="700" letter-spacing="2">DELPHINE JEAN</tspan></text>' +
+    '<text id="' + id + '-word" x="660" y="1005" text-anchor="middle" font-family="JI Inter, sans-serif" font-size="132" fill="' + ink + '" textLength="1310" lengthAdjust="spacing"><tspan font-weight="800">JEAN </tspan><tspan font-weight="300">IMMOBILIER</tspan></text></svg>';
+}
+function jiCursorSVG(id) {
+  return '<svg id="' + id + '" class="ji-cursor" viewBox="0 0 70 100"><path d="M6 4 L6 78 L24 62 L36 92 L50 86 L38 57 L62 57 Z" fill="#111" stroke="#fff" stroke-width="5" stroke-linejoin="round"/></svg>';
+}
+/* ===================== JI KIT JS : fin du bloc ===================== */
+(function () {
+  var ID = "10-metiers", D = 3.92;
+  function $(id) { return document.getElementById(id); }
+  var world = $("p10-world"), lens = $("p10-lens");
+  var S_HOLD = 0.94, K = 1 / S_HOLD;
+  var CY = (540 - 50) / S_HOLD - 470;            /* cam y at hold: the logo top lands at y 50 */
+  var INK = JI.inkDark, RED = JI.red;
+
+  /* ---------- pictograms (line icons, 220 x 200) ---------- */
+  function pic(kind, c) {
+    var a = 'fill="none" stroke="' + c + '" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"';
+    var o = '<svg width="220" height="200" viewBox="0 0 220 200"><g ' + a + '>';
+    if (kind === 0) o += '<path d="M30 98 L110 30 L190 98"/><path d="M146 63 V38 H164 V78"/><path d="M50 82 V176 H170 V82"/>' +
+      '<rect x="96" y="128" width="28" height="48" rx="3"/><rect x="62" y="104" width="24" height="22" rx="3"/><rect x="134" y="104" width="24" height="22" rx="3"/><path d="M20 176 H200"/>';
+    if (kind === 1) o += '<circle cx="70" cy="100" r="34"/><circle cx="70" cy="100" r="10"/><path d="M104 100 H196"/><path d="M186 100 V122"/><path d="M168 100 V116"/><path d="M150 100 V122"/>';
+    if (kind === 2) o += '<path d="M64 24 H136 L164 52 V180 H64 Z"/><path d="M136 24 V52 H164"/><path d="M84 72 H124"/><path d="M84 94 H144"/><path d="M84 116 H144"/><path d="M84 138 H120"/>' +
+      '<path d="M84 164 c8 -12 14 -12 18 0 s10 10 16 -2 s8 -8 14 0"/>';
+    return o + "</g></svg>";
+  }
+  function picHTML(i, c, tag) {
+    if (i === 3) return '<div style="left:15px;top:0">' + jiBuildingSVG("p10-syn-" + tag, 190, c, false) + "</div>";
+    return "<div>" + pic(i, c) + "</div>";
+  }
+
+  /* ---------- world ---------- */
+  var NAMES = ["Vente", "Location", "Gestion locative", "Syndic"];
+  var SLOT_X = [-840, -410, 20, 450], SLOT_Y = -195;     /* grid coords = screen px at the hold camera */
+  var h = '<div class="ji-dots light"></div>';
+  /* the property (votre bien) at world (4800, 2600) : seen at the end of the notch toward PRIX */
+  h += '<div class="ji-a" style="left:4600px;top:2390px">' + jiBuildingSVG("p10-bien", 400, INK, true) + "</div>";
+  /* logo, small top-left (handoff_in : x 110 to 430, top 70 at cam(0,0,1)) */
+  h += '<div class="ji-a" style="left:-850px;top:-470px">' + jiLogoSVG("p10-logo", 320, false) + "</div>";
+  /* team + neighbourhood map (handoff_in), they leave upward at 0.05 */
+  var sil = '<svg width="138" height="138" viewBox="0 0 138 138"><circle cx="69" cy="54" r="25" fill="' + JI.slate + '"/>' +
+    '<path d="M20 138 C20 98 44 86 69 86 C94 86 118 98 118 138 Z" fill="' + JI.slate + '"/></svg>';
+  h += '<div id="p10-hello" class="ji-a" style="left:0;top:0"><div id="p10-team" class="ji-a" style="left:0;top:0">';
+  for (var a = 0; a < 4; a++) h += '<div class="p10-av" style="left:' + (-540 + a * 170) + 'px;top:-55px">' + sil + "</div>";
+  h += '</div><div id="p10-map" class="ji-card light" style="left:180px;top:-140px">' +
+    '<svg width="360" height="280" viewBox="0 0 360 280"><rect width="360" height="280" fill="#F4F4F2"/>' +
+    '<g fill="#E9E9E6"><rect x="24" y="22" width="92" height="70" rx="6"/><rect x="146" y="22" width="70" height="70" rx="6"/><rect x="246" y="22" width="92" height="70" rx="6"/>' +
+    '<rect x="24" y="186" width="92" height="74" rx="6"/><rect x="246" y="186" width="92" height="74" rx="6"/><rect x="146" y="186" width="70" height="74" rx="6"/></g>' +
+    '<g fill="none" stroke="#FFFFFF" stroke-linecap="round"><path d="M0 140 H360" stroke-width="22"/><path d="M131 0 V280" stroke-width="14"/><path d="M231 0 V280" stroke-width="14"/><path d="M0 92 L360 60" stroke-width="8"/></g>' +
+    '<g fill="none" stroke="#DADAD6" stroke-width="2"><path d="M0 129 H360 M0 151 H360"/></g>' +
+    '<path d="M180 140 C180 140 160 112 160 96 A20 20 0 1 1 200 96 C200 112 180 140 180 140 Z" fill="' + RED + '"/><circle cx="180" cy="96" r="7.5" fill="#FFFFFF"/></svg></div></div>';
+  /* the four métier tiles */
+  h += '<div id="p10-grid" class="ji-a" style="left:0;top:' + CY.toFixed(2) + 'px;transform:scale(' + K.toFixed(5) + ')">';
+  for (var i = 0; i < 4; i++) {
+    h += '<div id="p10-slot' + i + '" class="p10-slot" style="left:' + SLOT_X[i] + 'px;top:' + SLOT_Y + 'px">' +
+      '<div id="p10-tile' + i + '" class="ji-card light p10-tile"><div class="p10-well"><div class="p10-pic">' +
+      '<div class="p10-ink" id="p10-ink' + i + '">' + picHTML(i, INK, "ink") + "</div>" +
+      '<div class="p10-red" id="p10-red' + i + '">' + picHTML(i, RED, "red") + "</div>" +
+      '</div></div><div class="p10-name">' + NAMES[i] + "</div></div></div>";
+  }
+  h += "</div>";
+  world.innerHTML = h;
+
+  /* ---------- subtitle ---------- */
+  var sub1 = $("p10-sub1"), sub2 = $("p10-sub2");
+  sub1.innerHTML = jiSubHTML("p10a", ["pour", "vendre,", "louer,", "gérer", "votre", "bien,"], { box: [3, 3] });
+  sub2.innerHTML = jiSubHTML("p10b", ["et", "administrer", "votre", "immeuble."], { box: [1, 1] });
+
+  /* ---------- camera ---------- */
+  /* state objects with setters: every GSAP render (even a seek with suppressed events) re-applies the camera */
+  var st = { x: 0, y: 0, s: 1, d: 0, b: 4 };
+  function apply() {
+    jiCam(world, { x: st.x + st.d, y: st.y, s: st.s, r: 0 });
+    jiBlur(lens, st.b);
+  }
+  function live(map) {
+    var o = {};
+    Object.keys(map).forEach(function (k) {
+      Object.defineProperty(o, k, { enumerable: true, get: function () { return st[map[k]]; }, set: function (v) { st[map[k]] = v; apply(); } });
+    });
+    return o;
+  }
+  var cam = live({ x: "x", y: "y", s: "s" }), drift = live({ x: "d" }), lb = live({ b: "b" });
+  apply();
+
+  var tl = gsap.timeline({ paused: true, onUpdate: apply });
+  /* recul 0.00 to 0.30 (continues the -40 %/s pull-back of frame 9) */
+  var IR = { immediateRender: false };
+  function ft(o, a, b2, at) { tl.fromTo(o, a, Object.assign({}, b2, IR), at); }
+  ft(cam, { s: 1, y: 0 }, { s: S_HOLD, y: CY, duration: 0.30, ease: "power2.out" }, 0);
+  ft(lb, { b: 4 }, { b: 0, duration: 0.15, ease: "power2.out" }, 0);
+  /* permanent linear drift */
+  var DRIFT = 30;
+  tl.fromTo(drift, { x: 0 }, { x: DRIFT, duration: 3.40, ease: "none", immediateRender: false }, 0.30);
+  /* light lateral notch on each tile (monotonic left to right) */
+  var NOTCH_T = [0.35, 0.85, 1.50, 2.55];
+  var prevX = 0;
+  for (var n = 0; n < 4; n++) {
+    var tx = 0.2 * (SLOT_X[n] + 195) * K;
+    ft(cam, { x: prevX }, { x: tx, duration: 0.14, ease: "expo.inOut" }, NOTCH_T[n]);
+    ft(lb, { b: 0 }, { b: 6, duration: 0.07, ease: "power2.in" }, NOTCH_T[n]);
+    ft(lb, { b: 6 }, { b: 0, duration: 0.07, ease: "power2.out" }, NOTCH_T[n] + 0.07);
+    prevX = tx;
+  }
+
+  /* ---------- 0.05 : team + map leave upward, the four tiles arrive from below ---------- */
+  tl.fromTo("#p10-team", { y: 0, opacity: 1, filter: "blur(0px)" }, { y: -760, opacity: 0, filter: "blur(8px)", duration: 0.15, ease: "power2.in", immediateRender: false }, 0.05);
+  tl.fromTo("#p10-map", { y: 0, opacity: 1, filter: "blur(0px)" }, { y: -760, opacity: 0, filter: "blur(8px)", duration: 0.15, ease: "power2.in", immediateRender: false }, 0.07);
+  for (var k = 0; k < 4; k++) {
+    tl.fromTo("#p10-slot" + k, { y: 320, scale: 1.1, opacity: 0, filter: "blur(12px)" },
+      { y: 0, scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.30, ease: "power3.out", immediateRender: false }, 0.05 + k * 0.04);
+  }
+
+  /* ---------- each tile lifts on its verb, its pictogram turns red ---------- */
+  function lift(i, t) {
+    tl.fromTo("#p10-tile" + i, { y: 0 }, { y: -40, duration: 0.25, ease: "power3.out", immediateRender: false }, t);
+    tl.fromTo("#p10-red" + i, { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out", immediateRender: false }, t);
+    tl.fromTo("#p10-ink" + i, { opacity: 1 }, { opacity: 0, duration: 0.12, ease: "power2.out", immediateRender: false }, t);
+  }
+  function drop(i, t) {
+    tl.fromTo("#p10-tile" + i, { y: -40 }, { y: 0, duration: 0.2, ease: "power2.out", immediateRender: false }, t);
+    tl.fromTo("#p10-red" + i, { opacity: 1 }, { opacity: 0, duration: 0.12, ease: "power2.out", immediateRender: false }, t);
+    tl.fromTo("#p10-ink" + i, { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out", immediateRender: false }, t);
+  }
+  lift(0, 0.30);
+  drop(0, 0.80); lift(1, 0.80);
+  drop(1, 1.45); lift(2, 1.45);
+  drop(2, 2.50); lift(3, 2.50);
+
+  /* ---------- 3.65 : VENTE detaches and flies to the PRIX card (world 3700, 2500) ---------- */
+  var gx = 3700 * S_HOLD, gy = (2500 - CY) * S_HOLD;
+  var dx = gx - (SLOT_X[0] + 195), dy = gy - (SLOT_Y + 260);
+  tl.fromTo("#p10-tile0", { y: 0, scale: 1 }, { y: -50, scale: 1.04, duration: 0.1, ease: "power3.out", immediateRender: false }, 3.62);
+  tl.fromTo("#p10-tile0", { y: -50, scale: 1.04 }, { y: 0, scale: 1, duration: 0.22, ease: "expo.inOut", immediateRender: false }, 3.70);
+  tl.fromTo("#p10-slot0", { x: 0, y: 0 }, { x: dx, y: dy, duration: 0.22, ease: "expo.inOut", immediateRender: false }, 3.70);
+  /* the notch toward PRIX : arrives at cam(4100, 2550, 0.80) with the lens at 10 px */
+  ft(cam, { x: prevX, y: CY, s: S_HOLD }, { x: 4100 - DRIFT, y: 2550, s: 0.80, duration: 0.22, ease: "expo.inOut" }, 3.70);
+  ft(lb, { b: 0 }, { b: 10, duration: 0.15, ease: "power2.in" }, 3.70);
+
+  /* ---------- subtitle, word by word ---------- */
+  jiSubAnim(tl, sub1, [0.13, 0.37, 0.89, 1.53, 1.81, 2.13], { boxAt: 1.49, outAt: 2.21 });
+  jiSubAnim(tl, sub2, [2.41, 2.57, 3.17, 3.41], { boxAt: 2.53, outAt: 3.68 });
+
+  tl.set({}, {}, D);
+  window.__timelines = window.__timelines || {};
+  window.__timelines[ID] = tl;
+})();
+</script>
+</div>
+</template>

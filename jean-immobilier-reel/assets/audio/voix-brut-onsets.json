@@ -1,0 +1,927 @@
+{
+  "audio": "jean-immobilier/assets/audio/voix.mp3",
+  "duration": 43.68,
+  "threshold_db": -40.0,
+  "min_silence": 0.12,
+  "stats": {
+    "p10_db": -85.5,
+    "p50_db": -29.0,
+    "p95_db": -15.5
+  },
+  "phrases": [
+    {
+      "start": 0.06,
+      "end": 0.56,
+      "silence_after": 0.12,
+      "cut_point": 0.62,
+      "text": "Mardi,",
+      "words": [0]
+    },
+    {
+      "start": 0.68,
+      "end": 2.25,
+      "silence_after": 0.34,
+      "cut_point": 2.42,
+      "text": "vous attendez le rappel de l'agence.",
+      "words": [1, 2, 3, 4, 5, 6]
+    },
+    {
+      "start": 2.59,
+      "end": 4.23,
+      "silence_after": 0.45,
+      "cut_point": 4.46,
+      "text": "Jeudi, vous attendez le loyer.",
+      "words": [7, 8, 9, 10, 11]
+    },
+    {
+      "start": 4.68,
+      "end": 5.16,
+      "silence_after": 0.13,
+      "cut_point": 5.22,
+      "text": "Lundi...",
+      "words": [12]
+    },
+    {
+      "start": 5.29,
+      "end": 7.4,
+      "silence_after": 0.12,
+      "cut_point": 7.46,
+      "text": "vous attendez encore le compte rendu du syndic.",
+      "words": [13, 14, 15, 16, 17, 18, 19, 20]
+    },
+    {
+      "start": 7.52,
+      "end": 7.58,
+      "silence_after": 0.53,
+      "cut_point": 7.84,
+      "text": "",
+      "words": []
+    },
+    {
+      "start": 8.11,
+      "end": 8.88,
+      "silence_after": 0.46,
+      "cut_point": 9.11,
+      "text": "Vous appelez...",
+      "words": [21, 22]
+    },
+    {
+      "start": 9.34,
+      "end": 10.1,
+      "silence_after": 0.44,
+      "cut_point": 10.32,
+      "text": "",
+      "words": []
+    },
+    {
+      "start": 10.54,
+      "end": 11.04,
+      "silence_after": 0.55,
+      "cut_point": 11.31,
+      "text": "",
+      "words": []
+    },
+    {
+      "start": 11.59,
+      "end": 12.57,
+      "silence_after": 0.65,
+      "cut_point": 12.89,
+      "text": "Messagerie pleine.",
+      "words": [23, 24]
+    },
+    {
+      "start": 13.22,
+      "end": 14.96,
+      "silence_after": 0.39,
+      "cut_point": 15.16,
+      "text": "Le problème, ce n'est pas votre bien.",
+      "words": [25, 26, 27, 28, 29, 30, 31]
+    },
+    {
+      "start": 15.35,
+      "end": 16.68,
+      "silence_after": 0.45,
+      "cut_point": 16.91,
+      "text": "C'est tout ce qu'il y a autour.",
+      "words": [32, 33, 34, 35, 36, 37, 38]
+    },
+    {
+      "start": 17.13,
+      "end": 18.43,
+      "silence_after": 0.34,
+      "cut_point": 18.6,
+      "text": "Un prix fixé au hasard...",
+      "words": [39, 40, 41, 42, 43]
+    },
+    {
+      "start": 18.77,
+      "end": 19.73,
+      "silence_after": 0.47,
+      "cut_point": 19.96,
+      "text": "et une annonce qui dort.",
+      "words": [44, 45, 46, 47, 48]
+    },
+    {
+      "start": 20.2,
+      "end": 21.17,
+      "silence_after": 0.3,
+      "cut_point": 21.32,
+      "text": "Un loyer en retard...",
+      "words": [49, 50, 51, 52]
+    },
+    {
+      "start": 21.47,
+      "end": 22.68,
+      "silence_after": 0.44,
+      "cut_point": 22.9,
+      "text": "et c'est à vous de relancer.",
+      "words": [53, 54, 55, 56, 57, 58]
+    },
+    {
+      "start": 23.12,
+      "end": 24.12,
+      "silence_after": 0.34,
+      "cut_point": 24.29,
+      "text": "Des travaux votés...",
+      "words": [59, 60, 61]
+    },
+    {
+      "start": 24.46,
+      "end": 25.64,
+      "silence_after": 0.56,
+      "cut_point": 25.92,
+      "text": "et personne pour les suivre.",
+      "words": [62, 63, 64, 65, 66]
+    },
+    {
+      "start": 26.2,
+      "end": 26.88,
+      "silence_after": 0.6,
+      "cut_point": 27.18,
+      "text": "Assez attendu.",
+      "words": [67, 68]
+    },
+    {
+      "start": 27.48,
+      "end": 29.72,
+      "silence_after": 0.26,
+      "cut_point": 29.85,
+      "text": "Jean Immobilier, c'est une équipe près de chez vous,",
+      "words": [69, 70, 71, 72, 73, 74, 75, 76, 77]
+    },
+    {
+      "start": 29.98,
+      "end": 33.61,
+      "silence_after": 0.33,
+      "cut_point": 33.77,
+      "text": "pour vendre, louer, gérer votre bien, et administrer votre immeuble.",
+      "words": [78, 79, 80, 81, 82, 83, 84, 85, 86, 87]
+    },
+    {
+      "start": 33.94,
+      "end": 36.2,
+      "silence_after": 0.32,
+      "cut_point": 36.36,
+      "text": "Le juste prix, dès la première estimation.",
+      "words": [88, 89, 90, 91, 92, 93, 94]
+    },
+    {
+      "start": 36.52,
+      "end": 37.48,
+      "silence_after": 0.16,
+      "cut_point": 37.56,
+      "text": "Les loyers suivis,",
+      "words": [95, 96, 97]
+    },
+    {
+      "start": 37.64,
+      "end": 38.86,
+      "silence_after": 0.31,
+      "cut_point": 39.02,
+      "text": "les relances faites pour vous.",
+      "words": [98, 99, 100, 101, 102]
+    },
+    {
+      "start": 39.17,
+      "end": 41.33,
+      "silence_after": 0.37,
+      "cut_point": 41.52,
+      "text": "Les travaux votés, puis menés jusqu'au bout.",
+      "words": [103, 104, 105, 106, 107, 108, 109]
+    },
+    {
+      "start": 41.7,
+      "end": 42.48,
+      "silence_after": 0.35,
+      "cut_point": 42.66,
+      "text": "Vous n'attendez plus.",
+      "words": [110, 111, 112]
+    },
+    {
+      "start": 42.83,
+      "end": 43.47,
+      "silence_after": 0.21,
+      "cut_point": null,
+      "text": "On s'en occupe.",
+      "words": [113, 114, 115]
+    }
+  ],
+  "words": [
+    {
+      "w": "Mardi,",
+      "s": 0.06,
+      "e": 0.56,
+      "whisper_s": 0.06
+    },
+    {
+      "w": "vous",
+      "s": 0.68,
+      "e": 0.84,
+      "whisper_s": 0.68
+    },
+    {
+      "w": "attendez",
+      "s": 0.84,
+      "e": 1.32,
+      "whisper_s": 0.84
+    },
+    {
+      "w": "le",
+      "s": 1.32,
+      "e": 1.4,
+      "whisper_s": 1.32
+    },
+    {
+      "w": "rappel",
+      "s": 1.4,
+      "e": 1.72,
+      "whisper_s": 1.4
+    },
+    {
+      "w": "de",
+      "s": 1.72,
+      "e": 1.8,
+      "whisper_s": 1.72
+    },
+    {
+      "w": "l'agence.",
+      "s": 1.8,
+      "e": 2.25,
+      "whisper_s": 1.8
+    },
+    {
+      "w": "Jeudi,",
+      "s": 2.59,
+      "e": 3.15,
+      "whisper_s": 2.59
+    },
+    {
+      "w": "vous",
+      "s": 3.15,
+      "e": 3.31,
+      "whisper_s": 3.15
+    },
+    {
+      "w": "attendez",
+      "s": 3.31,
+      "e": 3.79,
+      "whisper_s": 3.31
+    },
+    {
+      "w": "le",
+      "s": 3.79,
+      "e": 3.91,
+      "whisper_s": 3.79
+    },
+    {
+      "w": "loyer.",
+      "s": 3.91,
+      "e": 4.23,
+      "whisper_s": 3.91
+    },
+    {
+      "w": "Lundi...",
+      "s": 4.68,
+      "e": 5.16,
+      "whisper_s": 4.68
+    },
+    {
+      "w": "vous",
+      "s": 5.29,
+      "e": 5.53,
+      "whisper_s": 5.29
+    },
+    {
+      "w": "attendez",
+      "s": 5.53,
+      "e": 6.21,
+      "whisper_s": 5.53
+    },
+    {
+      "w": "encore",
+      "s": 6.21,
+      "e": 6.49,
+      "whisper_s": 6.21
+    },
+    {
+      "w": "le",
+      "s": 6.49,
+      "e": 6.61,
+      "whisper_s": 6.49
+    },
+    {
+      "w": "compte",
+      "s": 6.61,
+      "e": 6.81,
+      "whisper_s": 6.61
+    },
+    {
+      "w": "rendu",
+      "s": 6.81,
+      "e": 7.17,
+      "whisper_s": 6.81
+    },
+    {
+      "w": "du",
+      "s": 7.17,
+      "e": 7.29,
+      "whisper_s": 7.17
+    },
+    {
+      "w": "syndic.",
+      "s": 7.29,
+      "e": 7.58,
+      "whisper_s": 7.29
+    },
+    {
+      "w": "Vous",
+      "s": 8.11,
+      "e": 8.43,
+      "whisper_s": 8.11
+    },
+    {
+      "w": "appelez...",
+      "s": 8.43,
+      "e": 8.88,
+      "whisper_s": 8.43
+    },
+    {
+      "w": "Messagerie",
+      "s": 11.59,
+      "e": 12.39,
+      "whisper_s": 11.59
+    },
+    {
+      "w": "pleine.",
+      "s": 12.39,
+      "e": 12.57,
+      "whisper_s": 12.39
+    },
+    {
+      "w": "Le",
+      "s": 13.22,
+      "e": 13.42,
+      "whisper_s": 13.22
+    },
+    {
+      "w": "problème,",
+      "s": 13.42,
+      "e": 14.02,
+      "whisper_s": 13.42
+    },
+    {
+      "w": "ce",
+      "s": 14.02,
+      "e": 14.22,
+      "whisper_s": 14.02
+    },
+    {
+      "w": "n'est",
+      "s": 14.22,
+      "e": 14.42,
+      "whisper_s": 14.22
+    },
+    {
+      "w": "pas",
+      "s": 14.42,
+      "e": 14.58,
+      "whisper_s": 14.42
+    },
+    {
+      "w": "votre",
+      "s": 14.58,
+      "e": 14.91,
+      "whisper_s": 14.58
+    },
+    {
+      "w": "bien.",
+      "s": 14.91,
+      "e": 14.96,
+      "whisper_s": 14.91
+    },
+    {
+      "w": "C'est",
+      "s": 15.35,
+      "e": 15.59,
+      "whisper_s": 15.35
+    },
+    {
+      "w": "tout",
+      "s": 15.59,
+      "e": 15.79,
+      "whisper_s": 15.59
+    },
+    {
+      "w": "ce",
+      "s": 15.79,
+      "e": 15.95,
+      "whisper_s": 15.79
+    },
+    {
+      "w": "qu'il",
+      "s": 15.95,
+      "e": 16.11,
+      "whisper_s": 15.95
+    },
+    {
+      "w": "y",
+      "s": 16.11,
+      "e": 16.23,
+      "whisper_s": 16.11
+    },
+    {
+      "w": "a",
+      "s": 16.23,
+      "e": 16.39,
+      "whisper_s": 16.23
+    },
+    {
+      "w": "autour.",
+      "s": 16.39,
+      "e": 16.68,
+      "whisper_s": 16.39
+    },
+    {
+      "w": "Un",
+      "s": 17.13,
+      "e": 17.29,
+      "whisper_s": 17.13
+    },
+    {
+      "w": "prix",
+      "s": 17.29,
+      "e": 17.45,
+      "whisper_s": 17.29
+    },
+    {
+      "w": "fixé",
+      "s": 17.45,
+      "e": 17.81,
+      "whisper_s": 17.45
+    },
+    {
+      "w": "au",
+      "s": 17.81,
+      "e": 18.01,
+      "whisper_s": 17.81
+    },
+    {
+      "w": "hasard...",
+      "s": 18.01,
+      "e": 18.43,
+      "whisper_s": 18.01
+    },
+    {
+      "w": "et",
+      "s": 18.77,
+      "e": 18.97,
+      "whisper_s": 18.77
+    },
+    {
+      "w": "une",
+      "s": 18.97,
+      "e": 19.05,
+      "whisper_s": 18.97
+    },
+    {
+      "w": "annonce",
+      "s": 19.05,
+      "e": 19.49,
+      "whisper_s": 19.05
+    },
+    {
+      "w": "qui",
+      "s": 19.49,
+      "e": 19.68,
+      "whisper_s": 19.49
+    },
+    {
+      "w": "dort.",
+      "s": 19.68,
+      "e": 19.73,
+      "whisper_s": 19.68
+    },
+    {
+      "w": "Un",
+      "s": 20.2,
+      "e": 20.28,
+      "whisper_s": 20.2
+    },
+    {
+      "w": "loyer",
+      "s": 20.28,
+      "e": 20.76,
+      "whisper_s": 20.28
+    },
+    {
+      "w": "en",
+      "s": 20.76,
+      "e": 20.88,
+      "whisper_s": 20.76
+    },
+    {
+      "w": "retard...",
+      "s": 20.88,
+      "e": 21.17,
+      "whisper_s": 20.88
+    },
+    {
+      "w": "et",
+      "s": 21.47,
+      "e": 21.75,
+      "whisper_s": 21.47
+    },
+    {
+      "w": "c'est",
+      "s": 21.75,
+      "e": 21.87,
+      "whisper_s": 21.75
+    },
+    {
+      "w": "à",
+      "s": 21.87,
+      "e": 22.03,
+      "whisper_s": 21.87
+    },
+    {
+      "w": "vous",
+      "s": 22.03,
+      "e": 22.17,
+      "whisper_s": 22.03
+    },
+    {
+      "w": "de",
+      "s": 22.17,
+      "e": 22.27,
+      "whisper_s": 22.17
+    },
+    {
+      "w": "relancer.",
+      "s": 22.27,
+      "e": 22.68,
+      "whisper_s": 22.27
+    },
+    {
+      "w": "Des",
+      "s": 23.12,
+      "e": 23.24,
+      "whisper_s": 23.12
+    },
+    {
+      "w": "travaux",
+      "s": 23.24,
+      "e": 23.72,
+      "whisper_s": 23.24
+    },
+    {
+      "w": "votés...",
+      "s": 23.72,
+      "e": 24.12,
+      "whisper_s": 23.72
+    },
+    {
+      "w": "et",
+      "s": 24.46,
+      "e": 24.7,
+      "whisper_s": 24.46
+    },
+    {
+      "w": "personne",
+      "s": 24.7,
+      "e": 25.06,
+      "whisper_s": 24.7
+    },
+    {
+      "w": "pour",
+      "s": 25.06,
+      "e": 25.26,
+      "whisper_s": 25.06
+    },
+    {
+      "w": "les",
+      "s": 25.26,
+      "e": 25.42,
+      "whisper_s": 25.26
+    },
+    {
+      "w": "suivre.",
+      "s": 25.42,
+      "e": 25.64,
+      "whisper_s": 25.42
+    },
+    {
+      "w": "Assez",
+      "s": 26.2,
+      "e": 26.52,
+      "whisper_s": 26.2
+    },
+    {
+      "w": "attendu.",
+      "s": 26.52,
+      "e": 26.88,
+      "whisper_s": 26.52
+    },
+    {
+      "w": "Jean",
+      "s": 27.48,
+      "e": 27.64,
+      "whisper_s": 27.48
+    },
+    {
+      "w": "Immobilier,",
+      "s": 27.64,
+      "e": 28.44,
+      "whisper_s": 27.64
+    },
+    {
+      "w": "c'est",
+      "s": 28.44,
+      "e": 28.64,
+      "whisper_s": 28.44
+    },
+    {
+      "w": "une",
+      "s": 28.64,
+      "e": 28.84,
+      "whisper_s": 28.64
+    },
+    {
+      "w": "équipe",
+      "s": 28.84,
+      "e": 29.16,
+      "whisper_s": 28.84
+    },
+    {
+      "w": "près",
+      "s": 29.16,
+      "e": 29.35,
+      "whisper_s": 29.16
+    },
+    {
+      "w": "de",
+      "s": 29.35,
+      "e": 29.54,
+      "whisper_s": 29.35
+    },
+    {
+      "w": "chez",
+      "s": 29.54,
+      "e": 29.67,
+      "whisper_s": 29.54
+    },
+    {
+      "w": "vous,",
+      "s": 29.67,
+      "e": 29.72,
+      "whisper_s": 29.67
+    },
+    {
+      "w": "pour",
+      "s": 29.98,
+      "e": 30.22,
+      "whisper_s": 29.98
+    },
+    {
+      "w": "vendre,",
+      "s": 30.22,
+      "e": 30.74,
+      "whisper_s": 30.22
+    },
+    {
+      "w": "louer,",
+      "s": 30.74,
+      "e": 31.38,
+      "whisper_s": 30.74
+    },
+    {
+      "w": "gérer",
+      "s": 31.38,
+      "e": 31.66,
+      "whisper_s": 31.38
+    },
+    {
+      "w": "votre",
+      "s": 31.66,
+      "e": 31.98,
+      "whisper_s": 31.66
+    },
+    {
+      "w": "bien,",
+      "s": 31.98,
+      "e": 32.26,
+      "whisper_s": 31.98
+    },
+    {
+      "w": "et",
+      "s": 32.26,
+      "e": 32.42,
+      "whisper_s": 32.26
+    },
+    {
+      "w": "administrer",
+      "s": 32.42,
+      "e": 33.02,
+      "whisper_s": 32.42
+    },
+    {
+      "w": "votre",
+      "s": 33.02,
+      "e": 33.26,
+      "whisper_s": 33.02
+    },
+    {
+      "w": "immeuble.",
+      "s": 33.26,
+      "e": 33.61,
+      "whisper_s": 33.26
+    },
+    {
+      "w": "Le",
+      "s": 33.94,
+      "e": 34.06,
+      "whisper_s": 33.94
+    },
+    {
+      "w": "juste",
+      "s": 34.06,
+      "e": 34.62,
+      "whisper_s": 34.06
+    },
+    {
+      "w": "prix,",
+      "s": 34.62,
+      "e": 34.94,
+      "whisper_s": 34.62
+    },
+    {
+      "w": "dès",
+      "s": 34.94,
+      "e": 35.18,
+      "whisper_s": 34.94
+    },
+    {
+      "w": "la",
+      "s": 35.18,
+      "e": 35.38,
+      "whisper_s": 35.18
+    },
+    {
+      "w": "première",
+      "s": 35.38,
+      "e": 35.62,
+      "whisper_s": 35.38
+    },
+    {
+      "w": "estimation.",
+      "s": 35.62,
+      "e": 36.2,
+      "whisper_s": 35.62
+    },
+    {
+      "w": "Les",
+      "s": 36.52,
+      "e": 36.64,
+      "whisper_s": 36.52
+    },
+    {
+      "w": "loyers",
+      "s": 36.64,
+      "e": 37.16,
+      "whisper_s": 36.64
+    },
+    {
+      "w": "suivis,",
+      "s": 37.16,
+      "e": 37.48,
+      "whisper_s": 37.16
+    },
+    {
+      "w": "les",
+      "s": 37.64,
+      "e": 37.84,
+      "whisper_s": 37.64
+    },
+    {
+      "w": "relances",
+      "s": 37.84,
+      "e": 38.28,
+      "whisper_s": 37.84
+    },
+    {
+      "w": "faites",
+      "s": 38.28,
+      "e": 38.64,
+      "whisper_s": 38.28
+    },
+    {
+      "w": "pour",
+      "s": 38.64,
+      "e": 38.81,
+      "whisper_s": 38.64
+    },
+    {
+      "w": "vous.",
+      "s": 38.81,
+      "e": 38.86,
+      "whisper_s": 38.81
+    },
+    {
+      "w": "Les",
+      "s": 39.17,
+      "e": 39.37,
+      "whisper_s": 39.17
+    },
+    {
+      "w": "travaux",
+      "s": 39.37,
+      "e": 39.77,
+      "whisper_s": 39.37
+    },
+    {
+      "w": "votés,",
+      "s": 39.77,
+      "e": 40.25,
+      "whisper_s": 39.77
+    },
+    {
+      "w": "puis",
+      "s": 40.25,
+      "e": 40.49,
+      "whisper_s": 40.25
+    },
+    {
+      "w": "menés",
+      "s": 40.49,
+      "e": 40.97,
+      "whisper_s": 40.49
+    },
+    {
+      "w": "jusqu'au",
+      "s": 40.97,
+      "e": 41.28,
+      "whisper_s": 40.97
+    },
+    {
+      "w": "bout.",
+      "s": 41.28,
+      "e": 41.33,
+      "whisper_s": 41.28
+    },
+    {
+      "w": "Vous",
+      "s": 41.7,
+      "e": 41.86,
+      "whisper_s": 41.7
+    },
+    {
+      "w": "n'attendez",
+      "s": 41.86,
+      "e": 42.43,
+      "whisper_s": 41.86
+    },
+    {
+      "w": "plus.",
+      "s": 42.43,
+      "e": 42.48,
+      "whisper_s": 42.43
+    },
+    {
+      "w": "On",
+      "s": 42.83,
+      "e": 43.07,
+      "whisper_s": 42.83
+    },
+    {
+      "w": "s'en",
+      "s": 43.07,
+      "e": 43.27,
+      "whisper_s": 43.07
+    },
+    {
+      "w": "occupe.",
+      "s": 43.27,
+      "e": 43.47,
+      "whisper_s": 43.27
+    }
+  ]
+}
