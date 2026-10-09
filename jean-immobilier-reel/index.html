@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #000;
+      }
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #141B1E;
+      }
+      .scene {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="49.8"
+      data-width="1080"
+      data-height="1920"
+    >
+      <div id="paperbed" class="clip" data-start="28.15" data-duration="21.65" data-track-index="12" style="position:absolute;inset:0;background:#F4F4F2"></div>
+
+      <div
+        id="el-01-mardi-jeudi"
+        class="scene"
+        data-composition-id="01-mardi-jeudi"
+        data-composition-src="compositions/frames/01-mardi-jeudi.html"
+        data-start="0"
+        data-duration="4.46"
+        data-track-index="1"
+      ></div>
+
+      <div
+        id="el-02-lundi"
+        class="scene"
+        data-composition-id="02-lundi"
+        data-composition-src="compositions/frames/02-lundi.html"
+        data-start="4.46"
+        data-duration="3.38"
+        data-track-index="1"
+      ></div>
+
+      <div
+        id="el-03-appel"
+        class="scene"
+        data-composition-id="03-appel"
+        data-composition-src="compositions/frames/03-appel.html"
+        data-start="7.84"
+        data-duration="5.05"
+        data-track-index="1"
+      ></div>
+
+      <div
+        id="el-04-autour"
+        class="scene"
+        data-composition-id="04-autour"
+        data-composition-src="compositions/frames/04-autour.html"
+        data-start="12.89"
+        data-duration="4.02"
+        data-track-index="1"
+      ></div>
+
+      <div
+        id="el-05-annonce"
+        class="scene"
+        data-composition-id="05-annonce"
+        data-composition-src="compositions/frames/05-annonce.html"
+        data-start="16.91"
+        data-duration="3.05"
+        data-track-index="1"
+      ></div>
+
+      <div
+        id="el-06-loyer"
+        class="scene"
+        data-composition-id="06-loyer"
+        data-composition-src="compositions/frames/06-loyer.html"
+        data-start="19.96"
+        data-duration="2.94"
+        data-track-index="1"
+      ></div>
+
+      <div
+        id="el-07-travaux"
+        class="scene"
+        data-composition-id="07-travaux"
+        data-composition-src="compositions/frames/07-travaux.html"
+        data-start="22.900000000000002"
+        data-duration="3.02"
+        data-track-index="1"
+      ></div>
+
+      <div
+        id="el-08-pivot"
+        class="scene"
+        data-composition-id="08-pivot"
+        data-composition-src="compositions/frames/08-pivot.html"
+        data-start="25.92"
+        data-duration="2.28"
+        data-track-index="1"
+      ></div>
+
+      <div
+        id="el-09-marque"
+        class="scene"
+        data-composition-id="09-marque"
+        data-composition-src="compositions/frames/09-marque.html"
+        data-start="28.200000000000003"
+        data-duration="2.55"
+        data-track-index="1"
+      ></div>
+
+      <div
+        id="el-10-metiers"
+        class="scene"
+        data-composition-id="10-metiers"
+        data-composition-src="compositions/frames/10-metiers.html"
+        data-start="30.750000000000004"
+        data-duration="3.92"
+        data-track-index="1"
+      ></div>
+
+      <div
+        id="el-11-juste-prix"
+        class="scene"
+        data-composition-id="11-juste-prix"
+        data-composition-src="compositions/frames/11-juste-prix.html"
+        data-start="34.67"
+        data-duration="2.59"
+        data-track-index="1"
+      ></div>
+
+      <div
+        id="el-12-loyers-suivis"
+        class="scene"
+        data-composition-id="12-loyers-suivis"
+        data-composition-src="compositions/frames/12-loyers-suivis.html"
+        data-start="37.260000000000005"
+        data-duration="2.66"
+        data-track-index="1"
+      ></div>
+
+      <div
+        id="el-13-travaux-menes"
+        class="scene"
+        data-composition-id="13-travaux-menes"
+        data-composition-src="compositions/frames/13-travaux-menes.html"
+        data-start="39.92"
+        data-duration="2.5"
+        data-track-index="1"
+      ></div>
+
+      <div
+        id="el-14-plus"
+        class="scene"
+        data-composition-id="14-plus"
+        data-composition-src="compositions/frames/14-plus.html"
+        data-start="42.42"
+        data-duration="2.28"
+        data-track-index="1"
+      ></div>
+
+      <div
+        id="el-15-fin"
+        class="scene"
+        data-composition-id="15-fin"
+        data-composition-src="compositions/frames/15-fin.html"
+        data-start="44.7"
+        data-duration="5.1"
+        data-track-index="1"
+      ></div>
+      <audio id="mix" data-start="0" data-duration="49.8" data-track-index="11" src="assets/audio/mix.wav" data-volume="1"></audio>
+      <div id="fxleak" class="clip" data-start="27.95" data-duration="0.9" data-track-index="30" style="position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:60">
+        <div id="fxleak-sweep" style="position:absolute;left:0;top:-200px;width:1400px;height:1480px;opacity:0;mix-blend-mode:screen;background:radial-gradient(ellipse at 50% 50%,rgba(244,179,185,0.85) 0%,rgba(226,92,104,0.5) 35%,rgba(211,53,67,0) 70%)"></div>
+        <div id="fxleak-core" style="position:absolute;left:540px;top:960px;width:600px;height:600px;margin:-300px 0 0 -300px;border-radius:50%;opacity:0;background:radial-gradient(circle,rgba(251,251,250,1) 0%,#F4F4F2 30%,rgba(242,167,174,0.9) 50%,rgba(211,53,67,0.5) 64%,rgba(211,53,67,0) 76%)"></div>
+        <div id="fxleak-streak" style="position:absolute;left:-240px;top:957px;width:2400px;height:6px;border-radius:3px;opacity:0;background:linear-gradient(90deg,rgba(248,208,212,0),rgba(252,232,233,1) 50%,rgba(248,208,212,0));box-shadow:0 0 34px 12px rgba(238,138,147,0.7)"></div>
+        <div id="fxleak-flash" style="position:absolute;inset:0;opacity:0;background:#F4F4F2"></div>
+      </div>
+
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      var tl = gsap.timeline({ paused: true });
+        // orchestrator layer (motion-design skill): light flash and iris
+        tl.fromTo("#fxleak-core", { scale: 0.02, opacity: 0 }, { scale: 4.6, opacity: 1, duration: 0.22, ease: "expo.in", immediateRender: false }, 27.98);
+        tl.fromTo("#fxleak-streak", { scaleX: 0, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.16, ease: "power3.in", immediateRender: false }, 28.0);
+        tl.fromTo("#fxleak-sweep", { x: 1100, opacity: 0 }, { x: -700, opacity: 1, duration: 0.5, ease: "power2.inOut", immediateRender: false }, 27.98);
+        tl.fromTo("#fxleak-flash", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.in", immediateRender: false }, 28.1);
+        tl.to("#fxleak-flash", { opacity: 0, duration: 0.5, ease: "power2.out" }, 28.25);
+        tl.to(["#fxleak-core", "#fxleak-streak", "#fxleak-sweep"], { opacity: 0, duration: 0.4, ease: "power2.out" }, 28.22);
+        tl.to({}, { duration: 49.8 }, 0);
+        window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
