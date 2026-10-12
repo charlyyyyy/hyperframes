@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Jean Immobilier — Avis clients</title>
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "Montserrat";
+        src: url("assets/fonts/Montserrat.woff2") format("woff2");
+        font-weight: 200 800;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: "Playfair Display";
+        src: url("assets/fonts/PlayfairDisplay.woff2") format("woff2");
+        font-weight: 400 900;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: "Playfair Display";
+        src: url("assets/fonts/PlayfairDisplay-Italic.woff2") format("woff2");
+        font-weight: 400 900;
+        font-style: italic;
+      }
+      :root {
+        --slate: #5d7073;
+        --slate-deep: #3f5256;
+        --slate-dark: #4d6266;
+        --red: #e6193d;
+        --ink: #2b3639;
+        --paper: #ffffff;
+        --mist: #ececec;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: var(--slate-deep);
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        font-family: "Montserrat", sans-serif;
+        color: #fff;
+        background: var(--slate-deep);
+      }
+      #bg {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(170deg, #677b7e 0%, var(--slate) 38%, var(--slate-deep) 100%);
+      }
+      #motif-wrap {
+        position: absolute;
+        left: -260px;
+        top: 900px;
+        width: 1600px;
+        height: 1222px;
+      }
+      #motif {
+        width: 100%;
+        height: 100%;
+        opacity: 0.09;
+      }
+      /* ---------- logo ---------- */
+      #logo-wrap {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 560px;
+        display: flex;
+        justify-content: center;
+      }
+      #logo {
+        width: 640px;
+        height: 489px;
+        transform-origin: 50% 0%;
+      }
+      /* ---------- counter scene ---------- */
+      #s-count {
+        position: absolute;
+        inset: 0;
+      }
+      #count-box {
+        position: absolute;
+        left: 80px;
+        right: 80px;
+        top: 560px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      #count-num {
+        font-weight: 800;
+        font-size: 300px;
+        line-height: 1;
+        letter-spacing: -0.04em;
+        font-variant-numeric: tabular-nums;
+      }
+      #count-label {
+        margin-top: 18px;
+        font-weight: 600;
+        font-size: 50px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+      #count-pill {
+        margin-top: 40px;
+        padding: 18px 40px;
+        border-radius: 999px;
+        background: var(--red);
+        font-weight: 700;
+        font-size: 34px;
+        letter-spacing: 0.06em;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      #count-line {
+        margin-top: 90px;
+        font-family: "Playfair Display", serif;
+        font-style: italic;
+        font-weight: 500;
+        font-size: 74px;
+        line-height: 1.18;
+        max-width: 860px;
+      }
+      /* ---------- reviews ---------- */
+      #s-head {
+        position: absolute;
+        inset: 0;
+      }
+      #head-title {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 430px;
+        text-align: center;
+        font-weight: 700;
+        font-size: 34px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+      #head-rule {
+        position: absolute;
+        left: 490px;
+        top: 488px;
+        width: 100px;
+        height: 6px;
+        background: var(--red);
+        transform-origin: 50% 50%;
+      }
+      #dots {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 1660px;
+        display: flex;
+        justify-content: center;
+        gap: 22px;
+      }
+      .dot {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.35);
+      }
+      .review {
+        position: absolute;
+        inset: 0;
+      }
+      .stage {
+        position: absolute;
+        left: 70px;
+        right: 70px;
+        top: 540px;
+        height: 1080px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .card {
+        width: 940px;
+        background: var(--paper);
+        border-radius: 36px;
+        padding: 56px 70px 52px;
+        color: var(--ink);
+        box-shadow: 0 40px 90px rgba(20, 30, 33, 0.35);
+        position: relative;
+      }
+      .card::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 70px;
+        width: 10px;
+        height: 120px;
+        background: var(--red);
+        border-radius: 0 6px 6px 0;
+      }
+      .qmark {
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        font-size: 210px;
+        line-height: 0.62;
+        height: 110px;
+        color: var(--red);
+      }
+      .quote {
+        font-family: "Playfair Display", serif;
+        font-style: italic;
+        font-weight: 500;
+        line-height: 1.3;
+        color: var(--ink);
+      }
+      .hl {
+        background-image: linear-gradient(rgba(230, 25, 61, 0.22), rgba(230, 25, 61, 0.22));
+        background-repeat: no-repeat;
+        background-position: 0 86%;
+        background-size: 0% 0.42em;
+        color: #1f292b;
+        font-weight: 600;
+      }
+      .meta {
+        margin-top: 48px;
+        padding-top: 40px;
+        border-top: 2px solid #e4e8e9;
+        display: flex;
+        align-items: center;
+        gap: 26px;
+      }
+      .avatar {
+        flex: 0 0 auto;
+        width: 96px;
+        height: 96px;
+        border-radius: 50%;
+        background: var(--slate);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 36px;
+        letter-spacing: 0.02em;
+      }
+      .who {
+        flex: 1 1 auto;
+      }
+      .name {
+        font-weight: 700;
+        font-size: 40px;
+        color: var(--ink);
+      }
+      .tag {
+        margin-top: 6px;
+        font-weight: 600;
+        font-size: 24px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--slate);
+      }
+      .score {
+        flex: 0 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+      }
+      .stars {
+        display: flex;
+        gap: 6px;
+      }
+      .star {
+        width: 40px;
+        height: 40px;
+      }
+      .note {
+        margin-top: 8px;
+        font-weight: 800;
+        font-size: 30px;
+        color: var(--red);
+      }
+      .badge {
+        margin-top: 34px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-weight: 600;
+        font-size: 24px;
+        letter-spacing: 0.06em;
+        color: #4d6266;
+      }
+      .badge svg {
+        width: 34px;
+        height: 34px;
+        flex: 0 0 auto;
+      }
+      /* ---------- outro ---------- */
+      #s-outro {
+        position: absolute;
+        inset: 0;
+      }
+      #outro-title {
+        position: absolute;
+        left: 80px;
+        right: 80px;
+        top: 300px;
+        text-align: center;
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        font-size: 92px;
+        line-height: 1.12;
+      }
+      #outro-title em {
+        font-style: italic;
+        font-weight: 500;
+        color: #fff;
+      }
+      #outro-sub {
+        position: absolute;
+        left: 80px;
+        right: 80px;
+        top: 1250px;
+        text-align: center;
+        font-weight: 500;
+        font-size: 38px;
+        line-height: 1.4;
+        color: rgba(255, 255, 255, 0.92);
+      }
+      #outro-cta {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 1420px;
+        display: flex;
+        justify-content: center;
+      }
+      #outro-pill {
+        padding: 26px 56px;
+        border-radius: 999px;
+        background: var(--red);
+        font-weight: 700;
+        font-size: 42px;
+        letter-spacing: 0.04em;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="28"
+      data-width="1080"
+      data-height="1920"
+    >
+      <div id="bg"></div>
+
+      <!-- oversized logo stripes: the film's carrier, steps up with every review -->
+      <div id="motif-wrap">
+        <svg id="motif" viewBox="60 30 980 545" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <polygon fill="#ffffff" points="63,300 362,35 1035,300 1035,332 362,95 63,332" />
+          <polygon fill="#ffffff" points="63,360 362,155 1035,362 1035,392 362,215 63,392" />
+          <polygon fill="#ffffff" points="63,420 362,272 1035,422 1035,452 362,332 63,452" />
+          <polygon fill="#ffffff" points="63,482 362,392 1035,482 1035,512 362,452 63,512" />
+          <polygon fill="#ffffff" points="63,540 362,512 1035,540 1035,572 362,572 63,572" />
+        </svg>
+      </div>
+
+      <!-- ===== Scene 2: compteur ===== -->
+      <section id="s-count" class="clip" data-start="2.6" data-duration="3.4" data-track-index="2">
+        <div id="count-box">
+          <div id="count-num">0</div>
+          <div id="count-label">avis clients</div>
+          <div id="count-pill">
+            <svg viewBox="0 0 24 24" width="36" height="36" aria-hidden="true">
+              <path
+                fill="none"
+                stroke="#fff"
+                stroke-width="2.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 2.5 4.5 5.5v6c0 4.6 3.1 8.6 7.5 10 4.4-1.4 7.5-5.4 7.5-10v-6L12 2.5Zm-3.6 9.7 2.6 2.6 5-5.2"
+              />
+            </svg>
+            <span>Vérifiés par Opinion System</span>
+          </div>
+          <div id="count-line">Et ce sont eux qui en parlent le mieux.</div>
+        </div>
+      </section>
+
+      <!-- ===== Scene 3: avis ===== -->
+      <section id="s-head" class="clip" data-start="5.7" data-duration="17.55" data-track-index="3">
+        <div id="head-title">Ils nous ont fait confiance</div>
+        <div id="head-rule"></div>
+        <div id="dots">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </section>
+
+      <section id="r1" class="clip review" data-layout-allow-overlap data-start="5.9" data-duration="3.0" data-track-index="4">
+        <div class="stage">
+          <div class="card">
+            <div class="qmark">“</div>
+            <p class="quote" style="font-size: 56px">
+              Très satisfait du déroulement de la vente de notre appartement, merci à Madame Hamel,
+              <span class="hl">professionnalisme et convivialité</span> très appréciés !
+            </p>
+            <div class="meta">
+              <div class="avatar">ML</div>
+              <div class="who">
+                <div class="name">Marc L.</div>
+                <div class="tag">Vente · Appartement</div>
+              </div>
+              <div class="score"><div class="stars"></div><div class="note">5,0 / 5</div></div>
+            </div>
+            <div class="badge"><span>Avis contrôlé · Opinion System · Octobre 2026</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="r2" class="clip review" data-layout-allow-overlap data-start="8.55" data-duration="2.75" data-track-index="5">
+        <div class="stage">
+          <div class="card">
+            <div class="qmark">“</div>
+            <p class="quote" style="font-size: 64px">
+              Agence <span class="hl">sérieuse et disponible.</span> Volonté de faciliter les choses pour les
+              différentes parties.
+            </p>
+            <div class="meta">
+              <div class="avatar">AD</div>
+              <div class="who">
+                <div class="name">Alban D.</div>
+                <div class="tag">Achat · Maison</div>
+              </div>
+              <div class="score"><div class="stars"></div><div class="note">5,0 / 5</div></div>
+            </div>
+            <div class="badge"><span>Avis contrôlé · Opinion System · Octobre 2026</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="r3" class="clip review" data-layout-allow-overlap data-start="10.95" data-duration="3.95" data-track-index="4">
+        <div class="stage">
+          <div class="card">
+            <div class="qmark">“</div>
+            <p class="quote" style="font-size: 48px">
+              Cela fait deux fois que j’opère avec Jean Immobilier. Je n’hésiterai pas à revenir […] vers
+              Madame Hamel. Elle est réactive, très professionnelle, très efficace, sympathique et humaine.
+              <span class="hl">Je recommande à 100 % !</span>
+            </p>
+            <div class="meta">
+              <div class="avatar">MD</div>
+              <div class="who">
+                <div class="name">Maryse D.</div>
+                <div class="tag">Vente · Maison</div>
+              </div>
+              <div class="score"><div class="stars"></div><div class="note">5,0 / 5</div></div>
+            </div>
+            <div class="badge"><span>Avis contrôlé · Opinion System · Juin 2026</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="r4" class="clip review" data-layout-allow-overlap data-start="14.55" data-duration="2.55" data-track-index="5">
+        <div class="stage">
+          <div class="card">
+            <div class="qmark">“</div>
+            <p class="quote" style="font-size: 68px">
+              <span class="hl">Très bon suivi</span> du début du projet de vente jusqu’à la signature.
+            </p>
+            <div class="meta">
+              <div class="avatar">MC</div>
+              <div class="who">
+                <div class="name">Matthias C.</div>
+                <div class="tag">Vente · Studio</div>
+              </div>
+              <div class="score"><div class="stars"></div><div class="note">5,0 / 5</div></div>
+            </div>
+            <div class="badge"><span>Contrôlé par justificatif · Opinion System · Mai 2026</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="r5" class="clip review" data-layout-allow-overlap data-start="16.75" data-duration="3.95" data-track-index="4">
+        <div class="stage">
+          <div class="card">
+            <div class="qmark">“</div>
+            <p class="quote" style="font-size: 52px">
+              Très belle expérience avec Jean Immobilier pour mon premier achat ! Un grand merci à Madame Hamel
+              et Monsieur Marescot pour leur <span class="hl">accompagnement irréprochable.</span>
+            </p>
+            <div class="meta">
+              <div class="avatar">JB</div>
+              <div class="who">
+                <div class="name">Jules B.</div>
+                <div class="tag">Premier achat · Appartement</div>
+              </div>
+              <div class="score"><div class="stars"></div><div class="note">5,0 / 5</div></div>
+            </div>
+            <div class="badge"><span>Avis contrôlé · Opinion System · Mars 2026</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="r6" class="clip review" data-layout-allow-overlap data-start="20.35" data-duration="2.75" data-track-index="5">
+        <div class="stage">
+          <div class="card">
+            <div class="qmark">“</div>
+            <p class="quote" style="font-size: 76px">
+              Agent <span class="hl">compétent</span> et informations claires.
+            </p>
+            <div class="meta">
+              <div class="avatar">ML</div>
+              <div class="who">
+                <div class="name">Maxence L.</div>
+                <div class="tag">Achat · Appartement</div>
+              </div>
+              <div class="score"><div class="stars"></div><div class="note">5,0 / 5</div></div>
+            </div>
+            <div class="badge"><span>Avis contrôlé · Opinion System · Mars 2026</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Scene 4: outro ===== -->
+      <section id="s-outro" class="clip" data-start="22.85" data-duration="5.15" data-track-index="2">
+        <div id="outro-title"><span id="ot1">Merci pour</span> <em id="ot2">votre confiance.</em></div>
+        <div id="outro-sub">Vendre, acheter, louer : on s’occupe de tout, et on le fait bien.</div>
+        <div id="outro-cta"><div id="outro-pill">jean-immobilier.fr</div></div>
+      </section>
+
+      <!-- ===== Logo (persistent) ===== -->
+      <div id="logo-wrap">
+        <svg id="logo" viewBox="55 25 990 815" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Jean Immobilier">
+          <polygon id="st1" fill="#ececec" points="63,300 362,35 1035,300 1035,332 362,95 63,332" />
+          <polygon id="st2" fill="#e1e1e1" points="63,360 362,155 1035,362 1035,392 362,215 63,392" />
+          <polygon id="st3" fill="#bdbdbd" points="63,420 362,272 1035,422 1035,452 362,332 63,452" />
+          <polygon id="st4" fill="#8f8f8f" points="63,482 362,392 1035,482 1035,512 362,452 63,512" />
+          <polygon id="st5" fill="#3f5256" points="63,540 362,512 1035,540 1035,572 362,572 63,572" />
+          <g id="lg-bar">
+            <rect x="63" y="601" width="972" height="59" fill="#e6193d" />
+            <text
+              x="1022"
+              y="645"
+              text-anchor="end"
+              fill="#ffffff"
+              font-family="Montserrat"
+              font-size="40"
+              letter-spacing="1"
+            >
+              <tspan font-weight="400">GROUPE </tspan><tspan font-weight="700">DELPHINE JEAN</tspan>
+            </text>
+          </g>
+          <g id="lg-name">
+            <text x="63" y="768" fill="#ffffff" font-family="Montserrat" font-size="98" textLength="967" lengthAdjust="spacingAndGlyphs">
+              <tspan font-weight="700">JEAN</tspan><tspan font-weight="200"> IMMOBILIER</tspan>
+            </text>
+            <rect id="lg-rule" x="63" y="802" width="972" height="4" fill="#ffffff" />
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const STAR =
+          '<svg class="star" viewBox="0 0 24 24"><path fill="#e6193d" d="M12 1.8l3.1 6.6 7.2.9-5.3 5 1.4 7.1L12 17.9l-6.4 3.5 1.4-7.1-5.3-5 7.2-.9z"/></svg>';
+        const CHECK =
+          '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#5d7073"/><path d="M6.8 12.4l3.3 3.2 7-7" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+        document.querySelectorAll(".stars").forEach((s) => (s.innerHTML = STAR.repeat(5)));
+        document.querySelectorAll(".badge").forEach((b) => b.insertAdjacentHTML("afterbegin", CHECK));
+
+        const tl = gsap.timeline({ paused: true });
+
+        // ---------- Scene 1: logo builds, bottom stripe first, stacking upward ----------
+        ["#st5", "#st4", "#st3", "#st2", "#st1"].forEach((id, i) => {
+          tl.fromTo(
+            id,
+            { y: 70, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.55, ease: "power3.out" },
+            0.15 + i * 0.13,
+          );
+        });
+        tl.fromTo("#lg-bar", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power3.inOut" }, 0.95);
+        tl.fromTo("#lg-name", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 1.3);
+        tl.fromTo("#lg-rule", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power2.out" }, 1.55);
+        // logo rises to its header slot and stays as the film's anchor
+        tl.fromTo("#logo", { y: 0, scale: 1 }, { y: -360, scale: 0.4, duration: 0.8, ease: "power3.inOut" }, 2.35);
+        tl.fromTo("#motif-wrap", { y: 380 }, { y: 0, duration: 2.6, ease: "power2.out" }, 0.4);
+
+        // ---------- Scene 2: count-up ----------
+        const counter = { v: 0 };
+        const numEl = document.getElementById("count-num");
+        tl.fromTo("#count-num", { y: 120, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "power3.out" }, 2.75);
+        tl.fromTo(
+          counter,
+          { v: 0 },
+          {
+            v: 349,
+            duration: 1.3,
+            ease: "power2.out",
+            onUpdate: () => (numEl.textContent = String(Math.round(counter.v))),
+          },
+          2.8,
+        );
+        tl.fromTo("#count-label", { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 3.0);
+        tl.fromTo("#count-pill", { y: 50, opacity: 0, scale: 0.9 }, { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.6)" }, 3.35);
+        tl.fromTo("#count-line", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 4.15);
+        tl.to("#count-box", { y: -320, opacity: 0, duration: 0.4, ease: "power2.in" }, 5.5);
+        tl.to("#motif-wrap", { y: -60, duration: 0.8, ease: "power3.inOut" }, 5.7);
+
+        // ---------- Scene 3: header + dots ----------
+        tl.fromTo("#head-title", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 5.8);
+        tl.fromTo("#head-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 6.0);
+        tl.to("#s-head > *", { opacity: 0, duration: 0.35, ease: "power2.in" }, 22.85);
+
+        const dots = document.querySelectorAll(".dot");
+        const reviews = Array.from(document.querySelectorAll(".review"));
+        reviews.forEach((sec, i) => {
+          const s = parseFloat(sec.dataset.start);
+          const d = parseFloat(sec.dataset.duration);
+          const card = sec.querySelector(".card");
+          const e = s + 0.25; // enter only once the previous card has cleared
+          const q = sec.querySelector(".quote");
+          const hl = sec.querySelector(".hl");
+          const stars = sec.querySelectorAll(".star");
+
+          // enter from below, exit upward: one continuous upward current
+          tl.fromTo(card, { y: 300, opacity: 0, scale: 0.94 }, { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: "power3.out" }, e);
+          tl.fromTo(sec.querySelector(".qmark"), { scale: 0.4, opacity: 0, transformOrigin: "0% 50%" }, { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(2)" }, e + 0.2);
+          tl.fromTo(q, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "power3.out" }, e + 0.28);
+          tl.fromTo(sec.querySelector(".meta"), { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, e + 0.45);
+          tl.fromTo(stars, { scale: 0, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.3, ease: "back.out(3)", stagger: 0.06 }, e + 0.6);
+          tl.fromTo(sec.querySelector(".badge"), { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, e + 0.75);
+          if (hl) tl.fromTo(hl, { backgroundSize: "0% 0.42em" }, { backgroundSize: "100% 0.42em", duration: 0.6, ease: "power2.inOut" }, e + 0.95);
+          if (i < reviews.length - 1) {
+            tl.to(card, { y: -420, opacity: 0, scale: 0.96, duration: 0.4, ease: "power2.in" }, s + d - 0.45);
+          } else {
+            tl.to(card, { y: -420, opacity: 0, duration: 0.5, ease: "power2.in" }, s + d - 0.5);
+          }
+          tl.to(dots[i], { backgroundColor: "#e6193d", scale: 1.35, duration: 0.3, ease: "power2.out" }, s + 0.1);
+          if (i > 0) tl.to(dots[i - 1], { scale: 1, duration: 0.3, ease: "power2.out" }, s + 0.1);
+          // the carrier stripes step up with each review
+          tl.to("#motif-wrap", { y: "-=70", duration: 0.7, ease: "power3.inOut" }, s - 0.1);
+        });
+
+        // ---------- Scene 4: outro ----------
+        tl.to("#logo", { y: 0, scale: 0.78, duration: 0.9, ease: "power3.inOut" }, 22.9);
+        tl.fromTo("#ot1", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 23.3);
+        tl.fromTo("#ot2", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 23.45);
+        tl.fromTo("#outro-sub", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 24.1);
+        tl.fromTo("#outro-pill", { y: 40, opacity: 0, scale: 0.9 }, { y: 0, opacity: 1, scale: 1, duration: 0.55, ease: "back.out(1.7)" }, 24.5);
+        tl.to("#motif-wrap", { y: "-=120", duration: 1.2, ease: "power3.inOut" }, 22.9);
+
+        window.__timelines["main"] = tl;
+        tl.seek(0);
+      })();
+    </script>
+  </body>
+</html>
