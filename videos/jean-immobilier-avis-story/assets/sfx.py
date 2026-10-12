@@ -1,5 +1,5 @@
 import numpy as np, wave, sys
-SR=48000; DUR=37.8
+SR=48000; DUR=31.5
 L=np.zeros(int(SR*DUR)); R=np.zeros_like(L)
 rng=np.random.default_rng(7)
 def add(sig,t,gain=1.0,pan=0.0):
@@ -42,16 +42,16 @@ def sparkle():
         d=k*0.05; m=t>=d; tt2=np.where(m,t-d,0)
         s=s+m*np.sin(2*np.pi*f*tt2)*np.exp(-tt2/0.08)*0.25
     return s
-E=[7.35,13.9,18.95,27.0]; X=[13.85,18.9,26.95,32.0]; O=31.8
+E=[6.45,12.0,16.25,23.1]; X=[11.95,16.2,23.05,27.3]; O=27.1
 for i in range(5): add(tick(),0.2+i*0.16,0.18,-0.3+i*0.15)
 add(whoosh(0.5,500,3000,900),1.08,0.18)
 add(whoosh(0.85),2.55,0.32)
 add(riser(1.6),3.05,0.16)
 add(pop(660),4.62,0.22)
 add(pop(520),3.72,0.25)
-add(click(),5.2,0.7,0.1); add(sparkle(),5.26,0.35)
-add(pop(560),5.4,0.12)
-for t in [6.97]+[x-0.3 for x in X[:3]]: add(whoosh(0.6),t,0.42)
+add(click(),4.75,0.7,0.1); add(sparkle(),4.81,0.35)
+add(pop(560),4.95,0.12)
+for t in [6.07]+[x-0.3 for x in X[:3]]: add(whoosh(0.6),t,0.42)
 add(whoosh(0.8),X[3]-0.5,0.4)
 pent=[880,988,1109,1319,1480]
 for i,e in enumerate(E):
@@ -59,8 +59,8 @@ for i,e in enumerate(E):
     for k in range(5): add(pop(pent[k]),e+1.32+k*0.07,0.2,-0.4+k*0.2)
     add(sparkle(),e+1.38,0.25)
 for x in X[:3]: add(click(),x-0.4,0.65,-0.1)
-add(pop(520),O+1.65,0.25)
-add(click(),O+3.1,0.75); add(chime(),O+3.12,0.6); add(sparkle(),O+3.15,0.35)
+add(pop(520),O+1.4,0.25)
+add(click(),O+2.6,0.75); add(chime(),O+2.62,0.6); add(sparkle(),O+2.65,0.35)
 m=max(np.abs(L).max(),np.abs(R).max()); g=10**(-3/20)/m
 st=np.stack([L*g,R*g],1); st=(st*32767).astype(np.int16)
 with wave.open(sys.argv[1],'wb') as w:
