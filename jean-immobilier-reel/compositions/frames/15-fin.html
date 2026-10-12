@@ -80,6 +80,7 @@
   background: #D33543; color: #FFFFFF; font: 700 52px/150px "JI Inter", sans-serif; letter-spacing: -0.01em; text-align: center;
   white-space: nowrap; box-shadow: 0 24px 50px rgba(168,38,50,.22), 0 3px 8px rgba(38,49,58,.10); }
 #p15-btn-t { display: inline-block; }
+#p15-tel { position: absolute; left: 4390px; top: 3085px; width: 820px; text-align: center; font: 800 54px/70px "JI Inter", sans-serif; letter-spacing: 0.02em; color: #26313A; opacity: 0; }
 #p15-rip1, #p15-rip2 { left: 4822px; top: 2983px; }
 #p15-curw { position: absolute; left: 4816px; top: 2979px; width: 70px; height: 100px; opacity: 0; transform-origin: 6px 4px; }
 #p15-curw .ji-cursor { left: 0; top: 0; }
@@ -91,9 +92,9 @@
   mask-image: radial-gradient(circle at 540px 1326px, transparent var(--p15-r), #000 calc(var(--p15-r) + 1.5px)); }
 </style>
 
-<div id="root" data-composition-id="15-fin" data-width="1080" data-height="1920" data-start="0" data-duration="5.10">
-  <div id="p15-ground" class="clip ji-ground-light" data-start="0" data-duration="5.10" data-track-index="0"></div>
-  <div id="p15-stage" class="clip ji-layer" data-start="0" data-duration="5.10" data-track-index="1">
+<div id="root" data-composition-id="15-fin" data-width="1080" data-height="1920" data-start="0" data-duration="4.30">
+  <div id="p15-ground" class="clip ji-ground-light" data-start="0" data-duration="4.30" data-track-index="0"></div>
+  <div id="p15-stage" class="clip ji-layer" data-start="0" data-duration="4.30" data-track-index="1">
     <div id="p15-bloom"></div>
     <div id="p15-lens" class="ji-layer">
      <div id="p15-camc" class="p15-cam"><div id="p15-camd" class="p15-cam"><div id="p15-camo" class="p15-cam">
@@ -103,6 +104,7 @@
         <div id="p15-dot"></div>
         <div id="p15-logow"></div>
         <div id="p15-btn"><span id="p15-btn-t">Parlons de votre bien</span></div>
+        <div id="p15-tel"><svg width="40" height="40" viewBox="0 0 24 24" style="vertical-align:-6px;margin-right:14px"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.6a1 1 0 0 1-.25 1z" fill="#D33543"/></svg>02 31 15 22 15</div>
         <div id="p15-rip1" class="ji-ripple"></div>
         <div id="p15-rip2" class="ji-ripple"></div>
         <div id="p15-curw"></div>
@@ -235,7 +237,7 @@ function jiCursorSVG(id) {
   var tl = gsap.timeline({ paused: true });
 
   /* Scene 26 · 0.00 : le point flou au centre (handoff_in cam 4800, 2600, 0.20, flou 12) ; 0.05 il s'ouvre */
-  tl.fromTo("#p15-camd", { scale: 1 }, { scale: 1 + 0.015 * 5.1, duration: 5.1, ease: "none" }, 0);
+  tl.fromTo("#p15-camd", { scale: 1 }, { scale: 1 + 0.015 * 4.3, duration: 4.3, ease: "none" }, 0);
   tl.fromTo("#p15-camo", { scale: 0.2 }, { scale: 1, duration: 0.3, ease: "expo.out", immediateRender: false }, 0.05);
   tl.fromTo(lens, { filter: "blur(12px)" }, { filter: "blur(0px)", duration: 0.3, ease: "power2.out", immediateRender: false }, 0.05);
   tl.fromTo("#p15-dot", { scale: 1, opacity: 1 }, { scale: 2.6, opacity: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, 0.05);
@@ -264,6 +266,7 @@ function jiCursorSVG(id) {
   tl.to("#p15-curw", { scale: 1, duration: 0.1, ease: "power2.out" }, 2.71);
   tl.fromTo("#p15-btn", { scale: 1 }, { scale: 0.95, duration: 0.06, ease: "power2.in", immediateRender: false }, 2.65);
   tl.to("#p15-btn", { scale: 1, duration: 0.14, ease: "power2.out" }, 2.71);
+  tl.fromTo("#p15-tel", { opacity: 0, y: 24, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.25, ease: "expo.out", immediateRender: false }, 2.80);
   tl.fromTo("#p15-btn", { backgroundColor: "#D33543" }, { backgroundColor: "#E25C68", duration: 0.06, ease: "none", immediateRender: false }, 2.65);
   tl.to("#p15-btn", { backgroundColor: "#FFFFFF", duration: 0.09, ease: "power1.out" }, 2.71);
   tl.to("#p15-btn", { backgroundColor: "#D33543", duration: 0.12, ease: "power1.inOut" }, 2.80);
@@ -275,14 +278,14 @@ function jiCursorSVG(id) {
   /* Scene 27 · tenue vivante : le curseur se retire en bas à droite, les fenêtres s'allument une à une */
   tl.to("#p15-curw", { x: 520, y: 620, duration: 0.3, ease: "power3.in" }, 3.00);
   var order = [6, 1, 8, 3, 0, 7, 5, 2, 4, 10, 9, 11];
-  for (var w = 0; w < order.length && 2.90 + w * 0.15 <= 4.50; w++) {
+  for (var w = 0; w < order.length && 2.90 + w * 0.15 <= 3.70; w++) {
     tl.fromTo(wins[order[w]], { fillOpacity: 0 }, { fillOpacity: 0.5, duration: 0.22, ease: "power2.out", immediateRender: false }, 2.90 + w * 0.15);
   }
   tl.fromTo("#p15-bld-glow", { opacity: 0 }, { opacity: 0.05, duration: 1.4, ease: "none", immediateRender: false }, 2.90);
 
-  /* 4.50 : iris au noir centré sur le bouton (540, 1326 à l'écran), noir complet à 5.08 */
-  tl.set(iris, { opacity: 1 }, 4.50);
-  tl.fromTo(iris, { "--p15-r": "1500px" }, { "--p15-r": "-2px", duration: 0.55, ease: "power2.in", immediateRender: false }, 4.50);
+  /* 3.70 : iris au noir centré sur le bouton (540, 1326 à l'écran), noir complet à 4.28 */
+  tl.set(iris, { opacity: 1 }, 3.70);
+  tl.fromTo(iris, { "--p15-r": "1500px" }, { "--p15-r": "-2px", duration: 0.55, ease: "power2.in", immediateRender: false }, 3.70);
 
   window.__timelines = window.__timelines || {};
   window.__timelines["15-fin"] = tl;

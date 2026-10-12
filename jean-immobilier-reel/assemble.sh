@@ -15,12 +15,12 @@ export HYPERFRAMES_NO_TELEMETRY=1 DO_NOT_TRACK=1 HYPERFRAMES_SKIP_SKILLS=1 HYPER
 # ---- settings (times in seconds on the final timeline, see STORYBOARD.md) ------------------------------------------
 FIRST_FRAME="01-mardi-jeudi"      # id of the first frame (basename of its src, without .html)
 END_CARD="15-fin"          # id of the end card frame (the iris opens it)
-TOTAL="49.80"               # final duration = STORYBOARD duration = TOTAL in build-audio.sh
-AUDIO="assets/audio/${MIX:-mix.wav}"   # mix from build-audio.sh or build-music-options.py (MIX=mix-M2.wav bash assemble.sh); empty = silent
+TOTAL="34.93"               # final duration = STORYBOARD duration = TOTAL in build-audio.sh
+AUDIO="assets/audio/${MIX:-mix-reel35.wav}"   # mix from build-audio.sh or build-music-options.py (MIX=mix-M2.wav bash assemble.sh); empty = silent
 
 # Light flash, dark world -> light world (empty LEAK_AT = no flash). The flash covers the screen from
 # LEAK_AT+0.15 to LEAK_AT+0.30: put the cut between the last dark frame and the first light frame at LEAK_AT+0.25.
-LEAK_AT="27.95"
+LEAK_AT="16.47"
 LEAK_X="540"               # flash center in px (the object the light comes from, e.g. a caret or a word)
 LEAK_Y="960"
 
@@ -36,7 +36,7 @@ IRIS_FROM=""               # id of the frame under the iris (empty = the frame j
 # Default span: LEAK_AT+0.20 to IRIS_AT+0.80. Empty PAPER = no bed.
 PAPER="#F4F4F2"
 BED_START=""               # optional override
-BED_END="49.80"            # no iris in this film: the bed lasts to the end
+BED_END="34.93"            # no iris in this film: the bed lasts to the end
 
 # Colors of the flash and the iris ring: copy accent, accent-light and accent-glow from frame.md.
 ACCENT="#D33543"

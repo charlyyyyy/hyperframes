@@ -1,6 +1,6 @@
 ---
 format: 1080x1920
-duration: 49.80s
+duration: 34.93s
 message: "Le problème, ce n'est pas votre bien, c'est d'attendre ; chez Jean Immobilier, une équipe proche s'en occupe : vente, location, gestion locative, syndic."
 arc: Hook (gag) → Problème → Pivot → Solution → Payoff → CTA
 audience: propriétaires vendeurs, bailleurs et copropriétaires (France), clients ou futurs clients de Jean Immobilier
@@ -99,84 +99,6 @@ OBJET-PONT ET VECTEUR : vecteur : whip droite, couture au sommet du flou.
 SON : whoosh-short 2.45, pop 3.45.
 IMAGE CLÉ : 3.60 : la tuile JEUDI, la ligne « Loyer octobre · 0,00 € », la pastille ambre, la tuile MARDI floue sortant à gauche.
 
-## Frame 2 : Lundi, le syndic · 4.46 → 7.84
-
-- scene: Le whip arrive sur « LUNDI », une semaine plus tard ; une boîte mail cherche le compte rendu du syndic, aucun résultat
-- duration: 3.38s
-- transition_in: cut
-- status: animated
-- src: compositions/frames/02-lundi.html
-- voiceover: "Lundi... vous attendez encore le compte rendu du syndic."
-- type: pain_point
-- blueprint: spatial-pan-stations (Adapt)
-- focal: la tuile LUNDI, puis la boîte mail du téléphone
-- rules: depth-of-field-blur
-- world: dark
-- handoff_in: à 0.00 : cam(3600, 0, 1.00, 0, 0) flou 10 px ; caméra en plein whip vers la droite (+5000 u/s) de JEUDI vers LUNDI ; tuiles MARDI et JEUDI sur le ruban, chacune avec sa pastille ambre « En attente » ; aucune phrase ; grain 5 %
-- handoff_out: à 3.38 : cam(4800, 0, 1.60, 0, 0) flou 8 px ; caméra en pleine plongée vers l'écran du téléphone (échelle +200 %/s) ; tuile LUNDI, téléphone allumé au centre ; aucune phrase
-
-Word cues: Lundi@0.22 vous@0.83 attendez@1.07 encore@1.75 le@2.03 compte@2.15 rendu@2.35 du@2.71 syndic@2.83
-
-Scene 4 (0.00 à 0.76) : P4, « Lundi… »
-TEXTE ÉCRAN : Lundi@0.22, [boîte : Lundi] ; synchro.
-ÉTAPES : 0.09 fin du whip, la tuile LUNDI 20 se pose ; 0.24 au-dessus du ruban, l'étiquette « semaine suivante » glisse ; 0.44 les pastilles de MARDI et JEUDI, floues au loin à gauche, pulsent encore.
-PISTE CAMÉRA : whip qui se termine (expo.out) puis dérive x +20 u/s.
-OBJET-PONT ET VECTEUR : la tuile LUNDI reçoit le téléphone (le même qu'en P2, qui a glissé avec le ruban).
-SON : whoosh-short -0.06.
-IMAGE CLÉ : 0.39 : LUNDI 20 au centre, « semaine suivante », deux pastilles ambre floues à gauche.
-
-Scene 5 (0.76 à 3.38) : P5, « vous attendez encore le compte rendu du syndic. »
-TEXTE ÉCRAN : vous@0.83 attendez@1.07 encore@1.75 le@2.03 compte@2.15 rendu@2.35 du@2.71 syndic@2.83, [trait : encore] ; synchro.
-ÉTAPES : 0.84 le téléphone se pose, appli Mail ; 1.24 la recherche tape « compte rendu AG » (frappe 0,4 s) ; 1.59 pastille d'attente ; 2.14 « Aucun résultat » tombe dans la liste ; 2.84 la dernière ligne « Syndic · Convocation AG · il y a 3 mois » s'allume ; 3.14 le téléphone sonne (vibration 2 px) : départ de la plongée.
-PISTE CAMÉRA : cran ×1,3 sur l'écran à 0.79 ; dérive ; plongée 3.14 →.
-COUCHES ET PROFONDEUR : tuile floue / téléphone net / ruban ; 3 couches.
-OBJET-PONT ET VECTEUR : l'écran du téléphone devient tout le cadre en P6.
-SON : typing 1.24 à 1.64, pop 1.59.
-IMAGE CLÉ : 2.34 : l'appli Mail, « compte rendu AG » dans la recherche, « Aucun résultat », la pastille ambre.
-
-## Frame 3 : Vous appelez… messagerie pleine · 7.84 → 12.89
-
-- scene: La caméra plonge dans le téléphone ; un pouce appelle l'agence ; ça sonne deux fois dans le vide ; la bannière « Messagerie pleine » tombe ; on raccroche, l'écran s'éteint
-- duration: 5.05s
-- transition_in: cut
-- status: animated
-- src: compositions/frames/03-appel.html
-- voiceover: "Vous appelez... Messagerie pleine."
-- type: hook
-- blueprint: device-surface-showcase (Adapt)
-- focal: l'écran d'appel, puis la bannière Messagerie pleine
-- rules: cursor-click-ripple, coordinate-target-zoom
-- world: dark
-- handoff_in: à 0.00 : cam(4800, 0, 1.60, 0, 0) flou 8 px ; caméra en pleine plongée vers l'écran du téléphone (échelle +200 %/s) ; tuile LUNDI, téléphone allumé au centre ; aucune phrase
-- handoff_out: à 5.05 : l'écran éteint du téléphone remplit le cadre (nuit ardoise #141B1E, reflet léger), caméra en recul (échelle -60 %/s), flou 6 px ; aucune phrase
-
-Word cues: Vous@0.27 appelez@0.59 Messagerie@3.75 pleine@4.55
-
-Scene 6 (0.00 à 1.27) : P6, « Vous appelez… »
-TEXTE ÉCRAN : Vous@0.27 appelez@0.59, [boîte : appelez] ; synchro.
-ÉTAPES : 0.06 fin de plongée : l'écran d'appel plein cadre, contact « Agence » ; 0.36 un pouce (ou le curseur oversized) arrive d'en bas en courbe ; 0.46 tap sur le bouton vert, onde ; 0.61 « Appel en cours… » et le chrono 00:00 démarre.
-PISTE CAMÉRA : plongée qui se pose (expo.out) puis dérive échelle +2 %/s.
-OBJET-PONT ET VECTEUR : l'écran d'appel reste.
-SON : whoosh -0.04, click 0.46.
-IMAGE CLÉ : 0.48 : écran d'appel « Agence », le pouce sur le bouton vert, l'onde du tap.
-
-Scene 7 (1.27 à 3.47) : P7, les deux sonneries (sans mot)
-TEXTE ÉCRAN : aucun texte (les sonneries portent le plan).
-ÉTAPES : 1.50 première sonnerie : anneau d'onde depuis l'avatar ; 1.46 pastille d'attente sous le nom ; 2.70 deuxième sonnerie, anneau ; chrono qui roule 00:04 → 00:18 en continu.
-PISTE CAMÉRA : poussée lente linéaire ×1,0 → ×1,08.
-COUCHES ET PROFONDEUR : bord du téléphone flou en avant-plan ; écran net ; fond nuit ; 3 couches.
-OBJET-PONT ET VECTEUR : l'écran d'appel reçoit la bannière en P8.
-SON : sonnerie 1.50, sonnerie 2.70 (calées sur la prise).
-IMAGE CLÉ : 2.76 : l'écran d'appel, l'anneau d'onde au maximum, le chrono à 00:12, la pastille ambre.
-
-Scene 8 (3.47 à 5.05) : P8, « Messagerie pleine. »
-TEXTE ÉCRAN : Messagerie@3.75 pleine@4.55, [trait : pleine] ; synchro.
-ÉTAPES : 3.66 la bannière « Messagerie pleine » TOMBE du haut (y -300 → 0, 0,13 s power2.in, rebond 14 px) ; 3.96 le chrono s'arrête ; 4.56 sur « pleine » l'avatar de l'agence grise ; 4.76 tap rouge, l'écran s'éteint (0,1 s) : départ du recul.
-PISTE CAMÉRA : petit coup de caméra au contact (y +8 px, 0,08 s) ; dérive ; recul 4.86 →.
-OBJET-PONT ET VECTEUR : l'écran éteint devient le sol nuit du plan suivant.
-SON : error 3.71, click-soft 4.81.
-IMAGE CLÉ : 3.86 : la bannière « Messagerie pleine » qui vient de tomber sur l'écran d'appel, le chrono figé à 00:21.
-
 ## Frame 4 : Le problème, c'est autour · 12.89 → 16.91
 
 - scene: Recul hors du téléphone éteint : au centre, votre bien (un immeuble au trait, calme) ; recul encore, trois cartes en attente entrent autour de lui
@@ -211,40 +133,6 @@ COUCHES ET PROFONDEUR : cartes au premier plan, bien au centre, sol ; 3 couches.
 OBJET-PONT ET VECTEUR : la carte ANNONCE devient le sujet de P11 (cran).
 SON : whoosh 2.21.
 IMAGE CLÉ : 3.56 : le bien au centre, trois cartes ambre autour (Annonce, Loyer, Travaux), le cercle pointillé. (RIME avec P24.)
-
-## Frame 5 : Le prix, l'annonce · 16.91 → 19.96
-
-- scene: Cran sur la carte ANNONCE : le prix roule comme une machine à sous et tombe au hasard ; puis l'annonce s'éteint, en ligne depuis des semaines
-- duration: 3.05s
-- transition_in: cut
-- status: animated
-- src: compositions/frames/05-annonce.html
-- voiceover: "Un prix fixé au hasard... et une annonce qui dort."
-- type: pain_point
-- blueprint: camera-journey (Adapt)
-- focal: la carte ANNONCE et son prix qui roule
-- rules: vertical-spring-ticker
-- world: dark
-- handoff_in: à 0.00 : cam(4100, 2550, 0.80, 0, 0) flou 10 px ; caméra en plein cran vers la carte ANNONCE (gauche) ; le bien au centre-droite, cartes LOYER et TRAVAUX floues ; aucune phrase
-- handoff_out: à 3.05 : cam(5300, 2550, 0.80, 0, 0) flou 10 px ; caméra en plein cran vers la carte LOYER (droite) ; carte ANNONCE éteinte à gauche ; aucune phrase
-
-Word cues: Un@0.22 prix@0.38 fixé@0.54 au@0.90 hasard@1.10 et@1.86 une@2.06 annonce@2.14 qui@2.58 dort@2.77
-
-Scene 11 (0.00 à 1.69) : P11, « Un prix fixé au hasard… »
-TEXTE ÉCRAN : Un@0.22 prix@0.38 fixé@0.54 au@0.90 hasard@1.10, [boîte : au hasard] ; synchro.
-ÉTAPES : 0.09 la carte ANNONCE au centre : photo de l'appartement, « Prix : — € » ; 0.39 les chiffres roulent comme des rouleaux (0,7 s) ; 1.10 sur « hasard », les rouleaux s'arrêtent net, chacun à une valeur différente, avec un petit à-coup ; le prix est barré-corrigé une fois (−10 000 €).
-PISTE CAMÉRA : cran 0.00 à 0.14 (expo.inOut) puis dérive x +15 u/s.
-OBJET-PONT ET VECTEUR : la même carte reste pour P12.
-SON : key-press 0.49 à 0.99, pop 1.10.
-IMAGE CLÉ : 0.79 : la carte annonce, les rouleaux du prix en plein mouvement (flou vertical), « au hasard ».
-
-Scene 12 (1.69 à 3.05) : P12, « et une annonce qui dort. »
-TEXTE ÉCRAN : et@1.86 une@2.06 annonce@2.14 qui@2.58 dort@2.77, [trait : dort] ; synchro.
-ÉTAPES : 1.89 « En ligne depuis » + le nombre roule 1 → 94 jours (0,5 s) ; 2.39 pastille d'attente ; 2.77 sur « dort », la photo de l'annonce s'assombrit (0,3 s) et la carte s'incline de 2° (elle s'endort).
-PISTE CAMÉRA : dérive ; cran → LOYER à 2.99.
-OBJET-PONT ET VECTEUR : vecteur : cran vers la droite.
-SON : (aucun).
-IMAGE CLÉ : 2.84 : la carte annonce assombrie, « En ligne depuis 94 jours », la pastille ambre.
 
 ## Frame 6 : Le loyer, la relance · 19.96 → 22.90
 
@@ -396,31 +284,6 @@ OBJET-PONT ET VECTEUR : la tuile VENTE devient la carte PRIX réparée.
 SON : click-soft 0.35, 0.85, 1.50, 2.55.
 IMAGE CLÉ : 1.55 : le logo en haut à gauche, les 4 tuiles (Vente, Location, Gestion locative, Syndic), la 3e soulevée, son pictogramme rouge.
 
-## Frame 11 : Le juste prix · 34.67 → 37.26
-
-- scene: La carte PRIX, réparée : la valeur roule et se pose juste, d'un seul geste ; la pastille bascule en ✓
-- duration: 2.59s
-- transition_in: cut
-- status: animated
-- src: compositions/frames/11-juste-prix.html
-- voiceover: "Le juste prix, dès la première estimation."
-- type: payoff
-- blueprint: camera-journey (Adapt)
-- focal: la carte PRIX et ses rouleaux alignés
-- rules: vertical-spring-ticker
-- world: light
-- handoff_in: à 0.00 : cam(4100, 2550, 0.80, 0, 0) flou 10 px ; caméra en plein cran vers la carte PRIX (gauche du bien), papier ; aucune phrase
-- handoff_out: à 2.59 : cam(5300, 2550, 0.80, 0, 0) flou 10 px ; caméra en plein cran vers la carte LOYER (droite), papier ; carte PRIX ✓ à gauche ; aucune phrase
-
-Word cues: Le@0.17 juste@0.29 prix@0.85 dès@1.17 la@1.41 première@1.61 estimation@1.85
-
-Scene 21 (0.00 à 2.59) : P21, « Le juste prix, dès la première estimation. »
-TEXTE ÉCRAN : Le@0.17 juste@0.29 prix@0.85 dès@1.17 la@1.41 première@1.61 estimation@1.85, [boîte : le juste prix] ; synchro.
-ÉTAPES : 0.13 la carte (même gabarit qu'en P11, sur papier) ; 0.43 les rouleaux tournent puis s'arrêtent ENSEMBLE, alignés (rime inversée de P11) ; 0.93 une fine règle de fourchette s'imprime sous le prix ; 1.43 « Estimation · 1re visite » ; 2.03 tic qui répare : la pastille devient « ✓ Estimé ».
-PISTE CAMÉRA : cran 0.00 à 0.13 ; dérive x +15 u/s ; cran → LOYER 2.48.
-SON : key-press 0.43 à 0.83, chime 2.03.
-IMAGE CLÉ : 2.08 : la carte prix, rouleaux alignés, la pastille verte « ✓ Estimé ».
-
 ## Frame 12 : Les loyers suivis · 37.26 → 39.92
 
 - scene: La carte LOYER, réparée : le virement arrive ; la relance part toute seule, signée Jean Immobilier
@@ -506,7 +369,7 @@ IMAGE CLÉ : 1.48 : les trois cartes en vol vers le bien, traînées.
 ## Frame 15 : Parlons de votre bien · 44.70 → 49.80
 
 - scene: Le point s'ouvre sur la carte de fin, sans voix : le logo Jean Immobilier se construit bande par bande, un seul bouton rouge « Parlons de votre bien » arrive ; un curseur arrive en courbe et clique ; tenue vivante, iris au noir
-- duration: 5.10s
+- duration: 4.30s
 - transition_in: cut
 - status: animated
 - src: compositions/frames/15-fin.html
