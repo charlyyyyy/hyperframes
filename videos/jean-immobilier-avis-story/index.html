@@ -359,7 +359,7 @@
       id="root"
       data-composition-id="main"
       data-start="0"
-      data-duration="28"
+      data-duration="22.4"
       data-width="1080"
       data-height="1920"
     >
@@ -399,12 +399,10 @@
       </section>
 
       <!-- ===== Scene 3: avis ===== -->
-      <section id="s-head" class="clip" data-start="5.7" data-duration="17.55" data-track-index="3">
+      <section id="s-head" class="clip" data-start="5.7" data-duration="12.1" data-track-index="3">
         <div id="head-title">Ils nous ont fait confiance</div>
         <div id="head-rule"></div>
         <div id="dots">
-          <div class="dot"></div>
-          <div class="dot"></div>
           <div class="dot"></div>
           <div class="dot"></div>
           <div class="dot"></div>
@@ -476,7 +474,7 @@
         </div>
       </section>
 
-      <section id="r4" class="clip review" data-layout-allow-overlap data-start="14.55" data-duration="2.55" data-track-index="5">
+      <section id="r4" class="clip review" data-layout-allow-overlap data-start="14.55" data-duration="2.9" data-track-index="5">
         <div class="stage">
           <div class="card">
             <div class="qmark">“</div>
@@ -491,54 +489,13 @@
               </div>
               <div class="score"><div class="stars"></div><div class="note">5,0 / 5</div></div>
             </div>
-            <div class="badge"><span>Contrôlé par justificatif · Opinion System · Mai 2026</span></div>
-          </div>
-        </div>
-      </section>
-
-      <section id="r5" class="clip review" data-layout-allow-overlap data-start="16.75" data-duration="3.95" data-track-index="4">
-        <div class="stage">
-          <div class="card">
-            <div class="qmark">“</div>
-            <p class="quote" style="font-size: 52px">
-              Très belle expérience avec Jean Immobilier pour mon premier achat ! Un grand merci à Madame Hamel
-              et Monsieur Marescot pour leur <span class="hl">accompagnement irréprochable.</span>
-            </p>
-            <div class="meta">
-              <div class="avatar">JB</div>
-              <div class="who">
-                <div class="name">Jules B.</div>
-                <div class="tag">Premier achat · Appartement</div>
-              </div>
-              <div class="score"><div class="stars"></div><div class="note">5,0 / 5</div></div>
-            </div>
-            <div class="badge"><span>Avis contrôlé · Opinion System · Mars 2026</span></div>
-          </div>
-        </div>
-      </section>
-
-      <section id="r6" class="clip review" data-layout-allow-overlap data-start="20.35" data-duration="2.75" data-track-index="5">
-        <div class="stage">
-          <div class="card">
-            <div class="qmark">“</div>
-            <p class="quote" style="font-size: 76px">
-              Agent <span class="hl">compétent</span> et informations claires.
-            </p>
-            <div class="meta">
-              <div class="avatar">ML</div>
-              <div class="who">
-                <div class="name">Maxence L.</div>
-                <div class="tag">Achat · Appartement</div>
-              </div>
-              <div class="score"><div class="stars"></div><div class="note">5,0 / 5</div></div>
-            </div>
-            <div class="badge"><span>Avis contrôlé · Opinion System · Mars 2026</span></div>
+            <div class="badge"><span>Contrôlé par justificatif · Opinion System</span></div>
           </div>
         </div>
       </section>
 
       <!-- ===== Scene 4: outro ===== -->
-      <section id="s-outro" class="clip" data-start="22.85" data-duration="5.15" data-track-index="2">
+      <section id="s-outro" class="clip" data-start="17.2" data-duration="5.15" data-track-index="2">
         <div id="outro-title"><span id="ot1">Merci pour</span> <em id="ot2">votre confiance.</em></div>
         <div id="outro-sub">Vendre, acheter, louer : on s’occupe de tout, et on le fait bien.</div>
         <div id="outro-cta"><div id="outro-pill">jean-immobilier.fr</div></div>
@@ -627,7 +584,7 @@
         // ---------- Scene 3: header + dots ----------
         tl.fromTo("#head-title", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 5.8);
         tl.fromTo("#head-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 6.0);
-        tl.to("#s-head > *", { opacity: 0, duration: 0.35, ease: "power2.in" }, 22.85);
+        tl.to("#s-head > *", { opacity: 0, duration: 0.35, ease: "power2.in" }, 17.2);
 
         const dots = document.querySelectorAll(".dot");
         const reviews = Array.from(document.querySelectorAll(".review"));
@@ -660,12 +617,12 @@
         });
 
         // ---------- Scene 4: outro ----------
-        tl.to("#logo", { y: 0, scale: 0.78, duration: 0.9, ease: "power3.inOut" }, 22.9);
-        tl.fromTo("#ot1", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 23.3);
-        tl.fromTo("#ot2", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 23.45);
-        tl.fromTo("#outro-sub", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 24.1);
-        tl.fromTo("#outro-pill", { y: 40, opacity: 0, scale: 0.9 }, { y: 0, opacity: 1, scale: 1, duration: 0.55, ease: "back.out(1.7)" }, 24.5);
-        tl.to("#motif-wrap", { y: "-=120", duration: 1.2, ease: "power3.inOut" }, 22.9);
+        tl.to("#logo", { y: 0, scale: 0.78, duration: 0.9, ease: "power3.inOut" }, 17.25);
+        tl.fromTo("#ot1", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 17.65);
+        tl.fromTo("#ot2", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 17.8);
+        tl.fromTo("#outro-sub", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 18.45);
+        tl.fromTo("#outro-pill", { y: 40, opacity: 0, scale: 0.9 }, { y: 0, opacity: 1, scale: 1, duration: 0.55, ease: "back.out(1.7)" }, 18.85);
+        tl.to("#motif-wrap", { y: "-=120", duration: 1.2, ease: "power3.inOut" }, 17.25);
 
         window.__timelines["main"] = tl;
         tl.seek(0);
