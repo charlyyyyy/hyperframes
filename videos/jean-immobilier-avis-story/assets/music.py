@@ -1,7 +1,7 @@
 # Original soundtrack for the Jean Immobilier review story.
 # 120 BPM, D major, I-V-vi-IV. Synthesized from scratch (no samples), then the
 # bundled Pixabay SFX are laid on the same grid as the GSAP timeline in index.html.
-# Usage: python3 assets/music.py <project_dir> <out.wav>
+# Usage: python3 assets/music.py <project_dir> <out.wav> [music_gain, 0.62 = with music]
 import subprocess
 import sys
 import wave
@@ -15,6 +15,8 @@ N = int(SR * DUR)
 rng = np.random.default_rng(42)
 PROJECT = sys.argv[1]
 OUT = sys.argv[2]
+# music bed level; 0 = sound effects only (current cut)
+MUSIC_GAIN = float(sys.argv[3]) if len(sys.argv) > 3 else 0.0
 
 # ---- schedule (mirrors index.html) ----
 E = [8.0, 14.0, 18.0, 25.0]
@@ -255,7 +257,7 @@ for e in E:
 place(sfx, click, O + 2.0, 0.55)
 place(sfx, chime, O + 2.0, 0.4)
 
-mix = music * 0.62 + sfx
+mix = music * MUSIC_GAIN + sfx
 mix /= max(1.0, np.abs(mix).max() / 0.7)
 pcm = (mix.T * 32767).astype(np.int16)
 with wave.open(OUT, "wb") as w:
