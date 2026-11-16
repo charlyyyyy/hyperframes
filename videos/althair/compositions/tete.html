@@ -1,0 +1,254 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: linear-gradient(180deg, #ffd57a 0%, #fbb24b 55%, #f08a24 100%);
+      font-family: "Montserrat", sans-serif;
+    }
+    #tt-art {
+      position: absolute;
+      inset: 0;
+    }
+    .tt-chip {
+      position: absolute;
+      top: 300px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-weight: 700;
+      font-size: 32px;
+      letter-spacing: 0.22em;
+      color: #6b3208;
+    }
+    .tt-line {
+      position: absolute;
+      top: 372px;
+      left: 70px;
+      right: 70px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 88px;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      color: #3d1a04;
+    }
+    .w {
+      display: inline-block;
+    }
+    #tt-iris {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, #c9572e 0%, #8f3417 100%);
+      clip-path: circle(0px at 540px 1060px);
+    }
+  </style>
+  <div id="root" data-composition-id="tete" data-width="1080" data-height="1920">
+    <svg id="tt-art" width="1080" height="1920" viewBox="0 0 1080 1920">
+      <defs>
+        <filter id="tt-shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="26" stdDeviation="22" flood-color="#5a2a00" flood-opacity="0.32"/></filter>
+        <linearGradient id="tt-amber" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ffe7a1"/><stop offset="60%" stop-color="#f2b540"/><stop offset="100%" stop-color="#c47812"/></linearGradient>
+      </defs>
+      <circle id="tt-sun" cx="540" cy="1060" r="450" fill="#fff1c4" opacity="0.55"/>
+      <g transform="translate(540 1060)"><g id="tt-drops"><circle class="tt-drop" data-a="0.200" cx="0" cy="0" r="8" fill="#fbf2a8" opacity="0"/><circle class="tt-drop" data-a="0.593" cx="0" cy="0" r="12" fill="#fbf2a8" opacity="0"/><circle class="tt-drop" data-a="0.985" cx="0" cy="0" r="16" fill="#fbf2a8" opacity="0"/><circle class="tt-drop" data-a="1.378" cx="0" cy="0" r="8" fill="#fbf2a8" opacity="0"/><circle class="tt-drop" data-a="1.771" cx="0" cy="0" r="12" fill="#fbf2a8" opacity="0"/><circle class="tt-drop" data-a="2.163" cx="0" cy="0" r="16" fill="#fbf2a8" opacity="0"/><circle class="tt-drop" data-a="2.556" cx="0" cy="0" r="8" fill="#fbf2a8" opacity="0"/><circle class="tt-drop" data-a="2.949" cx="0" cy="0" r="12" fill="#fbf2a8" opacity="0"/><circle class="tt-drop" data-a="3.342" cx="0" cy="0" r="16" fill="#fbf2a8" opacity="0"/><circle class="tt-drop" data-a="3.734" cx="0" cy="0" r="8" fill="#fbf2a8" opacity="0"/><circle class="tt-drop" data-a="4.127" cx="0" cy="0" r="12" fill="#fbf2a8" opacity="0"/><circle class="tt-drop" data-a="4.520" cx="0" cy="0" r="16" fill="#fbf2a8" opacity="0"/><circle class="tt-drop" data-a="4.912" cx="0" cy="0" r="8" fill="#fbf2a8" opacity="0"/><circle class="tt-drop" data-a="5.305" cx="0" cy="0" r="12" fill="#fbf2a8" opacity="0"/><circle class="tt-drop" data-a="5.698" cx="0" cy="0" r="16" fill="#fbf2a8" opacity="0"/><circle class="tt-drop" data-a="6.090" cx="0" cy="0" r="8" fill="#fbf2a8" opacity="0"/></g></g>
+      <g transform="translate(540 1060)" filter="url(#tt-shadow)"><g id="tt-berg"><defs>
+  <radialGradient id="tt-b-flesh" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#fff3a6"/><stop offset="100%" stop-color="#f4dc4a"/></radialGradient>
+  <radialGradient id="tt-b-rind" cx="45%" cy="40%" r="60%"><stop offset="0%" stop-color="#e6d93a"/><stop offset="100%" stop-color="#b3a51f"/></radialGradient>
+</defs>
+<circle cx="0" cy="0" r="340" fill="url(#tt-b-rind)"/>
+<circle cx="0" cy="0" r="316.2" fill="#fdf8de"/>
+<path d="M32.3 10.5 Q160.5 10.4 291.7 20.5 A292.4 292.4 0 0 1 248.0 154.9 Q136.0 85.9 32.3 10.5 Z" fill="url(#tt-b-flesh)"/>
+<line x1="128.6" y1="27.8" x2="158.5" y2="34.2" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="167.1" y1="70.4" x2="195.3" y2="82.3" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="211.2" y1="58.9" x2="240.7" y2="67.1" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="152.1" y1="52.3" x2="181.0" y2="62.2" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="184.4" y1="88.9" x2="211.9" y2="102.2" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="104.1" y1="38.8" x2="132.8" y2="49.4" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<path d="M20.0 27.5 Q123.7 102.8 224.0 188.0 A292.4 292.4 0 0 1 109.6 271.1 Q59.5 149.4 20.0 27.5 Z" fill="url(#tt-b-flesh)"/>
+<line x1="87.7" y1="98.1" x2="108.1" y2="120.9" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="93.8" y1="155.1" x2="109.6" y2="181.3" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="136.3" y1="171.8" x2="155.3" y2="195.8" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="92.3" y1="131.7" x2="109.9" y2="156.7" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="96.9" y1="180.3" x2="111.4" y2="207.3" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="61.5" y1="92.6" x2="78.4" y2="118.1" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<path d="M0.0 34.0 Q39.7 155.9 70.7 283.7 A292.4 292.4 0 0 1 -70.7 283.7 Q-39.7 155.9 0.0 34.0 Z" fill="url(#tt-b-flesh)"/>
+<line x1="13.3" y1="130.9" x2="16.4" y2="161.3" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="-15.3" y1="180.6" x2="-17.9" y2="211.1" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="9.3" y1="219.1" x2="10.6" y2="249.7" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="-2.7" y1="160.8" x2="-3.2" y2="191.4" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="-27.6" y1="202.8" x2="-31.7" y2="233.1" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="-4.7" y1="111.0" x2="-6.0" y2="141.6" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<path d="M-20.0 27.5 Q-59.5 149.4 -109.6 271.1 A292.4 292.4 0 0 1 -224.0 188.0 Q-123.7 102.8 -20.0 27.5 Z" fill="url(#tt-b-flesh)"/>
+<line x1="-66.2" y1="113.7" x2="-81.6" y2="140.2" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="-118.6" y1="137.1" x2="-138.6" y2="160.3" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="-121.3" y1="182.7" x2="-138.2" y2="208.2" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="-96.7" y1="128.5" x2="-115.1" y2="152.9" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="-141.5" y1="147.9" x2="-162.7" y2="170.0" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="-69.0" y1="87.1" x2="-88.1" y2="111.0" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<path d="M-32.3 10.5 Q-136.0 85.9 -248.0 154.9 A292.4 292.4 0 0 1 -291.7 20.5 Q-160.5 10.4 -32.3 10.5 Z" fill="url(#tt-b-flesh)"/>
+<line x1="-120.4" y1="53.1" x2="-148.4" y2="65.5" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="-176.5" y1="41.3" x2="-206.3" y2="48.2" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="-205.5" y1="76.5" x2="-234.2" y2="87.2" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="-153.8" y1="47.1" x2="-183.0" y2="56.1" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="-201.4" y1="36.4" x2="-231.5" y2="41.9" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="-107.0" y1="29.8" x2="-136.5" y2="38.1" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<path d="M-32.3 -10.5 Q-160.5 -10.4 -291.7 -20.5 A292.4 292.4 0 0 1 -248.0 -154.9 Q-136.0 -85.9 -32.3 -10.5 Z" fill="url(#tt-b-flesh)"/>
+<line x1="-128.6" y1="-27.8" x2="-158.5" y2="-34.2" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="-167.1" y1="-70.4" x2="-195.3" y2="-82.3" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="-211.2" y1="-58.9" x2="-240.7" y2="-67.1" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="-152.1" y1="-52.3" x2="-181.0" y2="-62.2" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="-184.4" y1="-88.9" x2="-211.9" y2="-102.2" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="-104.1" y1="-38.8" x2="-132.8" y2="-49.4" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<path d="M-20.0 -27.5 Q-123.7 -102.8 -224.0 -188.0 A292.4 292.4 0 0 1 -109.6 -271.1 Q-59.5 -149.4 -20.0 -27.5 Z" fill="url(#tt-b-flesh)"/>
+<line x1="-87.7" y1="-98.1" x2="-108.1" y2="-120.9" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="-93.8" y1="-155.1" x2="-109.6" y2="-181.3" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="-136.3" y1="-171.8" x2="-155.3" y2="-195.8" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="-92.3" y1="-131.7" x2="-109.9" y2="-156.7" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="-96.9" y1="-180.3" x2="-111.4" y2="-207.3" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="-61.5" y1="-92.6" x2="-78.4" y2="-118.1" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<path d="M-0.0 -34.0 Q-39.7 -155.9 -70.7 -283.7 A292.4 292.4 0 0 1 70.7 -283.7 Q39.7 -155.9 -0.0 -34.0 Z" fill="url(#tt-b-flesh)"/>
+<line x1="-13.3" y1="-130.9" x2="-16.4" y2="-161.3" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="15.3" y1="-180.6" x2="17.9" y2="-211.1" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="-9.3" y1="-219.1" x2="-10.6" y2="-249.7" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="2.7" y1="-160.8" x2="3.2" y2="-191.4" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="27.6" y1="-202.8" x2="31.7" y2="-233.1" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="4.7" y1="-111.0" x2="6.0" y2="-141.6" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<path d="M20.0 -27.5 Q59.5 -149.4 109.6 -271.1 A292.4 292.4 0 0 1 224.0 -188.0 Q123.7 -102.8 20.0 -27.5 Z" fill="url(#tt-b-flesh)"/>
+<line x1="66.2" y1="-113.7" x2="81.6" y2="-140.2" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="118.6" y1="-137.1" x2="138.6" y2="-160.3" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="121.3" y1="-182.7" x2="138.2" y2="-208.2" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="96.7" y1="-128.5" x2="115.1" y2="-152.9" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="141.5" y1="-147.9" x2="162.7" y2="-170.0" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="69.0" y1="-87.1" x2="88.1" y2="-111.0" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<path d="M32.3 -10.5 Q136.0 -85.9 248.0 -154.9 A292.4 292.4 0 0 1 291.7 -20.5 Q160.5 -10.4 32.3 -10.5 Z" fill="url(#tt-b-flesh)"/>
+<line x1="120.4" y1="-53.1" x2="148.4" y2="-65.5" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="176.5" y1="-41.3" x2="206.3" y2="-48.2" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="205.5" y1="-76.5" x2="234.2" y2="-87.2" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="153.8" y1="-47.1" x2="183.0" y2="-56.1" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="201.4" y1="-36.4" x2="231.5" y2="-41.9" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<line x1="107.0" y1="-29.8" x2="136.5" y2="-38.1" stroke="#ffffff" stroke-opacity="0.35" stroke-width="6.1" stroke-linecap="round"/>
+<circle cx="0" cy="0" r="23.8" fill="#fdf8de"/></g></g>
+      <g transform="translate(860 1500)" filter="url(#tt-shadow)"><g id="tt-mand"><defs>
+  <radialGradient id="tt-m-flesh" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffc066"/><stop offset="100%" stop-color="#f78d22"/></radialGradient>
+  <radialGradient id="tt-m-rind" cx="45%" cy="40%" r="60%"><stop offset="0%" stop-color="#ff9a2a"/><stop offset="100%" stop-color="#e0651a"/></radialGradient>
+</defs>
+<circle cx="0" cy="0" r="200" fill="url(#tt-m-rind)"/>
+<circle cx="0" cy="0" r="186.0" fill="#fff0d6"/>
+<path d="M19.0 6.2 Q94.4 6.1 171.6 12.0 A172.0 172.0 0 0 1 145.9 91.1 Q80.0 50.5 19.0 6.2 Z" fill="url(#tt-m-flesh)"/>
+<line x1="75.7" y1="16.3" x2="93.2" y2="20.1" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="98.3" y1="41.4" x2="114.9" y2="48.4" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="124.3" y1="34.6" x2="141.6" y2="39.5" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="89.5" y1="30.7" x2="106.5" y2="36.6" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="108.4" y1="52.3" x2="124.7" y2="60.1" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="61.3" y1="22.8" x2="78.1" y2="29.1" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<path d="M11.8 16.2 Q72.8 60.5 131.7 110.6 A172.0 172.0 0 0 1 64.5 159.5 Q35.0 87.9 11.8 16.2 Z" fill="url(#tt-m-flesh)"/>
+<line x1="51.6" y1="57.7" x2="63.6" y2="71.1" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="55.2" y1="91.3" x2="64.5" y2="106.7" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="80.2" y1="101.1" x2="91.4" y2="115.2" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="54.3" y1="77.5" x2="64.6" y2="92.2" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="57.0" y1="106.1" x2="65.5" y2="121.9" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="36.1" y1="54.5" x2="46.1" y2="69.4" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<path d="M0.0 20.0 Q23.3 91.7 41.6 166.9 A172.0 172.0 0 0 1 -41.6 166.9 Q-23.3 91.7 0.0 20.0 Z" fill="url(#tt-m-flesh)"/>
+<line x1="7.8" y1="77.0" x2="9.7" y2="94.9" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="-9.0" y1="106.3" x2="-10.5" y2="124.2" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="5.5" y1="128.9" x2="6.2" y2="146.9" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="-1.6" y1="94.6" x2="-1.9" y2="112.6" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="-16.2" y1="119.3" x2="-18.7" y2="137.1" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="-2.8" y1="65.3" x2="-3.5" y2="83.3" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<path d="M-11.8 16.2 Q-35.0 87.9 -64.5 159.5 A172.0 172.0 0 0 1 -131.7 110.6 Q-72.8 60.5 -11.8 16.2 Z" fill="url(#tt-m-flesh)"/>
+<line x1="-38.9" y1="66.9" x2="-48.0" y2="82.5" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="-69.7" y1="80.7" x2="-81.5" y2="94.3" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="-71.3" y1="107.5" x2="-81.3" y2="122.5" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="-56.9" y1="75.6" x2="-67.7" y2="90.0" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="-83.3" y1="87.0" x2="-95.7" y2="100.0" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="-40.6" y1="51.2" x2="-51.8" y2="65.3" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<path d="M-19.0 6.2 Q-80.0 50.5 -145.9 91.1 A172.0 172.0 0 0 1 -171.6 12.0 Q-94.4 6.1 -19.0 6.2 Z" fill="url(#tt-m-flesh)"/>
+<line x1="-70.8" y1="31.2" x2="-87.3" y2="38.5" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="-103.8" y1="24.3" x2="-121.4" y2="28.4" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="-120.9" y1="45.0" x2="-137.8" y2="51.3" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="-90.5" y1="27.7" x2="-107.7" y2="33.0" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="-118.5" y1="21.4" x2="-136.2" y2="24.6" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="-63.0" y1="17.6" x2="-80.3" y2="22.4" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<path d="M-19.0 -6.2 Q-94.4 -6.1 -171.6 -12.0 A172.0 172.0 0 0 1 -145.9 -91.1 Q-80.0 -50.5 -19.0 -6.2 Z" fill="url(#tt-m-flesh)"/>
+<line x1="-75.7" y1="-16.3" x2="-93.2" y2="-20.1" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="-98.3" y1="-41.4" x2="-114.9" y2="-48.4" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="-124.3" y1="-34.6" x2="-141.6" y2="-39.5" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="-89.5" y1="-30.7" x2="-106.5" y2="-36.6" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="-108.4" y1="-52.3" x2="-124.7" y2="-60.1" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="-61.3" y1="-22.8" x2="-78.1" y2="-29.1" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<path d="M-11.8 -16.2 Q-72.8 -60.5 -131.7 -110.6 A172.0 172.0 0 0 1 -64.5 -159.5 Q-35.0 -87.9 -11.8 -16.2 Z" fill="url(#tt-m-flesh)"/>
+<line x1="-51.6" y1="-57.7" x2="-63.6" y2="-71.1" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="-55.2" y1="-91.3" x2="-64.5" y2="-106.7" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="-80.2" y1="-101.1" x2="-91.4" y2="-115.2" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="-54.3" y1="-77.5" x2="-64.6" y2="-92.2" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="-57.0" y1="-106.1" x2="-65.5" y2="-121.9" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="-36.1" y1="-54.5" x2="-46.1" y2="-69.4" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<path d="M-0.0 -20.0 Q-23.3 -91.7 -41.6 -166.9 A172.0 172.0 0 0 1 41.6 -166.9 Q23.3 -91.7 -0.0 -20.0 Z" fill="url(#tt-m-flesh)"/>
+<line x1="-7.8" y1="-77.0" x2="-9.7" y2="-94.9" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="9.0" y1="-106.3" x2="10.5" y2="-124.2" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="-5.5" y1="-128.9" x2="-6.2" y2="-146.9" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="1.6" y1="-94.6" x2="1.9" y2="-112.6" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="16.2" y1="-119.3" x2="18.7" y2="-137.1" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="2.8" y1="-65.3" x2="3.5" y2="-83.3" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<path d="M11.8 -16.2 Q35.0 -87.9 64.5 -159.5 A172.0 172.0 0 0 1 131.7 -110.6 Q72.8 -60.5 11.8 -16.2 Z" fill="url(#tt-m-flesh)"/>
+<line x1="38.9" y1="-66.9" x2="48.0" y2="-82.5" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="69.7" y1="-80.7" x2="81.5" y2="-94.3" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="71.3" y1="-107.5" x2="81.3" y2="-122.5" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="56.9" y1="-75.6" x2="67.7" y2="-90.0" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="83.3" y1="-87.0" x2="95.7" y2="-100.0" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="40.6" y1="-51.2" x2="51.8" y2="-65.3" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<path d="M19.0 -6.2 Q80.0 -50.5 145.9 -91.1 A172.0 172.0 0 0 1 171.6 -12.0 Q94.4 -6.1 19.0 -6.2 Z" fill="url(#tt-m-flesh)"/>
+<line x1="70.8" y1="-31.2" x2="87.3" y2="-38.5" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="103.8" y1="-24.3" x2="121.4" y2="-28.4" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="120.9" y1="-45.0" x2="137.8" y2="-51.3" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="90.5" y1="-27.7" x2="107.7" y2="-33.0" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="118.5" y1="-21.4" x2="136.2" y2="-24.6" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<line x1="63.0" y1="-17.6" x2="80.3" y2="-22.4" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3.6" stroke-linecap="round"/>
+<circle cx="0" cy="0" r="14.0" fill="#fff0d6"/></g></g>
+      <g id="tt-resins" filter="url(#tt-shadow)"><g transform="translate(200 1450) scale(1.0)"><g class="tt-resin"><path d="M0 -70 C 30 -30, 48 0, 48 22 C 48 50, 26 70, 0 70 C -26 70, -48 50, -48 22 C -48 0, -30 -30, 0 -70 Z" fill="url(#tt-amber)"/><ellipse cx="-16" cy="8" rx="9" ry="18" fill="#fff4cf" opacity="0.55"/></g></g><g transform="translate(300 1560) scale(0.75)"><g class="tt-resin"><path d="M0 -70 C 30 -30, 48 0, 48 22 C 48 50, 26 70, 0 70 C -26 70, -48 50, -48 22 C -48 0, -30 -30, 0 -70 Z" fill="url(#tt-amber)"/><ellipse cx="-16" cy="8" rx="9" ry="18" fill="#fff4cf" opacity="0.55"/></g></g><g transform="translate(150 1600) scale(0.6)"><g class="tt-resin"><path d="M0 -70 C 30 -30, 48 0, 48 22 C 48 50, 26 70, 0 70 C -26 70, -48 50, -48 22 C -48 0, -30 -30, 0 -70 Z" fill="url(#tt-amber)"/><ellipse cx="-16" cy="8" rx="9" ry="18" fill="#fff4cf" opacity="0.55"/></g></g></g>
+    </svg>
+    <div id="tt-chip" class="tt-chip">✦&nbsp; NOTES DE TÊTE</div>
+    <div id="tt-l1" class="tt-line"><span class="w">Bergamote,</span><br /><span class="w">mandarine</span></div>
+    <div id="tt-l2" class="tt-line"><span class="w">et</span> <span class="w">l'élémi,</span><br /><span class="w">une</span> <span class="w">résine</span> <span class="w">citronnée</span></div>
+    <div id="tt-iris"></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    gsap.set(["#tt-l2 .w"], { opacity: 0 });
+
+    // The bergamot slice falls into the light and splashes.
+    tl.fromTo("#tt-berg", { y: -1500, rotation: -140 }, { y: 0, rotation: 0, duration: 0.62, ease: "power3.in" }, 0);
+    tl.fromTo("#tt-berg", { scale: 1.08 }, { scale: 1, duration: 0.5, ease: "elastic.out(1, 0.55)", immediateRender: false }, 0.62);
+    tl.fromTo("#tt-sun", { scale: 0.9, transformOrigin: "50% 50%" }, { scale: 1, duration: 1.2, ease: "expo.out", transformOrigin: "50% 50%" }, 0.5);
+    document.querySelectorAll("#tt-drops .tt-drop").forEach((d, i) => {
+      const a = parseFloat(d.dataset.a);
+      const dist = 400 + (i % 4) * 70;
+      tl.fromTo(d, { x: Math.cos(a) * 250, y: Math.sin(a) * 250, opacity: 0 }, { x: Math.cos(a) * dist, y: Math.sin(a) * dist + 90, opacity: 0.95, duration: 0.55, ease: "expo.out" }, 0.62);
+      tl.to(d, { opacity: 0, y: Math.sin(a) * dist + 250, duration: 0.45, ease: "power2.in" }, 1.05 + (i % 5) * 0.04);
+    });
+    // Slow turn of the slice while it is shown (constant speed is the point).
+    tl.fromTo("#tt-berg", { rotation: 0 }, { rotation: 32, duration: 5.55, ease: "none", immediateRender: false }, 0.62);
+
+    tl.fromTo("#tt-chip", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power3.out" }, 0.55);
+    tl.fromTo("#tt-l1 .w", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.22, ease: "power4.out", stagger: 0.09 }, 0.75);
+
+    // Mandarin rolls in from the right.
+    tl.fromTo("#tt-mand", { x: 560, rotation: 160 }, { x: 0, rotation: 0, duration: 1.0, ease: "expo.out" }, 1.6);
+
+    // Swap to elemi; resin tears set down.
+    tl.to("#tt-l1 .w", { opacity: 0, filter: "blur(8px)", duration: 0.16, ease: "power2.in", stagger: 0.04 }, 3.2);
+    tl.fromTo("#tt-l2 .w", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.22, ease: "power4.out", stagger: 0.08 }, 3.45);
+    tl.fromTo("#tt-resins .tt-resin", { scale: 0.01, transformOrigin: "50% 100%" }, { scale: 1, duration: 0.5, ease: "back.out(1.6)", stagger: 0.12, transformOrigin: "50% 100%" }, 3.5);
+
+    // Exit: everything leaves, the slice spins shut into a point, terracotta opens from it.
+    tl.to(["#tt-chip", "#tt-l2"], { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power2.in" }, 6.05);
+    tl.to("#tt-mand", { x: 700, rotation: 200, duration: 0.5, ease: "power3.in" }, 6.1);
+    tl.to("#tt-resins", { y: 600, duration: 0.5, ease: "power3.in" }, 6.1);
+    tl.to("#tt-berg", { scale: 0.02, rotation: 332, duration: 0.6, ease: "power3.in" }, 6.2);
+    tl.to("#tt-sun", { scale: 0.4, opacity: 0, duration: 0.5, ease: "power3.in", transformOrigin: "50% 50%" }, 6.2);
+    tl.to("#tt-iris", { clipPath: "circle(1400px at 540px 1060px)", duration: 0.5, ease: "power2.in" }, 6.45);
+
+    window.__timelines["tete"] = tl;
+  </script>
+</template>
